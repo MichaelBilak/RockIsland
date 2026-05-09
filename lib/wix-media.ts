@@ -7,6 +7,12 @@ export function wixFill(file: string, w: number, h: number): string {
   return `https://static.wixstatic.com/media/${encoded}/v1/fill/w_${w},h_${h},al_c,q_85,usm_0.66_1.00_0.01,enc_auto/${encoded}`;
 }
 
+/** Variante più nitida per Open Graph / social (1200×630 consigliato). */
+export function wixOg(file: string, w: number, h: number): string {
+  const encoded = file.replace(/~/g, '%7E');
+  return `https://static.wixstatic.com/media/${encoded}/v1/fill/w_${w},h_${h},al_c,q_90,usm_0.66_1.00_0.01,enc_auto/${encoded}`;
+}
+
 export const WIX = {
   galleryHero: '1be8b5_cce8f10635514505a1cb685c7737176d~mv2.jpeg',
   locationDock: '1be8b5_5dbee6ca6cfc4bd78b93b24f5036661d~mv2.jpeg',

@@ -34,7 +34,14 @@ export const metadata: Metadata = {
     title: 'RockIsland Rimini | Ristorante sul mare',
     description:
       '400 metri nel mare. Tramonti, musica, cena. RockIsland — Molo di Levante, Rimini.',
-    images: [{ url: OG_IMAGE, width: 550, height: 367, alt: 'RockIsland Rimini' }],
+    images: [
+      {
+        url: OG_IMAGE,
+        width: 1200,
+        height: 630,
+        alt: 'RockIsland Rimini — vista dal Molo di Levante',
+      },
+    ],
     locale: 'it_IT',
     type: 'website',
   },
@@ -43,6 +50,7 @@ export const metadata: Metadata = {
     title: 'RockIsland Rimini',
     description:
       'Ristorante e bar sul molo: pesce, pizza, cocktail ed eventi sul mare.',
+    images: [OG_IMAGE],
   },
   /** Lingue gestite lato client senza URL dedicati: niente hreflang ingannevole */
   alternates: { canonical: '/' },

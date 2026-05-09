@@ -7,7 +7,7 @@
  * @see https://www.rockislandrimini.it/
  */
 import type { MenuCategoryId } from '@/lib/menu-data';
-import { wixFill, WIX } from '@/lib/wix-media';
+import { wixFill, wixOg, WIX } from '@/lib/wix-media';
 
 /**
  * Incolla qui URL immagine da TripAdvisor (scheda o recensioni), uno per riga.
@@ -15,10 +15,10 @@ import { wixFill, WIX } from '@/lib/wix-media';
  */
 export const TRIPADVISOR_EXTRA: readonly string[] = [];
 
-export { wixFill, WIX };
+export { wixFill, wixOg, WIX };
 
-/** Open Graph: hero ufficiale */
-export const OG_IMAGE = wixFill(WIX.galleryHero, 1200, 630);
+/** Open Graph / Telegram / Twitter: vista sul mare dal Molo (asset ufficiale Wix). */
+export const OG_IMAGE = wixOg(WIX.pierView, 1200, 630);
 
 /** Immagine guida per ogni sezione menu (foto dal sito). */
 export const MENU_CATEGORY_PHOTO: Record<MenuCategoryId, string> = {
