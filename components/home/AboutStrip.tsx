@@ -22,7 +22,7 @@ export function AboutStrip() {
         <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:grid-cols-3 sm:px-6 lg:px-8">
           {statKeys.map((s) => (
             <div key={s.title} className="text-center">
-              <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold">
+              <p className="text-xs font-medium uppercase tracking-[0.35em] text-navy/65">
                 {t(s.sub)}
               </p>
               <p className="mt-3 font-serif text-2xl tracking-wide sm:text-3xl">

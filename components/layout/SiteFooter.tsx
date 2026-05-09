@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Instagram, Facebook } from 'lucide-react';
-import { CONTACT } from '@/lib/site';
+import { CONTACT, WHATSAPP_HREF } from '@/lib/site';
 import { useLocale } from '@/contexts/LocaleContext';
 import type { MessageKey } from '@/lib/i18n/messages';
 const footerLinkKeys: { href: string; key: MessageKey }[] = [
@@ -39,6 +39,16 @@ export function SiteFooter() {
               className="transition-colors hover:text-gold"
             >
               {CONTACT.phone}
+            </a>
+          </p>
+          <p>
+            <a
+              href={WHATSAPP_HREF}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-gold"
+            >
+              {t('mobileWhatsApp')}
             </a>
           </p>
           <p>

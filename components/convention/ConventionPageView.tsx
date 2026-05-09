@@ -60,6 +60,8 @@ const TESTIMONIALS: {
 export function ConventionPageView() {
   const { t } = useLocale();
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   return (
     <main className="pb-14 md:pb-0">
@@ -136,7 +138,15 @@ export function ConventionPageView() {
                 <Check className="h-7 w-7" />
               </div>
               <p className="mt-6 text-cream">{t('convFormSuccess')}</p>
-              <Button type="button" variant="ghost" className="mt-6" onClick={() => setSent(false)}>
+              <Button
+                type="button"
+                variant="ghost"
+                className="mt-6"
+                onClick={() => {
+                  setSent(false);
+                  setError(null);
+                }}
+              >
                 {t('prenotaAgain')}
               </Button>
             </motion.div>
@@ -146,11 +156,54 @@ export function ConventionPageView() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               className="mt-10 space-y-5"
-              onSubmit={(e) => {
+              onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
                 e.preventDefault();
-                setSent(true);
+                setError(null);
+                const form = e.currentTarget;
+                const fd = new FormData(form);
+
+                setSubmitting(true);
+                try {
+                  const res = await fetch('/api/convention', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      company: String(fd.get('company') ?? ''),
+                      cname: String(fd.get('cname') ?? ''),
+                      cemail: String(fd.get('cemail') ?? ''),
+                      cphone: String(fd.get('cphone') ?? ''),
+                      cmsg: String(fd.get('cmsg') ?? ''),
+                      website: String(fd.get('website') ?? ''),
+                    }),
+                  });
+
+                  if (res.status === 503) {
+                    setError(t('formErrorNotConfigured'));
+                    return;
+                  }
+
+                  if (!res.ok) {
+                    setError(t('formErrorGeneric'));
+                    return;
+                  }
+
+                  setSent(true);
+                  form.reset();
+                } catch {
+                  setError(t('formErrorGeneric'));
+                } finally {
+                  setSubmitting(false);
+                }
               }}
             >
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden
+                className="pointer-events-none absolute left-[-9999px] h-0 w-0 opacity-0"
+              />
               <div className="space-y-2">
                 <Label htmlFor="company">{t('convFormLabelCompany')}</Label>
                 <Input id="company" name="company" required />
@@ -173,8 +226,16 @@ export function ConventionPageView() {
                 <Label htmlFor="cmsg">{t('convFormLabelMessage')}</Label>
                 <Textarea id="cmsg" name="cmsg" rows={5} required />
               </div>
-              <Button type="submit" className="w-full">
-                {t('convFormSubmit')}
+              {error ? (
+                <p
+                  role="alert"
+                  className="rounded-[2px] border border-red-400/40 bg-red-950/30 px-4 py-3 text-sm text-red-100"
+                >
+                  {error}
+                </p>
+              ) : null}
+              <Button type="submit" className="w-full" disabled={submitting}>
+                {submitting ? t('formSubmitting') : t('convFormSubmit')}
               </Button>
             </motion.form>
           )}

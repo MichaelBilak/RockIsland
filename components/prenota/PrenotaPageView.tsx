@@ -35,11 +35,64 @@ const dateLocales: Record<Locale, typeof it> = {
 export function PrenotaPageView() {
   const { t, locale } = useLocale();
   const [date, setDate] = useState<Date | undefined>();
+  const [time, setTime] = useState('20:00');
+  const [party, setParty] = useState('2');
+  const [type, setType] = useState('cena');
   const [done, setDone] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setDone(true);
+    setError(null);
+
+    if (!date) {
+      setError(t('prenotaDateRequired'));
+      return;
+    }
+
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    setSubmitting(true);
+    try {
+      const res = await fetch('/api/prenota', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: String(fd.get('name') ?? ''),
+          phone: String(fd.get('phone') ?? ''),
+          email: String(fd.get('email') ?? ''),
+          date: format(date, 'yyyy-MM-dd'),
+          time,
+          party,
+          type,
+          note: String(fd.get('note') ?? ''),
+          website: String(fd.get('website') ?? ''),
+        }),
+      });
+
+      if (res.status === 503) {
+        setError(t('formErrorNotConfigured'));
+        return;
+      }
+
+      if (!res.ok) {
+        setError(t('formErrorGeneric'));
+        return;
+      }
+
+      setDone(true);
+      form.reset();
+      setDate(undefined);
+      setTime('20:00');
+      setParty('2');
+      setType('cena');
+    } catch {
+      setError(t('formErrorGeneric'));
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -82,7 +135,10 @@ export function PrenotaPageView() {
                 type="button"
                 variant="outline"
                 className="mt-10"
-                onClick={() => setDone(false)}
+                onClick={() => {
+                  setDone(false);
+                  setError(null);
+                }}
               >
                 {t('prenotaAgain')}
               </Button>
@@ -96,6 +152,14 @@ export function PrenotaPageView() {
               onSubmit={onSubmit}
               className="space-y-6"
             >
+              <input
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden
+                className="pointer-events-none absolute left-[-9999px] h-0 w-0 opacity-0"
+              />
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="name">{t('prenotaLabelName')}</Label>
@@ -149,7 +213,7 @@ export function PrenotaPageView() {
                 </div>
                 <div className="space-y-2">
                   <Label>{t('prenotaLabelTime')}</Label>
-                  <Select name="time" required>
+                  <Select value={time} onValueChange={setTime}>
                     <SelectTrigger>
                       <SelectValue placeholder={t('prenotaTime2000')} />
                     </SelectTrigger>
@@ -164,7 +228,7 @@ export function PrenotaPageView() {
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label>{t('prenotaLabelParty')}</Label>
-                  <Select name="party" required defaultValue="2">
+                  <Select value={party} onValueChange={setParty}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -178,7 +242,7 @@ export function PrenotaPageView() {
                 </div>
                 <div className="space-y-2">
                   <Label>{t('prenotaLabelType')}</Label>
-                  <Select name="type" required defaultValue="cena">
+                  <Select value={type} onValueChange={setType}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -199,8 +263,21 @@ export function PrenotaPageView() {
                   placeholder={t('prenotaPlaceholderNote')}
                 />
               </div>
-              <Button type="submit" size="lg" className="w-full sm:w-auto">
-                {t('prenotaSubmit')}
+              {error ? (
+                <p
+                  role="alert"
+                  className="rounded-[2px] border border-red-400/40 bg-red-950/30 px-4 py-3 text-sm text-red-100"
+                >
+                  {error}
+                </p>
+              ) : null}
+              <Button
+                type="submit"
+                size="lg"
+                className="w-full sm:w-auto"
+                disabled={submitting}
+              >
+                {submitting ? t('formSubmitting') : t('prenotaSubmit')}
               </Button>
             </motion.form>
           )}

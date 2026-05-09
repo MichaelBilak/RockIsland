@@ -1,59 +1,93 @@
-# RockIsland Rimini — Demo Website
+# RockIsland Rimini
 
-Single-page demo site for **RockIsland** — a restaurant and bar on the pier (Molo di Levante) 400 meters into the Adriatic Sea in Rimini. This is a **sales demo** to show the client how their website could look and function.
+Website for **RockIsland** — restaurant and bar on the pier (Molo di Levante) in Rimini. Dark, cinematic UI (navy, black, amber/gold), focused on the evening experience: aperitivo, sunset, dinner, events, and bookings.
 
-## Concept
+**Version:** `0.1.0` — full multi-page front end with optional email delivery for lead forms (no CMS).
 
-Premium night-out venue: dark, cinematic look (deep navy, black, amber/gold accents), not a family seafood place. The site presents the evening experience (aperitivo → sunset → dinner → DJ set), menu, testimonials, convention/events offer, and table booking.
+## Tech stack
 
-## Tech Stack
-
-- **Next.js 14** (App Router)
-- **React 18**
-- **TypeScript**
-- **Tailwind CSS**
+- **Next.js 14** (App Router), **React 18**, **TypeScript**
+- **Tailwind CSS** (+ `tailwindcss-animate`, `class-variance-authority`, `clsx`, `tailwind-merge`)
+- **Radix UI** (label, popover, select, slot) and shared primitives under `components/ui/`
 - **lucide-react** (icons)
+- **framer-motion** (motion)
+- **date-fns** + **react-day-picker** (booking date UI)
 
-Fonts: **Cormorant Garamond** (headlines), **Inter** (body).
+Fonts (Google, via `next/font`): **Cormorant Garamond** (headings), **Inter** (body).
+
+**Email:** outbound mail uses the [Resend](https://resend.com) HTTP API from `lib/email/resend.ts` (no `resend` npm package — plain `fetch`).
+
+**Analytics (optional):** Google Analytics 4 when `NEXT_PUBLIC_GA_MEASUREMENT_ID` is set (`app/layout.tsx`).
 
 ## Features
 
-- **Bilingual**: Italian (default) and English with a navbar toggle (IT | EN). All copy is in `lib/translations.ts`.
-- **Responsive**: Mobile-first layout; mobile drawer menu, sticky bottom bar (Call / Book), horizontal-scroll testimonials.
-- **Sections**: Hero, Evening timeline, Menu (3 tabs), Testimonials, Convention/events, Booking form, Footer.
-- **Animations**: Scroll-triggered reveals (IntersectionObserver), staggered hero headline, no external animation libraries.
-- **SEO**: Metadata (title, description, Open Graph, Twitter) and JSON-LD Restaurant schema in `app/layout.tsx`.
+- **Bilingual UI:** Italian (default) and English via navbar toggle (IT | EN). Copy lives in `lib/translations.ts` with extras in `lib/i18n/` (no locale segments in URLs).
+- **Responsive:** Mobile-first; drawer navigation, bottom bar on small screens (`MobileBottomBar`).
+- **SEO:** Metadata (title template, description, Open Graph, Twitter), `robots.ts`, `sitemap.ts`, JSON-LD `Restaurant` schema in `app/layout.tsx`.
+- **Forms:** `/prenota` and `/convention` POST to App Router API routes; server validates input and can email leads when Resend env vars are configured.
 
-## Project Structure
+## Routes
+
+| Path | Purpose |
+|------|---------|
+| `/` | Home: hero, about, experience, menu teaser, events ticker, convention CTA, footer |
+| `/menu` | Full menu |
+| `/eventi` | Events listing |
+| `/prenota` | Table booking (form → `POST /api/prenota`) |
+| `/convention` | Convention / private events (form → `POST /api/convention`) |
+
+## Project structure
 
 ```
 ├── app/
-│   ├── layout.tsx      # Root layout, fonts, metadata, JSON-LD, LanguageProvider
-│   ├── page.tsx        # Single page composing all sections
-│   └── globals.css     # Tailwind + custom keyframes (hero, tabs)
+│   ├── layout.tsx          # Fonts, metadata, JSON-LD, optional GA4, LocaleProvider, AppShell
+│   ├── page.tsx            # Home sections
+│   ├── globals.css
+│   ├── menu/page.tsx
+│   ├── eventi/page.tsx
+│   ├── prenota/page.tsx
+│   ├── convention/page.tsx
+│   ├── robots.ts
+│   ├── sitemap.ts
+│   └── api/
+│       ├── prenota/route.ts
+│       └── convention/route.ts
 ├── components/
-│   ├── Navbar.tsx           # Fixed nav, scroll bg, mobile drawer, IT/EN, Prenota
-│   ├── Hero.tsx             # Full-screen hero, CTAs, shuttle badge
-│   ├── EveningTimeline.tsx   # 5-step experience timeline
-│   ├── MenuSection.tsx      # 3 tabs: Aperitivi & Bar, Ristorante, Cocktail
-│   ├── TestimonialsSection.tsx
-│   ├── ConventionSection.tsx
-│   ├── BookingSection.tsx   # Contact info + form
-│   ├── BookingForm.tsx      # Form with validation, success state (no API)
-│   ├── Footer.tsx
-│   ├── StickyBookingBar.tsx  # Mobile-only Call / Book bar
-│   ├── Reveal.tsx           # Scroll reveal wrapper
-│   └── SectionHeading.tsx
+│   ├── layout/             # AppShell, SiteNav, SiteFooter, MobileBottomBar, LanguageSwitcher, DocumentLang
+│   ├── home/               # Home page sections
+│   ├── menu/, eventi/, prenota/, convention/
+│   ├── motion/             # e.g. FadeUp, HeroStagger
+│   └── ui/                 # Button, Input, Calendar, Select, etc.
 ├── contexts/
-│   └── LanguageContext.tsx  # Locale state + translations
+│   └── LocaleContext.tsx   # Locale + translations
 ├── lib/
-│   ├── translations.ts      # IT/EN strings (nav, hero, menu labels, etc.)
-│   └── menu-data.ts         # Menu items and prices (no translations)
-├── tailwind.config.ts      # rock, amber, ocean palette; fonts; animations
-└── next.config.mjs          # Image domains/remotePatterns for Unsplash
+│   ├── site.ts             # SITE_URL, contacts, WhatsApp, maps
+│   ├── translations.ts
+│   ├── i18n/
+│   ├── menu-data.ts, events-data.ts, eventi-data.ts
+│   ├── images.ts
+│   ├── html.ts             # HTML escaping for emails
+│   ├── utils.ts
+│   └── email/resend.ts
+├── tailwind.config.ts
+└── next.config.mjs         # remotePatterns for next/image hosts
 ```
 
-## Running the Project
+## Environment variables
+
+Copy `.env.example` to `.env.local` for local development.
+
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_SITE_URL` | Canonical URL for metadata (default in code: `https://rockislandrimini.it`) |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Optional GA4 measurement ID |
+| `RESEND_API_KEY` | Resend API key |
+| `RESEND_FROM` | Verified sender, e.g. `RockIsland <bookings@your-domain.it>` |
+| `RESEND_TO` | Inbox for lead notifications |
+
+If Resend variables are missing, `POST /api/prenota` and `POST /api/convention` respond with **503** (service not configured).
+
+## Scripts
 
 ```bash
 npm install
@@ -62,21 +96,18 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-Build for production:
-
 ```bash
-npm run build
-npm start
+npm run build && npm start    # production
+npm run lint
+npm run dev:fresh             # clean .next then dev
 ```
 
-## Demo Data
+## Content and assets
 
-- **Contacts** (placeholder): phone 0541 149 7100, info@rockislandrimini.it  
-- **Location**: Molo di Levante, Largo Boscovich, Rimini  
-- **Images**: Unsplash (hero ocean, convention event); configured in `next.config.mjs`  
-- **Booking**: Form only; no backend — success message is simulated  
+- **Contacts** and map links are centralized in `lib/site.ts` (phone, email, WhatsApp, Google Maps).
+- **Images** use `next/image`; allowed hosts are listed in `next.config.mjs` (e.g. Unsplash, Tripadvisor, Wix static, Restaurant Guru).
 
 ## Notes
 
-- Demo only: no real API, no CMS. Contact data matches the client’s real details for presentation.
-- All images use the Next.js `Image` component; Unsplash hostname must be allowed in `next.config.mjs`.
+- No headless CMS: menu and events data are in `lib/*.ts` files.
+- Production deploy: set `NEXT_PUBLIC_SITE_URL`, configure Resend for working forms, and allow your image domains if you add new remote hosts.

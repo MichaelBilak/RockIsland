@@ -110,6 +110,13 @@ export const pageAdditionsIt = {
   evPast1Title: 'Capodanno sul molo',
   evPast2Title: 'Vini dell’Adriatico — degustazione',
   evPast3Title: 'Serata anni ’90',
+  formSubmitting: 'Invio in corso…',
+  formErrorGeneric:
+    'Non è stato possibile inviare il modulo. Riprova tra qualche minuto o contattaci direttamente.',
+  formErrorNotConfigured:
+    'Invio email non ancora attivo sul server: chiamaci, scrivici su WhatsApp o invia una email.',
+  prenotaDateRequired: 'Seleziona una data.',
+  mobileWhatsApp: 'WhatsApp',
 } as const;
 
 export const pageAdditionsEn = {
@@ -219,6 +226,13 @@ export const pageAdditionsEn = {
   evPast1Title: 'New Year on the pier',
   evPast2Title: 'Adriatic wines tasting',
   evPast3Title: '90s night',
+  formSubmitting: 'Sending…',
+  formErrorGeneric:
+    'We could not send the form. Please try again in a few minutes or contact us directly.',
+  formErrorNotConfigured:
+    'Email delivery is not configured on the server yet: call us, WhatsApp, or email.',
+  prenotaDateRequired: 'Please select a date.',
+  mobileWhatsApp: 'WhatsApp',
 } as const;
 
 export const pageAdditionsDe = {
@@ -328,6 +342,13 @@ export const pageAdditionsDe = {
   evPast1Title: 'Silvester auf der Mole',
   evPast2Title: 'Adria-Weinprobe',
   evPast3Title: '90er-Party',
+  formSubmitting: 'Wird gesendet…',
+  formErrorGeneric:
+    'Das Formular konnte nicht gesendet werden. Bitte später erneut versuchen oder direkt kontaktieren.',
+  formErrorNotConfigured:
+    'E-Mail-Versand ist auf dem Server noch nicht eingerichtet: Anruf, WhatsApp oder E-Mail.',
+  prenotaDateRequired: 'Bitte ein Datum auswählen.',
+  mobileWhatsApp: 'WhatsApp',
 } as const;
 
 export const pageAdditionsFr = {
@@ -437,6 +458,13 @@ export const pageAdditionsFr = {
   evPast1Title: 'Réveillon sur la jetée',
   evPast2Title: 'Dégustation vins Adriatique',
   evPast3Title: 'Soirée années 90',
+  formSubmitting: 'Envoi en cours…',
+  formErrorGeneric:
+    'Impossible d’envoyer le formulaire. Réessayez dans quelques minutes ou contactez-nous.',
+  formErrorNotConfigured:
+    'L’envoi d’e-mails n’est pas encore configuré sur le serveur : appelez, WhatsApp ou e-mail.',
+  prenotaDateRequired: 'Veuillez sélectionner une date.',
+  mobileWhatsApp: 'WhatsApp',
 } as const;
 
 export const pageAdditionsRu = {
@@ -546,6 +574,13 @@ export const pageAdditionsRu = {
   evPast1Title: 'Новый год на моле',
   evPast2Title: 'Дегустация вин Адриатики',
   evPast3Title: 'Вечеринка 90-х',
+  formSubmitting: 'Отправка…',
+  formErrorGeneric:
+    'Не удалось отправить форму. Попробуйте позже или свяжитесь с нами напрямую.',
+  formErrorNotConfigured:
+    'Отправка писем на сервере ещё не настроена: звонок, WhatsApp или email.',
+  prenotaDateRequired: 'Выберите дату.',
+  mobileWhatsApp: 'WhatsApp',
 } as const;
 
 export type PageAdditionKey = keyof typeof pageAdditionsIt;
