@@ -1,4 +1,5 @@
 import type { MessageKey } from '@/lib/i18n/messages';
+import { wixFill, WIX } from '@/lib/wix-media';
 
 export type EventBadge = 'aperitivo' | 'dinner' | 'dj';
 
@@ -18,8 +19,7 @@ export const UPCOMING_EVENTS: UpcomingEvent[] = [
     titleKey: 'evUp1Title',
     artistKey: 'evUp1Artist',
     badge: 'dj',
-    image:
-      'https://img02.restaurantguru.com/ce3f-Restaurant-Rockisland-Rimini-exterior-2.jpg',
+    image: wixFill(WIX.venueEvening, 800, 600),
   },
   {
     id: '2',
@@ -27,8 +27,7 @@ export const UPCOMING_EVENTS: UpcomingEvent[] = [
     titleKey: 'evUp2Title',
     artistKey: 'evUp2Artist',
     badge: 'dinner',
-    image:
-      'https://img02.restaurantguru.com/c303-Rockisland-Rimini-meals-1.jpg',
+    image: wixFill(WIX.foodTable, 800, 600),
   },
   {
     id: '3',
@@ -36,8 +35,7 @@ export const UPCOMING_EVENTS: UpcomingEvent[] = [
     titleKey: 'evUp3Title',
     artistKey: 'evUp3Artist',
     badge: 'aperitivo',
-    image:
-      'https://img02.restaurantguru.com/ccda-Restaurant-Rockisland-Rimini-design-1.jpg',
+    image: wixFill(WIX.bar, 800, 600),
   },
   {
     id: '4',
@@ -45,8 +43,7 @@ export const UPCOMING_EVENTS: UpcomingEvent[] = [
     titleKey: 'evUp4Title',
     artistKey: 'evUp4Artist',
     badge: 'dj',
-    image:
-      'https://img02.restaurantguru.com/c90f-Rockisland-Rimini-exterior-1.jpg',
+    image: wixFill(WIX.exteriorMolo, 800, 600),
   },
 ];
 

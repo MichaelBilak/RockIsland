@@ -1,4 +1,5 @@
 import type { MessageKey } from '@/lib/i18n/messages';
+import { wixFill, WIX } from '@/lib/wix-media';
 
 export type MenuCategoryId =
   | 'antipasti'
@@ -21,12 +22,12 @@ function u(photoId: string, w = 800): string {
   return `https://images.unsplash.com/photo-${photoId}?w=${w}&q=85&auto=format&fit=crop`;
 }
 
-/** Foto RockIsland / locale (RestaurantGuru). */
-const RG = {
-  meals: 'https://img02.restaurantguru.com/c303-Rockisland-Rimini-meals-1.jpg',
-  pizza: 'https://img02.restaurantguru.com/cfa4-Restaurant-Rockisland-Rimini-pizza.jpg',
-  bar: 'https://img02.restaurantguru.com/ccda-Restaurant-Rockisland-Rimini-design-1.jpg',
-  interior: 'https://img02.restaurantguru.com/c341-interior-Rockisland-Rimini.jpg',
+/** Foto dal sito ufficiale (CDN Wix). */
+const OFFICIAL = {
+  meals: wixFill(WIX.foodTable, 800, 600),
+  pizza: wixFill(WIX.pizza, 800, 600),
+  bar: wixFill(WIX.bar, 800, 600),
+  interior: wixFill(WIX.interior, 800, 600),
 } as const;
 
 export const MENU_TABS: { id: MenuCategoryId; labelKey: MessageKey }[] = [
@@ -128,7 +129,7 @@ export const MENU: Record<MenuCategoryId, MenuItem[]> = {
       id: 'pizza-bufala',
       name: 'Bufala, datterini e basilico',
       price: '14',
-      image: RG.pizza,
+      image: OFFICIAL.pizza,
     },
     {
       id: 'pizza-diavola',
@@ -174,19 +175,19 @@ export const MENU: Record<MenuCategoryId, MenuItem[]> = {
       id: 'cocktail-negroni',
       name: 'Negroni sul Pontile',
       price: '14',
-      image: RG.bar,
+      image: OFFICIAL.bar,
     },
     {
       id: 'cocktail-margarita',
       name: 'Margarita al sale marino',
       price: '13',
-      image: RG.meals,
+      image: OFFICIAL.meals,
     },
     {
       id: 'cocktail-old-fashioned',
       name: 'Old Fashioned affumicato',
       price: '15',
-      image: RG.interior,
+      image: OFFICIAL.interior,
     },
   ],
 };

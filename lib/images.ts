@@ -1,44 +1,13 @@
 /**
- * Immagini RockIsland: sito ufficiale (Wix) + foto visitatori da RestaurantGuru.
+ * Immagini RockIsland: sito ufficiale (Wix, rockislandrimini.it).
  *
- * TripAdvisor (listing g187807-d665384): la pagina risponde ai crawler con
- * CAPTCHA/DataDome, quindi gli URL `dynamic-media.tripadvisor.com` non sono
- * estraibili automaticamente. Per aggiungere foto TA: apri la scheda nel browser,
- * tasto destro sull’immagine → “Apri immagine in una nuova scheda”, copia l’URL
- * in `TRIPADVISOR_EXTRA` qui sotto (e abilita l’host in `next.config.mjs`).
+ * TripAdvisor: la pagina risponde ai crawler con CAPTCHA/DataDome; per foto TA
+ * copia l’URL in `TRIPADVISOR_EXTRA` e abilita l’host in `next.config.mjs`.
  *
- * @see https://www.rockislandrimini.it/rockisland
- * @see https://www.tripadvisor.it/Attraction_Review-g187807-d665384-Reviews-Rock_Island-Rimini_Province_of_Rimini_Emilia_Romagna.html
- * @see https://restaurantguru.it/Rockisland-molo-di-levante-Rimini
+ * @see https://www.rockislandrimini.it/
  */
-
 import type { MenuCategoryId } from '@/lib/menu-data';
-
-const WIX = {
-  gallery1: '1be8b5_cce8f10635514505a1cb685c7737176d~mv2.jpeg',
-  location2: '1be8b5_5dbee6ca6cfc4bd78b93b24f5036661d~mv2.jpeg',
-  location3: '1be8b5_4c40913003234f93b2b7ad6fc7194328~mv2.jpeg',
-  promo3418: '1be8b5_1b58fb761d704df79f5ac8e38fd50f0f~mv2.png',
-} as const;
-
-/** Foto del locale pubblicate su RestaurantGuru (galleria visitatori). */
-const GURU = {
-  heroAlt:
-    'https://img02.restaurantguru.com/cd04-exterior-Rockisland-Rimini-1.jpg',
-  exterior1:
-    'https://img02.restaurantguru.com/c90f-Rockisland-Rimini-exterior-1.jpg',
-  exterior2:
-    'https://img02.restaurantguru.com/ce3f-Restaurant-Rockisland-Rimini-exterior-2.jpg',
-  facade: 'https://img02.restaurantguru.com/ca50-Rockisland-Rimini-facade-1.jpg',
-  interiorBar:
-    'https://img02.restaurantguru.com/ccda-Restaurant-Rockisland-Rimini-design-1.jpg',
-  interior: 'https://img02.restaurantguru.com/c341-interior-Rockisland-Rimini.jpg',
-  meals: 'https://img02.restaurantguru.com/c303-Rockisland-Rimini-meals-1.jpg',
-  pizza: 'https://img02.restaurantguru.com/cfa4-Restaurant-Rockisland-Rimini-pizza.jpg',
-  /** Stesso asset dell’og:image della scheda RG (verificato HTTP 200) */
-  ogCard:
-    'https://img.restaurantguru.com/w550/h367/r9a6-Rockisland-Rimini-design-2022-10-2.jpg',
-} as const;
+import { wixFill, WIX } from '@/lib/wix-media';
 
 /**
  * Incolla qui URL immagine da TripAdvisor (scheda o recensioni), uno per riga.
@@ -46,39 +15,33 @@ const GURU = {
  */
 export const TRIPADVISOR_EXTRA: readonly string[] = [];
 
-export function wixFill(file: string, w: number, h: number): string {
-  const encoded = file.replace(/~/g, '%7E');
-  return `https://static.wixstatic.com/media/${encoded}/v1/fill/w_${w},h_${h},al_c,q_85,usm_0.66_1.00_0.01,enc_auto/${encoded}`;
-}
+export { wixFill, WIX };
 
-/** Open Graph: mix ufficiale + galleria RG ad alta risoluzione */
-export const OG_IMAGE = GURU.ogCard;
+/** Open Graph: hero ufficiale */
+export const OG_IMAGE = wixFill(WIX.galleryHero, 1200, 630);
 
-/** Immagine guida per ogni sezione menu (editoriale, coerente con il locale). */
+/** Immagine guida per ogni sezione menu (foto dal sito). */
 export const MENU_CATEGORY_PHOTO: Record<MenuCategoryId, string> = {
-  antipasti: GURU.meals,
-  primi:
-    'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=1100&q=85',
-  secondi:
-    'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=1100&q=85',
-  pizza: GURU.pizza,
-  dolci:
-    'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1100&q=85',
-  cocktail: GURU.interiorBar,
+  antipasti: wixFill(WIX.foodTable, 1100, 900),
+  primi: wixFill(WIX.primiPasta, 1100, 900),
+  secondi: wixFill(WIX.fishPlate, 1100, 900),
+  pizza: wixFill(WIX.pizza, 1100, 900),
+  dolci: wixFill(WIX.dolciBoard, 1100, 900),
+  cocktail: wixFill(WIX.bar, 1100, 900),
 };
 
 export const IMG = {
-  /** Hero: ufficiale Wix; su mobile stesso asset */
-  heroPoster: wixFill(WIX.gallery1, 1920, 1080),
-  /** Sezione esperienza: esterno dal molo (foto visitatori RG) */
-  experience: GURU.heroAlt,
-  /** Convention / giorno: facciata RG */
-  conventionHero: GURU.facade,
-  menuAntipasti: GURU.meals,
-  menuPesce: wixFill(WIX.location2, 900, 1100),
-  menuPizza: GURU.pizza,
-  menuCocktail: GURU.interiorBar,
-  featured1: GURU.exterior2,
-  featured2: GURU.interior,
-  eventi: GURU.exterior1,
+  /** Hero: stesso asset della hero Wix */
+  heroPoster: wixFill(WIX.galleryHero, 1920, 1080),
+  /** Sezione esperienza: vista dal pontile */
+  experience: wixFill(WIX.pierView, 1920, 1080),
+  /** Convention */
+  conventionHero: wixFill(WIX.conventionHero, 1920, 1080),
+  menuAntipasti: wixFill(WIX.foodTable, 900, 1100),
+  menuPesce: wixFill(WIX.locationDock, 900, 1100),
+  menuPizza: wixFill(WIX.pizza, 900, 1100),
+  menuCocktail: wixFill(WIX.bar, 900, 1100),
+  featured1: wixFill(WIX.venueEvening, 1600, 1000),
+  featured2: wixFill(WIX.interior, 1600, 1000),
+  eventi: wixFill(WIX.exteriorMolo, 1600, 1000),
 } as const;

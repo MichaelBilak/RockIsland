@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { UPCOMING_EVENTS, PAST_EVENT_TITLE_KEYS } from '@/lib/eventi-data';
 import type { EventBadge } from '@/lib/eventi-data';
+import { wixFill, WIX } from '@/lib/wix-media';
 import { useLocale } from '@/contexts/LocaleContext';
 import { Button } from '@/components/ui/button';
 import { FadeUp } from '@/components/motion/FadeUp';
@@ -105,10 +106,10 @@ export function EventiPageView() {
                   <Image
                     src={
                       i === 0
-                        ? 'https://img02.restaurantguru.com/c341-interior-Rockisland-Rimini.jpg'
+                        ? wixFill(WIX.interior, 1200, 800)
                         : i === 1
-                          ? 'https://img02.restaurantguru.com/cfa4-Restaurant-Rockisland-Rimini-pizza.jpg'
-                          : 'https://img02.restaurantguru.com/cd04-exterior-Rockisland-Rimini-1.jpg'
+                          ? wixFill(WIX.pizza, 1200, 800)
+                          : wixFill(WIX.pierView, 1200, 800)
                     }
                     alt=""
                     fill
