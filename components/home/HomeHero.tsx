@@ -1,11 +1,11 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HeroStagger } from '@/components/motion/HeroStagger';
+import { ParallaxImage } from '@/components/motion/ParallaxImage';
 import { IMG } from '@/lib/images';
 import { useLocale } from '@/contexts/LocaleContext';
 
@@ -16,26 +16,24 @@ export function HomeHero() {
   return (
     <section className="relative min-h-[100svh] w-full overflow-hidden">
       <div className="absolute inset-0 hidden md:block">
-        <Image
+        <ParallaxImage
           src={IMG.heroPoster}
           alt={t('heroBgAlt')}
-          fill
           priority
-          className="object-cover"
           sizes="100vw"
+          yRange={['-5%', '5%']}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/20" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-transparent to-navy/40" />
       </div>
 
       <div className="absolute inset-0 md:hidden">
-        <Image
+        <ParallaxImage
           src={IMG.heroPoster}
           alt={t('heroBgAlt')}
-          fill
           priority
-          className="object-cover"
           sizes="100vw"
+          yRange={['-5%', '5%']}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/75 to-navy/30" />
       </div>

@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { FadeUp } from '@/components/motion/FadeUp';
+import { ParallaxImage } from '@/components/motion/ParallaxImage';
 import { IMG } from '@/lib/images';
 import { useLocale } from '@/contexts/LocaleContext';
 import type { MessageKey } from '@/lib/i18n/messages';
@@ -39,11 +39,10 @@ export function MenuTeaser() {
                   transition={{ type: 'spring', stiffness: 380, damping: 28 }}
                   className="relative aspect-[3/4] overflow-hidden bg-navy"
                 >
-                  <Image
+                  <ParallaxImage
                     src={c.image}
                     alt=""
-                    fill
-                    className="object-cover opacity-35 transition-opacity duration-500 group-hover:opacity-100"
+                    className="opacity-35 transition-opacity duration-500 group-hover:opacity-100"
                     sizes="(min-width: 1024px) 25vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent transition-opacity duration-500 group-hover:opacity-70" />

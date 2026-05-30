@@ -4,6 +4,7 @@ import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { SiteNav } from '@/components/layout/SiteNav';
 import { MobileBottomBar } from '@/components/layout/MobileBottomBar';
+import { SplashScreen } from '@/components/ui/SplashScreen';
 
 export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -12,6 +13,7 @@ export function AppShell({ children }: { children: ReactNode }) {
 
   return (
     <>
+      <SplashScreen />
       <SiteNav variant={navVariant} />
       <div className={mainPad}>{children}</div>
       <MobileBottomBar />

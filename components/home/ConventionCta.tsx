@@ -2,22 +2,21 @@
 
 import Link from 'next/link';
 import { FadeUp } from '@/components/motion/FadeUp';
+import { ParallaxImage } from '@/components/motion/ParallaxImage';
 import { Button } from '@/components/ui/button';
 import { useLocale } from '@/contexts/LocaleContext';
 import { IMG } from '@/lib/images';
-
-/** Интерьер RockIsland; на md+ — background-attachment: fixed (параллакс в кадре секции). */
-const CONV_BG = IMG.featured2;
 
 export function ConventionCta() {
   const { t } = useLocale();
 
   return (
     <section className="relative isolate overflow-hidden bg-[#050d14] py-24 md:py-32">
-      <div
-        aria-hidden
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat bg-scroll md:bg-fixed"
-        style={{ backgroundImage: `url(${CONV_BG})` }}
+      <ParallaxImage
+        src={IMG.featured2}
+        alt=""
+        sizes="100vw"
+        wrapperClassName="absolute inset-0"
       />
       <div className="absolute inset-0 bg-black/50" aria-hidden />
       <div

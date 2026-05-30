@@ -117,6 +117,27 @@ export const pageAdditionsIt = {
     'Invio email non ancora attivo sul server: chiamaci, scrivici su WhatsApp o invia una email.',
   prenotaDateRequired: 'Seleziona una data.',
   mobileWhatsApp: 'WhatsApp',
+  eveningSectionAria: 'Una serata al RockIsland',
+  eveningKicker: 'UNA SERATA',
+  eveningTitle: 'Dal tramonto alla notte',
+  eveningLead:
+    'Trascina il sole lungo il molo — dalla luce dorata alla notte.',
+  eveningPhase0Label: 'Aperitivo',
+  eveningPhase0Title: 'Il tramonto sul molo',
+  eveningPhase0Desc:
+    "Il sole scende sull'Adriatico. Cocktail artigianali, conversazione, brezza marina.",
+  eveningPhase1Label: 'La Cena',
+  eveningPhase1Title: 'In tavola',
+  eveningPhase1Desc:
+    'Pesce fresco, materie prime locali. Una cena che racconta il mare.',
+  eveningPhase2Label: 'Bar & Cocktails',
+  eveningPhase2Title: 'La notte inizia',
+  eveningPhase2Desc:
+    'Il bar si anima. Musica, luce dorata, il molo illuminato.',
+  eveningPhase3Label: 'La Notte',
+  eveningPhase3Title: 'Sul molo sotto le stelle',
+  eveningPhase3Desc: 'Rimini di notte. Solo il mare, la musica, e voi.',
+  dishRevealClose: 'Chiudi',
 } as const;
 
 export const pageAdditionsEn = {
@@ -233,6 +254,26 @@ export const pageAdditionsEn = {
     'Email delivery is not configured on the server yet: call us, WhatsApp, or email.',
   prenotaDateRequired: 'Please select a date.',
   mobileWhatsApp: 'WhatsApp',
+  eveningSectionAria: 'An evening at RockIsland',
+  eveningKicker: 'AN EVENING',
+  eveningTitle: 'From sunset to night',
+  eveningLead: 'Drag the sun along the pier — from golden light to night.',
+  eveningPhase0Label: 'Aperitivo',
+  eveningPhase0Title: 'Sunset on the pier',
+  eveningPhase0Desc:
+    'The sun sets over the Adriatic. Craft cocktails, conversation, sea breeze.',
+  eveningPhase1Label: 'Dinner',
+  eveningPhase1Title: 'At the table',
+  eveningPhase1Desc:
+    'Fresh fish, local ingredients. A dinner that tells the story of the sea.',
+  eveningPhase2Label: 'Bar & Cocktails',
+  eveningPhase2Title: 'The night begins',
+  eveningPhase2Desc:
+    'The bar comes alive. Music, golden light, the pier lit up.',
+  eveningPhase3Label: 'The Night',
+  eveningPhase3Title: 'On the pier under the stars',
+  eveningPhase3Desc: 'Rimini at night. Just the sea, the music, and you.',
+  dishRevealClose: 'Close',
 } as const;
 
 export const pageAdditionsDe = {
@@ -349,6 +390,27 @@ export const pageAdditionsDe = {
     'E-Mail-Versand ist auf dem Server noch nicht eingerichtet: Anruf, WhatsApp oder E-Mail.',
   prenotaDateRequired: 'Bitte ein Datum auswählen.',
   mobileWhatsApp: 'WhatsApp',
+  eveningSectionAria: 'Ein Abend bei RockIsland',
+  eveningKicker: 'EIN ABEND',
+  eveningTitle: 'Vom Sonnenuntergang bis in die Nacht',
+  eveningLead:
+    'Ziehen Sie die Sonne entlang der Mole — vom goldenen Licht bis zur Nacht.',
+  eveningPhase0Label: 'Aperitivo',
+  eveningPhase0Title: 'Sonnenuntergang auf der Mole',
+  eveningPhase0Desc:
+    'Die Sonne sinkt über die Adria. Handgemachte Cocktails, Gespräche, Meeresbrise.',
+  eveningPhase1Label: 'Das Abendessen',
+  eveningPhase1Title: 'Am Tisch',
+  eveningPhase1Desc:
+    'Frischer Fisch, lokale Zutaten. Ein Dinner, das vom Meer erzählt.',
+  eveningPhase2Label: 'Bar & Cocktails',
+  eveningPhase2Title: 'Die Nacht beginnt',
+  eveningPhase2Desc:
+    'Die Bar erwacht. Musik, goldenes Licht, die erleuchtete Mole.',
+  eveningPhase3Label: 'Die Nacht',
+  eveningPhase3Title: 'Unter den Sternen auf der Mole',
+  eveningPhase3Desc: 'Rimini bei Nacht. Nur das Meer, die Musik und Sie.',
+  dishRevealClose: 'Schließen',
 } as const;
 
 export const pageAdditionsFr = {
@@ -465,6 +527,27 @@ export const pageAdditionsFr = {
     'L’envoi d’e-mails n’est pas encore configuré sur le serveur : appelez, WhatsApp ou e-mail.',
   prenotaDateRequired: 'Veuillez sélectionner une date.',
   mobileWhatsApp: 'WhatsApp',
+  eveningSectionAria: 'Une soirée au RockIsland',
+  eveningKicker: 'UNE SOIRÉE',
+  eveningTitle: 'Du coucher du soleil à la nuit',
+  eveningLead:
+    'Faites glisser le soleil le long de la jetée — de la lumière dorée à la nuit.',
+  eveningPhase0Label: 'Apéritif',
+  eveningPhase0Title: 'Coucher de soleil sur la jetée',
+  eveningPhase0Desc:
+    'Le soleil se couche sur l’Adriatique. Cocktails artisanaux, conversation, brise marine.',
+  eveningPhase1Label: 'Le Dîner',
+  eveningPhase1Title: 'À table',
+  eveningPhase1Desc:
+    'Poisson frais, produits locaux. Un dîner qui raconte la mer.',
+  eveningPhase2Label: 'Bar & Cocktails',
+  eveningPhase2Title: 'La nuit commence',
+  eveningPhase2Desc:
+    'Le bar s’anime. Musique, lumière dorée, la jetée illuminée.',
+  eveningPhase3Label: 'La Nuit',
+  eveningPhase3Title: 'Sur la jetée sous les étoiles',
+  eveningPhase3Desc: 'Rimini la nuit. Seulement la mer, la musique, et vous.',
+  dishRevealClose: 'Fermer',
 } as const;
 
 export const pageAdditionsRu = {
@@ -581,6 +664,27 @@ export const pageAdditionsRu = {
     'Отправка писем на сервере ещё не настроена: звонок, WhatsApp или email.',
   prenotaDateRequired: 'Выберите дату.',
   mobileWhatsApp: 'WhatsApp',
+  eveningSectionAria: 'Вечер в RockIsland',
+  eveningKicker: 'ОДИН ВЕЧЕР',
+  eveningTitle: 'От заката до ночи',
+  eveningLead:
+    'Проведите солнце вдоль мола — от золотого света к ночи.',
+  eveningPhase0Label: 'Аперитив',
+  eveningPhase0Title: 'Закат на моле',
+  eveningPhase0Desc:
+    'Солнце садится над Адриатикой. Авторские коктейли, разговоры, морской бриз.',
+  eveningPhase1Label: 'Ужин',
+  eveningPhase1Title: 'За столом',
+  eveningPhase1Desc:
+    'Свежая рыба, местные продукты. Ужин, который рассказывает о море.',
+  eveningPhase2Label: 'Бар и коктейли',
+  eveningPhase2Title: 'Ночь начинается',
+  eveningPhase2Desc:
+    'Бар оживает. Музыка, золотой свет, освещённый мол.',
+  eveningPhase3Label: 'Ночь',
+  eveningPhase3Title: 'На моле под звёздами',
+  eveningPhase3Desc: 'Римини ночью. Только море, музыка и вы.',
+  dishRevealClose: 'Закрыть',
 } as const;
 
 export type PageAdditionKey = keyof typeof pageAdditionsIt;

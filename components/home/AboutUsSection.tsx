@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
+import { ParallaxImage } from '@/components/motion/ParallaxImage';
 import { MapPin } from 'lucide-react';
 import { FadeUp } from '@/components/motion/FadeUp';
 import { useLocale } from '@/contexts/LocaleContext';
@@ -33,11 +33,9 @@ export function AboutUsSection() {
         <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-start lg:gap-16">
           <FadeUp className="space-y-8" delay={0.05}>
             <div className="relative aspect-[16/10] w-full overflow-hidden border border-white/10">
-              <Image
+              <ParallaxImage
                 src={IMG.conventionHero}
                 alt={t('aboutUsImgAlt')}
-                fill
-                className="object-cover"
                 sizes="(min-width: 1024px) 42vw, 100vw"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy/50 to-transparent" />

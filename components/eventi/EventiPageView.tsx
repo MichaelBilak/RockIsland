@@ -1,8 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { ParallaxImage } from '@/components/motion/ParallaxImage';
 import { UPCOMING_EVENTS, PAST_EVENT_TITLE_KEYS } from '@/lib/eventi-data';
 import type { EventBadge } from '@/lib/eventi-data';
 import { wixFill, WIX } from '@/lib/wix-media';
@@ -51,13 +51,12 @@ export function EventiPageView() {
           {UPCOMING_EVENTS.map((ev, i) => (
             <FadeUp key={ev.id} delay={i * 0.05}>
               <article className="flex h-full flex-col overflow-hidden border border-white/10 bg-[#0a1522]">
-                <div className="relative h-44 w-full">
-                  <Image
+                <div className="relative h-44 w-full overflow-hidden">
+                  <ParallaxImage
                     src={ev.image}
                     alt=""
-                    fill
-                    className="object-cover"
                     sizes="(min-width: 1024px) 25vw, 50vw"
+                    yRange={['-6%', '6%']}
                   />
                   <div className="absolute left-3 top-3">
                     <Badge badge={ev.badge} />
@@ -102,8 +101,8 @@ export function EventiPageView() {
                   i === 0 && 'sm:col-span-2 sm:row-span-1',
                 )}
               >
-                <div className="relative h-48 w-full md:h-56">
-                  <Image
+                <div className="relative h-48 w-full overflow-hidden md:h-56">
+                  <ParallaxImage
                     src={
                       i === 0
                         ? wixFill(WIX.interior, 1200, 800)
@@ -112,8 +111,7 @@ export function EventiPageView() {
                           : wixFill(WIX.pierView, 1200, 800)
                     }
                     alt=""
-                    fill
-                    className="object-cover opacity-90"
+                    className="opacity-90"
                     sizes="(min-width: 640px) 33vw, 100vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent to-transparent" />

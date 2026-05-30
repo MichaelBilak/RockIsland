@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { ParallaxImage } from '@/components/motion/ParallaxImage';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ImageIcon } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
@@ -16,6 +17,7 @@ import { useLocale } from '@/contexts/LocaleContext';
 import { cn } from '@/lib/utils';
 import { FadeUp } from '@/components/motion/FadeUp';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { DishReveal, type DishRevealData } from '@/components/menu/DishReveal';
 
 function sectionId(id: MenuCategoryId) {
   return `menu-${id}`;
@@ -45,6 +47,7 @@ export function MenuPageView() {
   const { t } = useLocale();
   const reduceMotion = useReducedMotion();
   const [active, setActive] = useState<MenuCategoryId>('antipasti');
+  const [selectedDish, setSelectedDish] = useState<DishRevealData | null>(null);
   const [dishPreview, setDishPreview] = useState<DishPreview | null>(null);
   const hidePreviewTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const obsRef = useRef<IntersectionObserver | null>(null);
@@ -70,6 +73,23 @@ export function MenuPageView() {
     clearHideTimer();
     hidePreviewTimer.current = setTimeout(() => setDishPreview(null), 100);
   }, [clearHideTimer]);
+
+  const openDishReveal = useCallback(
+    (item: MenuItem, categoryKey: (typeof MENU_TABS)[number]['labelKey']) => {
+      if (!item.image?.trim()) return;
+      clearHideTimer();
+      setDishPreview(null);
+      setSelectedDish({
+        id: item.id,
+        name: item.name,
+        description: item.description,
+        price: item.price,
+        image: item.image,
+        category: t(categoryKey),
+      });
+    },
+    [clearHideTimer, t],
+  );
 
   const scrollTo = useCallback((id: MenuCategoryId) => {
     const el = document.getElementById(sectionId(id));
@@ -171,11 +191,10 @@ export function MenuPageView() {
                     )}
                   >
                     <div className="group relative aspect-[5/6] w-full overflow-hidden border border-white/10 bg-[#0a1522] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.45)] md:aspect-[4/5] md:max-h-[min(520px,70vh)]">
-                      <Image
+                      <ParallaxImage
                         src={src}
                         alt=""
-                        fill
-                        className="object-cover transition-[transform,filter] duration-700 ease-out group-hover:scale-[1.03] group-hover:brightness-[1.05]"
+                        className="transition-[filter] duration-700 ease-out group-hover:brightness-[1.05]"
                         sizes="(min-width: 768px) 38vw, 100vw"
                         priority={index === 0}
                       />
@@ -213,7 +232,12 @@ export function MenuPageView() {
                       {MENU[tab.id].map((item) => (
                         <li
                           key={item.id}
-                          className="flex flex-col gap-1 border-t border-gold/25 py-4 first:border-t-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+                          data-cursor={item.image?.trim() ? 'view' : undefined}
+                          className={cn(
+                            'flex flex-col gap-1 border-t border-gold/25 py-4 first:border-t-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6',
+                            item.image?.trim() && 'cursor-pointer',
+                          )}
+                          onClick={() => openDishReveal(item, tab.labelKey)}
                         >
                           <div>
                             <span
@@ -256,12 +280,10 @@ export function MenuPageView() {
       <section className="border-t border-white/10 bg-[#0a1522] py-16 md:py-24">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:gap-0 md:px-0">
           <FadeUp>
-            <div className="relative h-[280px] w-full sm:h-[340px] md:h-[min(480px,55vh)]">
-              <Image
+            <div className="relative h-[280px] w-full overflow-hidden sm:h-[340px] md:h-[min(480px,55vh)]">
+              <ParallaxImage
                 src={IMG.featured1}
                 alt=""
-                fill
-                className="object-cover"
                 sizes="(min-width: 768px) 50vw, 100vw"
               />
             </div>
@@ -294,12 +316,10 @@ export function MenuPageView() {
             </p>
           </FadeUp>
           <FadeUp className="order-1 md:order-2">
-            <div className="relative h-[280px] w-full sm:h-[340px] md:h-[min(480px,55vh)]">
-              <Image
+            <div className="relative h-[280px] w-full overflow-hidden sm:h-[340px] md:h-[min(480px,55vh)]">
+              <ParallaxImage
                 src={IMG.featured2}
                 alt=""
-                fill
-                className="object-cover"
                 sizes="(min-width: 768px) 50vw, 100vw"
               />
             </div>
@@ -320,6 +340,11 @@ export function MenuPageView() {
           {t('navBookTableFull')}
         </Link>
       </motion.div>
+
+      <DishReveal
+        dish={selectedDish}
+        onClose={() => setSelectedDish(null)}
+      />
 
       <AnimatePresence>
         {dishPreview ? (

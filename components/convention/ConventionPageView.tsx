@@ -1,7 +1,7 @@
 'use client';
 
-import Image from 'next/image';
 import { useState } from 'react';
+import { ParallaxImage } from '@/components/motion/ParallaxImage';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { IMG } from '@/lib/images';
@@ -65,13 +65,11 @@ export function ConventionPageView() {
 
   return (
     <main className="pb-14 md:pb-0">
-      <section className="relative min-h-[45vh] w-full md:min-h-[52vh]">
-        <Image
+      <section className="relative min-h-[45vh] w-full overflow-hidden md:min-h-[52vh]">
+        <ParallaxImage
           src={IMG.conventionHero}
           alt=""
-          fill
           priority
-          className="object-cover"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/30" />

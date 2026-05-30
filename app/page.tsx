@@ -2,6 +2,7 @@ import { HomeHero } from '@/components/home/HomeHero';
 import { AboutStrip } from '@/components/home/AboutStrip';
 import { ExperienceSection } from '@/components/home/ExperienceSection';
 import { MenuTeaser } from '@/components/home/MenuTeaser';
+import { EveningTimeline } from '@/components/home/EveningTimeline';
 import { EventsTicker } from '@/components/home/EventsTicker';
 import { ConventionCta } from '@/components/home/ConventionCta';
 import { AboutUsSection } from '@/components/home/AboutUsSection';
@@ -15,6 +16,7 @@ export default function HomePage() {
         <AboutStrip />
         <ExperienceSection />
         <MenuTeaser />
+        <EveningTimeline />
         <EventsTicker />
         <ConventionCta />
         <AboutUsSection />
