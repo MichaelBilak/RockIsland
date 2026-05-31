@@ -9,7 +9,6 @@ import {
   useTransform,
 } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { useIsMobile } from '@/lib/use-media-query';
 
 type ParallaxImageProps = {
   src: string;
@@ -81,10 +80,9 @@ function ParallaxImageMotion({
 
 export function ParallaxImage(props: ParallaxImageProps) {
   const shouldReduce = useReducedMotion();
-  const isMobile = useIsMobile();
   const wrapperClassName = props.wrapperClassName ?? 'absolute inset-0';
 
-  if (shouldReduce || isMobile) {
+  if (shouldReduce) {
     return (
       <div className={cn('overflow-hidden', wrapperClassName)}>
         <StaticImage {...props} />
