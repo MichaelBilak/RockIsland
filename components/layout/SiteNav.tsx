@@ -48,14 +48,14 @@ export function SiteNav({ variant = 'overlay' }: { variant?: 'overlay' | 'solid'
     <>
       <header
         className={cn(
-          'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
+          'safe-area-top fixed inset-x-0 top-0 z-50 transition-colors duration-300',
           navClass,
         )}
       >
-        <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-[var(--nav-height)] max-w-7xl items-center justify-between gap-2 px-4 sm:gap-3 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="font-serif text-xl tracking-[0.2em] text-white sm:text-2xl"
+            className="font-serif text-lg tracking-[0.18em] text-white sm:text-xl md:text-2xl md:tracking-[0.2em]"
           >
             RockIsland
           </Link>
@@ -124,7 +124,7 @@ export function SiteNav({ variant = 'overlay' }: { variant?: 'overlay' | 'solid'
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute right-0 top-0 flex h-full w-[min(100%,420px)] flex-col bg-navy px-6 pb-10 pt-6 shadow-2xl"
+              className="absolute right-0 top-0 flex h-full w-[min(100%,420px)] flex-col bg-navy px-6 pb-[calc(2.5rem+env(safe-area-inset-bottom,0px))] pt-[calc(1.5rem+env(safe-area-inset-top,0px))] shadow-2xl"
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="font-serif text-lg tracking-[0.2em] text-white">

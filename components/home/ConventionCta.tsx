@@ -11,7 +11,7 @@ export function ConventionCta() {
   const { t } = useLocale();
 
   return (
-    <section className="relative isolate overflow-hidden bg-[#050d14] py-24 md:py-32">
+    <section className="relative isolate overflow-hidden bg-[#050d14] py-16 md:py-32">
       <ParallaxImage
         src={IMG.featured2}
         alt=""
@@ -29,7 +29,7 @@ export function ConventionCta() {
       />
       <FadeUp className="relative z-10">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6">
-          <h2 className="font-serif text-3xl font-light italic text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.55)] md:text-[2.75rem] md:leading-snug">
+          <h2 className="font-serif text-2xl font-light italic text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.55)] sm:text-3xl md:text-[2.75rem] md:leading-snug">
             {t('convTitle')}
           </h2>
           <p className="mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-cream drop-shadow-[0_1px_12px_rgba(0,0,0,0.5)] md:text-base">

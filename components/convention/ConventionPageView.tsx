@@ -64,8 +64,8 @@ export function ConventionPageView() {
   const [error, setError] = useState<string | null>(null);
 
   return (
-    <main className="pb-14 md:pb-0">
-      <section className="relative min-h-[45vh] w-full overflow-hidden md:min-h-[52vh]">
+    <main className="mobile-main-pad">
+      <section className="relative min-h-[38svh] w-full overflow-hidden sm:min-h-[45vh] md:min-h-[52vh]">
         <ParallaxImage
           src={IMG.conventionHero}
           alt=""
@@ -73,11 +73,11 @@ export function ConventionPageView() {
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/70 to-navy/30" />
-        <div className="relative z-10 mx-auto flex min-h-[45vh] max-w-4xl flex-col justify-end px-4 pb-12 pt-28 md:min-h-[52vh] md:pb-16 md:pt-32">
-          <p className="text-xs uppercase tracking-[0.35em] text-gold">
+        <div className="relative z-10 mx-auto flex min-h-[38svh] max-w-4xl flex-col justify-end px-4 pb-10 pt-[calc(5rem+env(safe-area-inset-top,0px))] sm:min-h-[45vh] sm:pb-12 md:min-h-[52vh] md:pb-16 md:pt-32">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-gold sm:text-xs sm:tracking-[0.35em]">
             {t('convPageKicker')}
           </p>
-          <h1 className="mt-3 font-serif text-4xl font-light text-white md:text-6xl">
+          <h1 className="mt-3 font-serif text-3xl font-light text-white sm:text-4xl md:text-6xl">
             {t('convPageHeroTitle')}
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-cream/90 md:text-base">
@@ -86,11 +86,11 @@ export function ConventionPageView() {
         </div>
       </section>
 
-      <section className="border-b border-white/10 bg-navy px-4 py-16 md:px-8 md:py-24">
-        <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3 md:gap-6">
+      <section className="border-b border-white/10 bg-navy px-4 py-12 md:px-8 md:py-24">
+        <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3 md:gap-6">
           {PACKS.map((pack, i) => (
             <FadeUp key={pack.title} delay={i * 0.06}>
-              <article className="flex h-full flex-col border border-white/10 bg-[#0a1522] p-8">
+              <article className="flex h-full flex-col border border-white/10 bg-[#0a1522] p-6 sm:p-8">
                 <h2 className="font-serif text-2xl text-white">{t(pack.title)}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-mist">{t(pack.lead)}</p>
                 <ul className="mt-6 space-y-2 text-sm text-cream/90">

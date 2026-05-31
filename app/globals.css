@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --nav-height: 72px;
+    --mobile-bar-height: 3.5rem;
     --deep-navy: #0d1b2a;
     --sunset-gold: #e8a838;
     --warm-cream: #f5edd8;
@@ -22,11 +24,15 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
     @apply bg-navy text-cream antialiased;
     font-family: var(--font-inter), system-ui, sans-serif;
+    overflow-x: clip;
+    -webkit-tap-highlight-color: transparent;
   }
 
   ::selection {
@@ -35,11 +41,41 @@
 }
 
 @layer utilities {
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
   .safe-area-bottom {
-    padding-bottom: env(safe-area-inset-bottom, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   .touch-target {
     @apply min-h-[44px] min-w-[44px];
+  }
+
+  .mobile-main-pad {
+    padding-bottom: calc(
+      var(--mobile-bar-height) + env(safe-area-inset-bottom, 0px)
+    );
+  }
+
+  @media (min-width: 768px) {
+    .mobile-main-pad {
+      padding-bottom: 0;
+    }
+  }
+
+  .nav-offset-top {
+    top: calc(var(--nav-height) + env(safe-area-inset-top, 0px));
+  }
+
+  .scroll-mt-nav {
+    scroll-margin-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px));
+  }
+
+  .scroll-mt-nav-tabs {
+    scroll-margin-top: calc(
+      var(--nav-height) + env(safe-area-inset-top, 0px) + 3.5rem
+    );
   }
 }

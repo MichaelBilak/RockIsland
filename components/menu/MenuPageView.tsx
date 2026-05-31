@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ParallaxImage } from '@/components/motion/ParallaxImage';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { ImageIcon } from 'lucide-react';
+import { ImageIcon, ChevronRight } from 'lucide-react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
   MENU,
@@ -51,6 +51,9 @@ export function MenuPageView() {
   const [dishPreview, setDishPreview] = useState<DishPreview | null>(null);
   const hidePreviewTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const obsRef = useRef<IntersectionObserver | null>(null);
+  const tabsScrollRef = useRef<HTMLDivElement>(null);
+  const dishRevealLockRef = useRef(false);
+  const [canScrollTabs, setCanScrollTabs] = useState(false);
 
   const clearHideTimer = useCallback(() => {
     if (hidePreviewTimer.current) {
@@ -76,7 +79,7 @@ export function MenuPageView() {
 
   const openDishReveal = useCallback(
     (item: MenuItem, categoryKey: (typeof MENU_TABS)[number]['labelKey']) => {
-      if (!item.image?.trim()) return;
+      if (dishRevealLockRef.current || !item.image?.trim()) return;
       clearHideTimer();
       setDishPreview(null);
       setSelectedDish({
@@ -90,6 +93,14 @@ export function MenuPageView() {
     },
     [clearHideTimer, t],
   );
+
+  const closeDishReveal = useCallback(() => {
+    dishRevealLockRef.current = true;
+    setSelectedDish(null);
+    window.setTimeout(() => {
+      dishRevealLockRef.current = false;
+    }, 400);
+  }, []);
 
   const scrollTo = useCallback((id: MenuCategoryId) => {
     const el = document.getElementById(sectionId(id));
@@ -120,6 +131,31 @@ export function MenuPageView() {
 
   useEffect(() => () => clearHideTimer(), [clearHideTimer]);
 
+  const updateTabsScrollHint = useCallback(() => {
+    const el = tabsScrollRef.current;
+    if (!el) return;
+    setCanScrollTabs(el.scrollWidth - el.scrollLeft - el.clientWidth > 8);
+  }, []);
+
+  useEffect(() => {
+    const el = tabsScrollRef.current;
+    if (!el) return;
+
+    updateTabsScrollHint();
+    el.addEventListener('scroll', updateTabsScrollHint, { passive: true });
+    const ro = new ResizeObserver(updateTabsScrollHint);
+    ro.observe(el);
+
+    return () => {
+      el.removeEventListener('scroll', updateTabsScrollHint);
+      ro.disconnect();
+    };
+  }, [updateTabsScrollHint]);
+
+  const scrollTabsForward = useCallback(() => {
+    tabsScrollRef.current?.scrollBy({ left: 140, behavior: 'smooth' });
+  }, []);
+
   useEffect(() => {
     if (!dishPreview) return;
     const clear = () => setDishPreview(null);
@@ -132,13 +168,13 @@ export function MenuPageView() {
   }, [dishPreview]);
 
   return (
-    <main className="pb-14 md:pb-0">
-      <header className="border-b border-white/10 bg-navy px-4 pb-10 pt-8 md:px-8 md:pt-12">
+    <main className="mobile-main-pad">
+      <header className="border-b border-white/10 bg-navy px-4 pb-8 pt-6 md:px-8 md:pb-10 md:pt-12">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold">
             {t('menuPageKicker')}
           </p>
-          <h1 className="mt-3 font-serif text-4xl font-light text-white md:text-5xl">
+          <h1 className="mt-3 font-serif text-3xl font-light text-white sm:text-4xl md:text-5xl">
             {t('menuPageTitle')}
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-mist md:text-base">
@@ -147,30 +183,69 @@ export function MenuPageView() {
         </div>
 
         <nav
-          className="sticky top-[72px] z-30 -mx-4 mt-10 border-y border-white/10 bg-navy/95 px-4 py-3 backdrop-blur-md md:-mx-8 md:px-8"
+          className="nav-offset-top sticky z-30 -mx-4 mt-8 border-y border-white/10 bg-navy/95 px-4 py-2.5 backdrop-blur-md md:-mx-8 md:mt-10 md:px-8 md:py-3"
           aria-label={t('navMenu')}
         >
-          <div className="mx-auto flex max-w-5xl gap-1 overflow-x-auto pb-1 pt-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {MENU_TABS.map((tab) => (
+          <div className="relative mx-auto max-w-5xl">
+            <div
+              ref={tabsScrollRef}
+              className="flex gap-1 overflow-x-auto pb-0.5 pe-12 pt-0.5 [scrollbar-width:none] md:pe-0 [&::-webkit-scrollbar]:hidden"
+            >
+              {MENU_TABS.map((tab) => (
+                <button
+                  key={tab.id}
+                  type="button"
+                  onClick={() => scrollTo(tab.id)}
+                  className={cn(
+                    'shrink-0 touch-target rounded-[2px] border px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] transition-colors',
+                    active === tab.id
+                      ? 'border-gold bg-gold/15 text-gold'
+                      : 'border-transparent text-cream/80 hover:border-white/20 hover:text-cream',
+                  )}
+                >
+                  {t(tab.labelKey)}
+                </button>
+              ))}
+            </div>
+
+            <div
+              className={cn(
+                'pointer-events-none absolute inset-y-0 right-0 z-10 w-16 transition-opacity duration-300 md:hidden',
+                canScrollTabs ? 'opacity-100' : 'opacity-0',
+              )}
+              aria-hidden={!canScrollTabs}
+            >
+              <div className="absolute inset-0 bg-gradient-to-l from-navy from-30% via-navy/95 to-transparent" />
               <button
-                key={tab.id}
                 type="button"
-                onClick={() => scrollTo(tab.id)}
+                tabIndex={canScrollTabs ? 0 : -1}
+                onClick={scrollTabsForward}
+                aria-label={t('menuTabsScrollHint')}
                 className={cn(
-                  'shrink-0 touch-target rounded-[2px] border px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] transition-colors',
-                  active === tab.id
-                    ? 'border-gold bg-gold/15 text-gold'
-                    : 'border-transparent text-cream/80 hover:border-white/20 hover:text-cream',
+                  'pointer-events-auto absolute right-0 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full',
+                  'border border-gold/40 bg-navy/90 text-gold shadow-[0_0_16px_rgba(232,168,56,0.25)]',
+                  'transition-transform active:scale-95',
+                  canScrollTabs ? 'visible' : 'invisible',
                 )}
               >
-                {t(tab.labelKey)}
+                <motion.span
+                  animate={reduceMotion ? undefined : { x: [0, 3, 0] }}
+                  transition={{
+                    duration: 1.6,
+                    repeat: Infinity,
+                    ease: 'easeInOut',
+                  }}
+                  className="inline-flex"
+                >
+                  <ChevronRight className="h-4 w-4" strokeWidth={2.25} aria-hidden />
+                </motion.span>
               </button>
-            ))}
+            </div>
           </div>
         </nav>
       </header>
 
-      <div className="mx-auto max-w-6xl px-4 py-14 md:px-8 md:py-20">
+      <div className="mx-auto max-w-6xl px-4 py-10 md:px-8 md:py-20">
         {MENU_TABS.map((tab, index) => {
           const src = MENU_CATEGORY_PHOTO[tab.id];
           const imageOnLeft = index % 2 === 0;
@@ -179,10 +254,10 @@ export function MenuPageView() {
             <section
               key={tab.id}
               id={sectionId(tab.id)}
-              className="scroll-mt-[140px] border-b border-white/10 py-12 last:border-0 md:py-16"
+              className="scroll-mt-nav-tabs border-b border-white/10 py-10 last:border-0 sm:py-12 md:py-16"
             >
               <FadeUp delay={index * 0.04}>
-                <div className="mx-auto grid items-start gap-10 md:grid-cols-12 md:gap-x-10 lg:gap-x-14">
+                <div className="mx-auto grid items-start gap-8 sm:gap-10 md:grid-cols-12 md:gap-x-10 lg:gap-x-14">
                   <figure
                     aria-hidden
                     className={cn(
@@ -190,7 +265,7 @@ export function MenuPageView() {
                       !imageOnLeft && 'md:order-2',
                     )}
                   >
-                    <div className="group relative aspect-[5/6] w-full overflow-hidden border border-white/10 bg-[#0a1522] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.45)] md:aspect-[4/5] md:max-h-[min(520px,70vh)]">
+                    <div className="group relative aspect-[16/11] w-full overflow-hidden border border-white/10 bg-[#0a1522] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.45)] sm:aspect-[5/6] md:aspect-[4/5] md:max-h-[min(520px,70vh)]">
                       <ParallaxImage
                         src={src}
                         alt=""
@@ -211,7 +286,7 @@ export function MenuPageView() {
                   >
                     <h2
                       id={`menu-heading-${tab.id}`}
-                      className="inline-block border-b border-gold/35 pb-3 font-serif text-3xl font-light tracking-tight text-white md:text-4xl"
+                      className="inline-block border-b border-gold/35 pb-2 font-serif text-2xl font-light tracking-tight text-white sm:pb-3 sm:text-3xl md:text-4xl"
                     >
                       {t(tab.labelKey)}
                     </h2>
@@ -343,7 +418,7 @@ export function MenuPageView() {
 
       <DishReveal
         dish={selectedDish}
-        onClose={() => setSelectedDish(null)}
+        onClose={closeDishReveal}
       />
 
       <AnimatePresence>

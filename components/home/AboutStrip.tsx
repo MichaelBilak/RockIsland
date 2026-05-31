@@ -16,16 +16,16 @@ export function AboutStrip() {
   return (
     <section
       id="about"
-      className="border-y border-gold/25 bg-cream py-14 text-navy"
+      className="border-y border-gold/25 bg-cream py-10 text-navy sm:py-14"
     >
       <FadeUp>
-        <div className="mx-auto grid max-w-6xl gap-10 px-4 sm:grid-cols-3 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-6xl gap-8 px-4 sm:grid-cols-3 sm:gap-10 sm:px-6 lg:px-8">
           {statKeys.map((s) => (
             <div key={s.title} className="text-center">
               <p className="text-xs font-medium uppercase tracking-[0.35em] text-navy/65">
                 {t(s.sub)}
               </p>
-              <p className="mt-3 font-serif text-2xl tracking-wide sm:text-3xl">
+              <p className="mt-2 font-serif text-xl tracking-wide sm:mt-3 sm:text-2xl md:text-3xl">
                 {t(s.title)}
               </p>
             </div>

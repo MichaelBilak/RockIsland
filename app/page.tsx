@@ -11,7 +11,7 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 export default function HomePage() {
   return (
     <>
-      <main className="pb-14 md:pb-0">
+      <main className="mobile-main-pad">
         <HomeHero />
         <AboutStrip />
         <ExperienceSection />

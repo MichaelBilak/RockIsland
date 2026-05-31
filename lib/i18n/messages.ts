@@ -48,6 +48,7 @@ const coreItMessages = {
   menuSeeFull: 'Vedi il menu completo',
   menuDishPreviewHint:
     'Passa il cursore sul nome di un piatto per vedere l’anteprima fotografica.',
+  menuTabsScrollHint: 'Scorri le categorie del menu',
   eventsKicker: 'Prossimi eventi',
   eventsTitle: 'La stagione sul pontile',
   eventsCalendar: 'Calendario completo',
@@ -140,6 +141,7 @@ export const bundles = {
     menuCatCocktail: 'Cocktails',
     menuSeeFull: 'See full menu',
     menuDishPreviewHint: 'Hover a dish name to see a photo preview.',
+    menuTabsScrollHint: 'Scroll menu categories',
     eventsKicker: 'Upcoming events',
     eventsTitle: 'The season on the pier',
     eventsCalendar: 'Full calendar',
@@ -223,6 +225,7 @@ export const bundles = {
     menuSeeFull: 'Vollständiges Menü ansehen',
     menuDishPreviewHint:
       'Fahren Sie mit der Maus über einen Gerichtnamen, um eine Fotovorschau zu sehen.',
+    menuTabsScrollHint: 'Menükategorien scrollen',
     eventsKicker: 'Kommende Events',
     eventsTitle: 'Die Saison auf der Mole',
     eventsCalendar: 'Vollständiger Kalender',
@@ -306,6 +309,7 @@ export const bundles = {
     menuSeeFull: 'Voir le menu complet',
     menuDishPreviewHint:
       'Survolez le nom d’un plat pour afficher un aperçu photo.',
+    menuTabsScrollHint: 'Faire défiler les catégories',
     eventsKicker: 'Prochains événements',
     eventsTitle: 'La saison sur la jetée',
     eventsCalendar: 'Calendrier complet',
@@ -389,6 +393,7 @@ export const bundles = {
     menuSeeFull: 'Полное меню',
     menuDishPreviewHint:
       'Наведите курсор на название блюда, чтобы увидеть фото.',
+    menuTabsScrollHint: 'Пролистать категории меню',
     eventsKicker: 'Ближайшие события',
     eventsTitle: 'Сезон на пирсе',
     eventsCalendar: 'Полный календарь',

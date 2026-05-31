@@ -14,7 +14,7 @@ export function HeroStagger({ sentence, animationKey }: Props) {
 
   if (reduce) {
     return (
-      <h1 className="max-w-5xl text-center font-serif text-[clamp(2.5rem,6vw,7rem)] font-light leading-[1.05] tracking-tight text-white">
+      <h1 className="max-w-5xl px-1 text-center font-serif text-[clamp(1.75rem,8.5vw,7rem)] font-light leading-[1.08] tracking-tight text-white">
         {sentence}
       </h1>
     );
@@ -23,7 +23,7 @@ export function HeroStagger({ sentence, animationKey }: Props) {
   return (
     <h1
       key={animationKey}
-      className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-3 gap-y-1 text-center font-serif text-[clamp(2.5rem,6vw,7rem)] font-light leading-[1.05] tracking-tight text-white md:gap-x-4"
+      className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-2 gap-y-0.5 px-1 text-center font-serif text-[clamp(1.75rem,8.5vw,7rem)] font-light leading-[1.08] tracking-tight text-white sm:gap-x-3 md:gap-x-4"
     >
       {words.map((word, i) => (
         <motion.span

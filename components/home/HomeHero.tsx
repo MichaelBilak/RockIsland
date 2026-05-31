@@ -38,15 +38,15 @@ export function HomeHero() {
         <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/75 to-navy/30" />
       </div>
 
-      <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-4 pb-28 pt-28 text-center md:pb-24 md:pt-24">
+      <div className="relative z-10 flex min-h-[100svh] flex-col items-center justify-center px-4 pb-[calc(7rem+var(--mobile-bar-height)+env(safe-area-inset-bottom,0px))] pt-[calc(5.5rem+env(safe-area-inset-top,0px))] text-center md:pb-24 md:pt-24">
         <HeroStagger sentence={tagline} animationKey={locale} />
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.85, duration: 0.5 }}
-          className="mt-12"
+          className="mt-8 sm:mt-12"
         >
-          <Button asChild variant="outline" size="lg" className="px-10">
+          <Button asChild variant="outline" size="lg" className="min-h-[48px] px-8 sm:px-10">
             <Link href="/prenota">{t('heroCta')}</Link>
           </Button>
         </motion.div>

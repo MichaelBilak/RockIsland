@@ -96,20 +96,20 @@ export function PrenotaPageView() {
   }
 
   return (
-    <main className="pb-14 md:pb-0">
-      <div className="border-b border-white/10 px-4 py-10 md:px-8 md:py-14">
+    <main className="mobile-main-pad">
+      <div className="border-b border-white/10 px-4 py-8 md:px-8 md:py-14">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.35em] text-gold">
             {t('prenotaKicker')}
           </p>
-          <h1 className="mt-3 font-serif text-4xl font-light text-white md:text-5xl">
+          <h1 className="mt-3 font-serif text-3xl font-light text-white sm:text-4xl md:text-5xl">
             {t('prenotaTitle')}
           </h1>
           <p className="mt-4 text-sm text-mist md:text-base">{t('prenotaLead')}</p>
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-12 lg:grid-cols-[1fr_340px] lg:gap-16 lg:px-8 lg:py-16">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-10 lg:grid-cols-[1fr_340px] lg:gap-16 lg:px-8 lg:py-16">
         <AnimatePresence mode="wait">
           {done ? (
             <motion.div

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import { Cormorant_Garamond, Inter } from 'next/font/google';
 import './globals.css';
@@ -54,6 +54,13 @@ export const metadata: Metadata = {
   },
   /** Lingue gestite lato client senza URL dedicati: niente hreflang ingannevole */
   alternates: { canonical: '/' },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#0D1B2A',
 };
 
 const jsonLd = {

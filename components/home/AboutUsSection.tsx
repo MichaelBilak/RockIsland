@@ -15,7 +15,7 @@ export function AboutUsSection() {
     <section
       id="about-us"
       aria-labelledby="about-us-heading"
-      className="border-t border-white/10 bg-[#0a1522] py-20 md:py-28"
+      className="border-t border-white/10 bg-[#0a1522] py-14 md:py-28"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <FadeUp>
@@ -24,13 +24,13 @@ export function AboutUsSection() {
           </p>
           <h2
             id="about-us-heading"
-            className="mt-3 max-w-3xl font-serif text-3xl font-light text-white md:text-4xl lg:text-[2.75rem] lg:leading-tight"
+            className="mt-3 max-w-3xl font-serif text-2xl font-light text-white sm:text-3xl md:text-4xl lg:text-[2.75rem] lg:leading-tight"
           >
             {t('aboutUsTitle')}
           </h2>
         </FadeUp>
 
-        <div className="mt-12 grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-start lg:gap-16">
+        <div className="mt-8 grid gap-10 sm:mt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-start lg:gap-16">
           <FadeUp className="space-y-8" delay={0.05}>
             <div className="relative aspect-[16/10] w-full overflow-hidden border border-white/10">
               <ParallaxImage

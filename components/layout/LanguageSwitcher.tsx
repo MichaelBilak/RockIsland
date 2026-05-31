@@ -23,8 +23,8 @@ export function LanguageSwitcher({ variant = 'onDark', className }: Props) {
 
   const triggerClass =
     variant === 'onHero'
-      ? 'h-11 w-[100px] border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/15'
-      : 'h-11 w-[100px] border-white/20 bg-navy/40 text-cream backdrop-blur-sm hover:bg-white/10';
+      ? 'h-10 w-[88px] border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/15 sm:h-11 sm:w-[100px]'
+      : 'h-10 w-[88px] border-white/20 bg-navy/40 text-cream backdrop-blur-sm hover:bg-white/10 sm:h-11 sm:w-[100px]';
 
   return (
     <div className={cn('flex items-center gap-2', className)}>

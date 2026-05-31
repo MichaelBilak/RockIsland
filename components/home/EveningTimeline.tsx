@@ -149,8 +149,10 @@ export function EveningTimeline() {
   const { t } = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const thumbWrapRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [thumbHalf, setThumbHalf] = useState(30);
   const reduceMotion = useReducedMotion();
 
   const timelineItems = useMemo(
@@ -173,6 +175,7 @@ export function EveningTimeline() {
   );
   const activeItem = timelineItems[activeIndex];
   const thumbPos = arcPosition(progress);
+  const trackPad = thumbHalf * 2;
 
   const setProgressFromClientX = useCallback((clientX: number, snap: boolean) => {
     const track = trackRef.current;
@@ -180,6 +183,18 @@ export function EveningTimeline() {
     const rect = track.getBoundingClientRect();
     const raw = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
     setProgress(snap ? snapProgress(raw) : raw);
+  }, []);
+
+  useEffect(() => {
+    const thumb = thumbWrapRef.current;
+    if (!thumb) return;
+
+    const update = () => setThumbHalf(thumb.offsetWidth / 2);
+
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(thumb);
+    return () => ro.disconnect();
   }, []);
 
   const goToIndex = useCallback((index: number) => {
@@ -211,11 +226,11 @@ export function EveningTimeline() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[min(72vh,640px)] overflow-hidden bg-[#050d14] md:min-h-[min(78vh,680px)]"
+      className="relative min-h-[min(68svh,580px)] bg-[#050d14] md:min-h-[min(78vh,680px)]"
       aria-label={t('eveningSectionAria')}
     >
       {/* Full-section background images */}
-      <div className="absolute inset-0" aria-hidden>
+      <div className="absolute inset-0 overflow-hidden" aria-hidden>
         {timelineItems.map((item, i) => {
           const opacity = reduceMotion
             ? i === activeIndex
@@ -262,13 +277,13 @@ export function EveningTimeline() {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto flex min-h-[min(72vh,640px)] max-w-6xl flex-col px-4 pb-24 pt-10 sm:px-6 md:min-h-[min(78vh,680px)] md:pb-28 md:pt-12 lg:px-8">
+      <div className="relative z-10 mx-auto flex min-h-[min(68svh,580px)] max-w-6xl flex-col px-4 pb-28 pt-8 sm:px-6 md:min-h-[min(78vh,680px)] md:pb-28 md:pt-12 lg:px-8">
         <div>
           <FadeUp className="max-w-2xl">
-          <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold [text-shadow:0_1px_8px_rgba(5,13,20,0.9)]">
+          <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-gold [text-shadow:0_1px_8px_rgba(5,13,20,0.9)] sm:text-xs sm:tracking-[0.35em]">
             {t('eveningKicker')}
           </p>
-          <h2 className="mt-2 font-serif text-3xl font-light text-white [text-shadow:0_2px_24px_rgba(5,13,20,0.95)] md:text-4xl">
+          <h2 className="mt-2 font-serif text-2xl font-light text-white [text-shadow:0_2px_24px_rgba(5,13,20,0.95)] sm:text-3xl md:text-4xl">
             {t('eveningTitle')}
           </h2>
           <p className="mt-2 max-w-lg text-sm leading-relaxed text-cream [text-shadow:0_1px_12px_rgba(5,13,20,0.9)]">
@@ -276,10 +291,13 @@ export function EveningTimeline() {
           </p>
           </FadeUp>
 
-          <div className="relative mx-auto mt-6 max-w-4xl md:mt-8">
+          <div
+            className="relative mx-auto mt-5 max-w-4xl md:mt-8"
+            style={{ paddingInline: trackPad }}
+          >
           <div
             ref={trackRef}
-            className="relative h-20 select-none overflow-visible md:h-24"
+            className="relative h-16 select-none overflow-visible touch-pan-y md:h-24"
             onPointerDown={(e) => {
               e.currentTarget.setPointerCapture(e.pointerId);
               setIsDragging(true);
@@ -326,14 +344,14 @@ export function EveningTimeline() {
               aria-hidden
             >
               <path
-                d="M 8 58 Q 200 -8 392 58"
+                d="M 0 58 Q 200 -8 400 58"
                 fill="none"
                 stroke="rgba(232,168,56,0.25)"
                 strokeWidth="1"
                 vectorEffect="non-scaling-stroke"
               />
               <path
-                d="M 8 58 Q 200 -8 392 58"
+                d="M 0 58 Q 200 -8 400 58"
                 fill="none"
                 stroke="rgba(232,168,56,0.55)"
                 strokeWidth="1"
@@ -364,7 +382,10 @@ export function EveningTimeline() {
               }
               transition={{ duration: 0.3, ease: EASE }}
             >
-              <div className="rounded-full bg-[#0a1522]/80 p-1.5 shadow-[0_0_28px_rgba(232,168,56,0.35)] ring-1 ring-gold/30 backdrop-blur-sm">
+              <div
+                ref={thumbWrapRef}
+                className="rounded-full bg-[#0a1522]/80 p-1.5 shadow-[0_0_28px_rgba(232,168,56,0.35)] ring-1 ring-gold/30 backdrop-blur-sm"
+              >
                 <SunMoonThumb progress={progress} />
               </div>
             </motion.div>
@@ -380,10 +401,10 @@ export function EveningTimeline() {
               animate={{ opacity: 1, y: 0 }}
               exit={reduceMotion ? undefined : { opacity: 0, y: -12 }}
               transition={{ duration: 0.45, ease: EASE }}
-              className="max-w-xl rounded-[2px] bg-[#050d14]/55 p-4 backdrop-blur-md md:p-5"
+              className="max-w-xl rounded-[2px] bg-[#050d14]/55 p-4 backdrop-blur-md sm:p-5 md:p-5"
             >
               <p
-                className="font-serif text-[44px] font-light leading-none md:text-[52px]"
+                className="font-serif text-[36px] font-light leading-none sm:text-[44px] md:text-[52px]"
                 style={{ color: activeItem.color, opacity: 0.72 }}
                 aria-hidden
               >
@@ -392,7 +413,7 @@ export function EveningTimeline() {
               <p className="mt-1 text-xs font-medium uppercase tracking-[0.35em] text-gold">
                 {activeItem.label}
               </p>
-              <h3 className="mt-2 font-serif text-2xl font-light text-white md:text-3xl">
+              <h3 className="mt-2 font-serif text-xl font-light text-white sm:text-2xl md:text-3xl">
                 {activeItem.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-cream">
@@ -405,36 +426,43 @@ export function EveningTimeline() {
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-[#050d14] via-[#050d14]/90 to-transparent">
-        <div className="relative mx-auto max-w-6xl px-4 pb-3 pt-7 sm:px-6 md:pb-4 md:pt-8 lg:px-8">
-          <div className="relative flex items-end justify-between gap-2">
+        <div className="relative mx-auto max-w-6xl px-4 pb-[calc(0.75rem+var(--mobile-bar-height)+env(safe-area-inset-bottom,0px))] pt-5 sm:px-6 md:pb-4 md:pt-8 lg:px-8">
+          <div
+            className="relative mx-auto flex max-w-4xl items-end justify-between gap-1 sm:gap-2"
+            style={{ paddingInline: trackPad }}
+          >
             {timelineItems.map((item, i) => (
               <button
                 key={item.time}
                 type="button"
                 onClick={() => goToIndex(i)}
                 className={cn(
-                  'flex flex-col items-start rounded-[2px] px-1 py-1 text-left transition-colors duration-500',
+                  'touch-target flex min-w-0 flex-1 flex-col items-center rounded-[2px] px-0.5 py-1 text-center transition-colors duration-500 sm:items-start sm:px-1 sm:text-left',
                   activeIndex === i
                     ? 'text-gold'
                     : 'text-cream/55 hover:text-cream/80',
                 )}
               >
-                <span className="font-serif text-base tabular-nums [text-shadow:0_1px_10px_rgba(5,13,20,0.95)] md:text-lg">
+                <span className="font-serif text-sm tabular-nums [text-shadow:0_1px_10px_rgba(5,13,20,0.95)] sm:text-base md:text-lg">
                   {item.time}
                 </span>
-                <span className="mt-0.5 text-[9px] uppercase tracking-[0.22em] [text-shadow:0_1px_8px_rgba(5,13,20,0.95)] md:text-[10px] md:tracking-[0.25em]">
+                <span className="mt-0.5 hidden max-w-full truncate text-[9px] uppercase tracking-[0.18em] [text-shadow:0_1px_8px_rgba(5,13,20,0.95)] min-[400px]:block sm:text-[10px] md:tracking-[0.25em]">
                   {item.label}
                 </span>
               </button>
             ))}
           </div>
         </div>
-        <div className="relative h-px w-full overflow-hidden bg-white/20" aria-hidden>
-          <motion.div
-            className="h-full bg-gold shadow-[0_0_10px_rgba(232,168,56,0.55)]"
-            animate={{ width: `${progress * 100}%` }}
-            transition={{ duration: reduceMotion ? 0 : 0.5, ease: EASE }}
-          />
+        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8" aria-hidden>
+          <div className="relative mx-auto max-w-4xl" style={{ paddingInline: trackPad }}>
+            <div className="relative h-px overflow-hidden bg-white/20">
+              <motion.div
+                className="h-full bg-gold shadow-[0_0_10px_rgba(232,168,56,0.55)]"
+                animate={{ width: `${progress * 100}%` }}
+                transition={{ duration: reduceMotion ? 0 : 0.5, ease: EASE }}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>

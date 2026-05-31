@@ -26,7 +26,7 @@ function MarqueeRow({
       {doubled.map((e, i) => (
         <article
           key={`${e.title}-${i}`}
-          className="flex min-w-[260px] items-stretch overflow-hidden border border-white/10 bg-navy/60"
+          className="flex min-w-[220px] items-stretch overflow-hidden border border-white/10 bg-navy/60 sm:min-w-[260px]"
         >
           <div className="flex w-16 flex-col items-center justify-center bg-gold/15 px-2 text-center">
             <span className="text-[10px] font-semibold uppercase tracking-widest text-gold">
@@ -57,7 +57,7 @@ export function EventsTicker() {
   );
 
   return (
-    <section className="border-y border-white/10 bg-navy py-16">
+    <section className="border-y border-white/10 bg-navy py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeUp className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>

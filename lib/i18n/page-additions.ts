@@ -137,6 +137,7 @@ export const pageAdditionsIt = {
   eveningPhase3Label: 'La Notte',
   eveningPhase3Title: 'Sul molo sotto le stelle',
   eveningPhase3Desc: 'Rimini di notte. Solo il mare, la musica, e voi.',
+  dishRevealPrice: 'Prezzo',
   dishRevealClose: 'Chiudi',
 } as const;
 
@@ -273,6 +274,7 @@ export const pageAdditionsEn = {
   eveningPhase3Label: 'The Night',
   eveningPhase3Title: 'On the pier under the stars',
   eveningPhase3Desc: 'Rimini at night. Just the sea, the music, and you.',
+  dishRevealPrice: 'Price',
   dishRevealClose: 'Close',
 } as const;
 
@@ -410,6 +412,7 @@ export const pageAdditionsDe = {
   eveningPhase3Label: 'Die Nacht',
   eveningPhase3Title: 'Unter den Sternen auf der Mole',
   eveningPhase3Desc: 'Rimini bei Nacht. Nur das Meer, die Musik und Sie.',
+  dishRevealPrice: 'Preis',
   dishRevealClose: 'Schließen',
 } as const;
 
@@ -547,6 +550,7 @@ export const pageAdditionsFr = {
   eveningPhase3Label: 'La Nuit',
   eveningPhase3Title: 'Sur la jetée sous les étoiles',
   eveningPhase3Desc: 'Rimini la nuit. Seulement la mer, la musique, et vous.',
+  dishRevealPrice: 'Prix',
   dishRevealClose: 'Fermer',
 } as const;
 
@@ -684,6 +688,7 @@ export const pageAdditionsRu = {
   eveningPhase3Label: 'Ночь',
   eveningPhase3Title: 'На моле под звёздами',
   eveningPhase3Desc: 'Римини ночью. Только море, музыка и вы.',
+  dishRevealPrice: 'Цена',
   dishRevealClose: 'Закрыть',
 } as const;
 

@@ -31,13 +31,13 @@ export function EventiPageView() {
   const { t } = useLocale();
 
   return (
-    <main className="pb-14 md:pb-0">
-      <header className="border-b border-white/10 px-4 pb-12 pt-8 md:px-8 md:pt-12">
+    <main className="mobile-main-pad">
+      <header className="border-b border-white/10 px-4 pb-10 pt-6 md:px-8 md:pb-12 md:pt-12">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold">
             {t('eventiPageKicker')}
           </p>
-          <h1 className="mt-3 font-serif text-4xl font-light text-white md:text-5xl">
+          <h1 className="mt-3 font-serif text-3xl font-light text-white sm:text-4xl md:text-5xl">
             {t('eventiPageTitle')}
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-mist md:text-base">
@@ -46,8 +46,8 @@ export function EventiPageView() {
         </div>
       </header>
 
-      <section className="mx-auto max-w-6xl px-4 py-14 md:px-8 md:py-20">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <section className="mx-auto max-w-6xl px-4 py-10 md:px-8 md:py-20">
+        <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
           {UPCOMING_EVENTS.map((ev, i) => (
             <FadeUp key={ev.id} delay={i * 0.05}>
               <article className="flex h-full flex-col overflow-hidden border border-white/10 bg-[#0a1522]">
@@ -62,7 +62,7 @@ export function EventiPageView() {
                     <Badge badge={ev.badge} />
                   </div>
                 </div>
-                <div className="flex flex-1 flex-col p-5">
+                <div className="flex flex-1 flex-col p-4 sm:p-5">
                   <p className="text-[11px] font-semibold uppercase tracking-widest text-mist">
                     {t(ev.dateKey)}
                   </p>

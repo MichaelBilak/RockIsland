@@ -9,6 +9,7 @@ import {
   useTransform,
 } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/lib/use-media-query';
 
 type ParallaxImageProps = {
   src: string;
@@ -21,48 +22,75 @@ type ParallaxImageProps = {
   yRange?: [string, string];
 };
 
-export function ParallaxImage({
+type ImageCommonProps = Pick<
+  ParallaxImageProps,
+  'src' | 'alt' | 'sizes' | 'className' | 'priority'
+>;
+
+function StaticImage({
   src,
   alt,
   sizes,
   className,
   priority,
-  wrapperClassName = 'absolute inset-0',
-  yRange = ['-8%', '8%'],
+}: ImageCommonProps) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      priority={priority}
+      className={cn('object-cover', className)}
+      sizes={sizes}
+    />
+  );
+}
+
+function ParallaxImageMotion({
+  src,
+  alt,
+  sizes,
+  className,
+  priority,
+  wrapperClassName,
+  yRange,
 }: ParallaxImageProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const shouldReduce = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
   });
-  const y = useTransform(scrollYProgress, [0, 1], yRange);
+  const y = useTransform(scrollYProgress, [0, 1], yRange ?? ['-8%', '8%']);
 
   return (
     <div ref={containerRef} className={cn('overflow-hidden', wrapperClassName)}>
-      {shouldReduce ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          priority={priority}
-          className={cn('object-cover', className)}
-          sizes={sizes}
-        />
-      ) : (
-        <motion.div className="absolute inset-0" style={{ y }}>
-          <div className="absolute inset-x-0 top-[-5%] h-[110%]">
-            <Image
-              src={src}
-              alt={alt}
-              fill
-              priority={priority}
-              className={cn('object-cover', className)}
-              sizes={sizes}
-            />
-          </div>
-        </motion.div>
-      )}
+      <motion.div className="absolute inset-0" style={{ y }}>
+        <div className="absolute inset-x-0 top-[-5%] h-[110%]">
+          <StaticImage
+            src={src}
+            alt={alt}
+            sizes={sizes}
+            className={className}
+            priority={priority}
+          />
+        </div>
+      </motion.div>
     </div>
   );
+}
+
+export function ParallaxImage(props: ParallaxImageProps) {
+  const shouldReduce = useReducedMotion();
+  const isMobile = useIsMobile();
+  const wrapperClassName = props.wrapperClassName ?? 'absolute inset-0';
+
+  if (shouldReduce || isMobile) {
+    return (
+      <div className={cn('overflow-hidden', wrapperClassName)}>
+        <StaticImage {...props} />
+      </div>
+    );
+  }
+
+  return <ParallaxImageMotion {...props} wrapperClassName={wrapperClassName} />;
 }
