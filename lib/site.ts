@@ -1,11 +1,11 @@
 /** Canonical site URL for metadata and hreflang */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://rockislandrimini.it';
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://portosolerimini.it';
 
 export const CONTACT = {
   phone: '+39 0541 1497100',
   phoneHref: 'tel:+3905411497100',
-  email: 'info@rockislandrimini.it',
+  email: 'info@portosolerimini.it',
   address: 'Molo di Levante, Largo Ruggero Boscovich, 47921 Rimini',
 };
 
@@ -13,7 +13,7 @@ export const CONTACT = {
 const WHATSAPP_DIGITS = '3905411497100';
 
 const defaultWhatsAppText =
-  'Ciao! Vorrei prenotare un tavolo presso RockIsland Rimini.';
+  'Ciao! Vorrei prenotare un tavolo presso Porto Sole Rimini.';
 
 export const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_DIGITS}?text=${encodeURIComponent(
   defaultWhatsAppText,
@@ -22,7 +22,7 @@ export const WHATSAPP_HREF = `https://wa.me/${WHATSAPP_DIGITS}?text=${encodeURIC
 /** Google Maps: stesso punto usato in /prenota */
 export const MAP = {
   embedSrc:
-    'https://www.google.com/maps?q=Rock+Island+Rimini+Molo+di+Levante&z=15&output=embed',
+    'https://www.google.com/maps?q=Porto+Sole+Rimini+Molo+di+Levante&z=15&output=embed',
   externalHref:
-    'https://www.google.com/maps/search/?api=1&query=Rock+Island+Rimini+Molo+di+Levante',
+    'https://www.google.com/maps/search/?api=1&query=Porto+Sole+Rimini+Molo+di+Levante',
 } as const;

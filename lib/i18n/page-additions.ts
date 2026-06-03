@@ -73,7 +73,7 @@ export const pageAdditionsIt = {
   prenotaAgain: 'Nuova richiesta',
   prenotaShuttleTitle: 'Navetta gratuita',
   prenotaShuttleBody:
-    'Servizio navetta Ruota Rimini — RockIsland, tutte le sere dalle 17:30 all’1:00.',
+    'Servizio navetta Ruota Rimini — Porto Sole, tutte le sere dalle 17:30 all’1:00.',
   prenotaMapTitle: 'Come raggiungerci',
   convPageKicker: 'Convention',
   convPageHeroTitle: 'Meeting e gala sul molo',
@@ -117,7 +117,7 @@ export const pageAdditionsIt = {
     'Invio email non ancora attivo sul server: chiamaci, scrivici su WhatsApp o invia una email.',
   prenotaDateRequired: 'Seleziona una data.',
   mobileWhatsApp: 'WhatsApp',
-  eveningSectionAria: 'Una serata al RockIsland',
+  eveningSectionAria: 'Una serata al Porto Sole',
   eveningKicker: 'UNA SERATA',
   eveningTitle: 'Dal tramonto alla notte',
   eveningLead:
@@ -211,7 +211,7 @@ export const pageAdditionsEn = {
   prenotaAgain: 'New request',
   prenotaShuttleTitle: 'Free shuttle',
   prenotaShuttleBody:
-    'Shuttle Ruota Rimini — RockIsland, every evening from 5:30 PM to 1:00 AM.',
+    'Shuttle Ruota Rimini — Porto Sole, every evening from 5:30 PM to 1:00 AM.',
   prenotaMapTitle: 'How to find us',
   convPageKicker: 'Convention',
   convPageHeroTitle: 'Meetings and galas on the pier',
@@ -255,7 +255,7 @@ export const pageAdditionsEn = {
     'Email delivery is not configured on the server yet: call us, WhatsApp, or email.',
   prenotaDateRequired: 'Please select a date.',
   mobileWhatsApp: 'WhatsApp',
-  eveningSectionAria: 'An evening at RockIsland',
+  eveningSectionAria: 'An evening at Porto Sole',
   eveningKicker: 'AN EVENING',
   eveningTitle: 'From sunset to night',
   eveningLead: 'Drag the sun along the pier — from golden light to night.',
@@ -348,7 +348,7 @@ export const pageAdditionsDe = {
   prenotaAgain: 'Neue Anfrage',
   prenotaShuttleTitle: 'Kostenlose Shuttle',
   prenotaShuttleBody:
-    'Shuttle Ruota Rimini — RockIsland, jeden Abend 17:30–1:00.',
+    'Shuttle Ruota Rimini — Porto Sole, jeden Abend 17:30–1:00.',
   prenotaMapTitle: 'Anfahrt',
   convPageKicker: 'Convention',
   convPageHeroTitle: 'Meetings und Galas auf der Mole',
@@ -392,7 +392,7 @@ export const pageAdditionsDe = {
     'E-Mail-Versand ist auf dem Server noch nicht eingerichtet: Anruf, WhatsApp oder E-Mail.',
   prenotaDateRequired: 'Bitte ein Datum auswählen.',
   mobileWhatsApp: 'WhatsApp',
-  eveningSectionAria: 'Ein Abend bei RockIsland',
+  eveningSectionAria: 'Ein Abend bei Porto Sole',
   eveningKicker: 'EIN ABEND',
   eveningTitle: 'Vom Sonnenuntergang bis in die Nacht',
   eveningLead:
@@ -486,7 +486,7 @@ export const pageAdditionsFr = {
   prenotaAgain: 'Nouvelle demande',
   prenotaShuttleTitle: 'Navette gratuite',
   prenotaShuttleBody:
-    'Navette Ruota Rimini — RockIsland, tous les soirs de 17h30 à 1h.',
+    'Navette Ruota Rimini — Porto Sole, tous les soirs de 17h30 à 1h.',
   prenotaMapTitle: 'Nous rejoindre',
   convPageKicker: 'Convention',
   convPageHeroTitle: 'Réunions et galas sur la jetée',
@@ -530,7 +530,7 @@ export const pageAdditionsFr = {
     'L’envoi d’e-mails n’est pas encore configuré sur le serveur : appelez, WhatsApp ou e-mail.',
   prenotaDateRequired: 'Veuillez sélectionner une date.',
   mobileWhatsApp: 'WhatsApp',
-  eveningSectionAria: 'Une soirée au RockIsland',
+  eveningSectionAria: 'Une soirée au Porto Sole',
   eveningKicker: 'UNE SOIRÉE',
   eveningTitle: 'Du coucher du soleil à la nuit',
   eveningLead:
@@ -624,7 +624,7 @@ export const pageAdditionsRu = {
   prenotaAgain: 'Новая заявка',
   prenotaShuttleTitle: 'Бесплатный шаттл',
   prenotaShuttleBody:
-    'Шаттл Ruota Rimini — RockIsland, каждый вечер с 17:30 до 1:00.',
+    'Шаттл Ruota Rimini — Porto Sole, каждый вечер с 17:30 до 1:00.',
   prenotaMapTitle: 'Как добраться',
   convPageKicker: 'Convention',
   convPageHeroTitle: 'Встречи и гала на моле',
@@ -668,7 +668,7 @@ export const pageAdditionsRu = {
     'Отправка писем на сервере ещё не настроена: звонок, WhatsApp или email.',
   prenotaDateRequired: 'Выберите дату.',
   mobileWhatsApp: 'WhatsApp',
-  eveningSectionAria: 'Вечер в RockIsland',
+  eveningSectionAria: 'Вечер в Porto Sole',
   eveningKicker: 'ОДИН ВЕЧЕР',
   eveningTitle: 'От заката до ночи',
   eveningLead:

@@ -57,7 +57,7 @@ export function SiteNav({ variant = 'overlay' }: { variant?: 'overlay' | 'solid'
             href="/"
             className="font-serif text-lg tracking-[0.18em] text-white sm:text-xl md:text-2xl md:tracking-[0.2em]"
           >
-            RockIsland
+            Porto Sole
           </Link>
 
           <div className="hidden items-center gap-6 md:flex md:gap-8">

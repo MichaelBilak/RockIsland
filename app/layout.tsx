@@ -25,21 +25,21 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'RockIsland Rimini | Ristorante sul mare',
-    template: '%s | RockIsland Rimini',
+    default: 'Porto Sole Rimini | Ristorante sul mare',
+    template: '%s | Porto Sole Rimini',
   },
   description:
     'Ristorante, bar ed eventi a 400 metri nel mare Adriatico. Tramonti, musica, pesce e cocktail sul Molo di Levante a Rimini.',
   openGraph: {
-    title: 'RockIsland Rimini | Ristorante sul mare',
+    title: 'Porto Sole Rimini | Ristorante sul mare',
     description:
-      '400 metri nel mare. Tramonti, musica, cena. RockIsland — Molo di Levante, Rimini.',
+      '400 metri nel mare. Tramonti, musica, cena. Porto Sole — Molo di Levante, Rimini.',
     images: [
       {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: 'RockIsland Rimini — vista dal Molo di Levante',
+        alt: 'Porto Sole Rimini — vista dal Molo di Levante',
       },
     ],
     locale: 'it_IT',
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'RockIsland Rimini',
+    title: 'Porto Sole Rimini',
     description:
       'Ristorante e bar sul molo: pesce, pizza, cocktail ed eventi sul mare.',
     images: [OG_IMAGE],
@@ -66,7 +66,7 @@ export const viewport: Viewport = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Restaurant',
-  name: 'RockIsland',
+  name: 'Porto Sole',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Molo di Levante, Largo Ruggero Boscovich',

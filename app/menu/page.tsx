@@ -4,7 +4,7 @@ import { MenuPageView } from '@/components/menu/MenuPageView';
 export const metadata: Metadata = {
   title: 'Menu',
   description:
-    'Antipasti, primi, secondi, pizza, dolci e cocktail RockIsland — Molo di Levante, Rimini.',
+    'Antipasti, primi, secondi, pizza, dolci e cocktail Porto Sole — Molo di Levante, Rimini.',
   alternates: { canonical: '/menu' },
 };
 

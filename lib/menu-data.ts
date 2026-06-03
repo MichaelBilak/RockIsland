@@ -1,4 +1,5 @@
 import type { MessageKey } from '@/lib/i18n/messages';
+import { stockFill, VENUE } from '@/lib/stock-media';
 import { wixFill, WIX } from '@/lib/wix-media';
 
 export type MenuCategoryId =
@@ -22,12 +23,12 @@ function u(photoId: string, w = 800): string {
   return `https://images.unsplash.com/photo-${photoId}?w=${w}&q=85&auto=format&fit=crop`;
 }
 
-/** Foto dal sito ufficiale (CDN Wix). */
+/** Generic food imagery for menu fallbacks. */
 const OFFICIAL = {
   meals: wixFill(WIX.foodTable, 800, 600),
   pizza: wixFill(WIX.pizza, 800, 600),
   bar: wixFill(WIX.bar, 800, 600),
-  interior: wixFill(WIX.interior, 800, 600),
+  interior: stockFill(VENUE.interior, 800, 600),
 } as const;
 
 export const MENU_TABS: { id: MenuCategoryId; labelKey: MessageKey }[] = [
@@ -167,7 +168,7 @@ export const MENU: Record<MenuCategoryId, MenuItem[]> = {
   cocktail: [
     {
       id: 'cocktail-spritz',
-      name: 'RockIsland Spritz',
+      name: 'Porto Sole Spritz',
       price: '12',
       image: u('1470337458703-46ad1756a187'),
     },

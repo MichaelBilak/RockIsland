@@ -1,6 +1,5 @@
 /**
- * Immagini dal CDN Wix del sito ufficiale https://www.rockislandrimini.it/
- * (ID file estratti dalle pagine HTML pubblicate).
+ * Placeholder food imagery (generic CDN assets used for menu category guides).
  */
 export function wixFill(file: string, w: number, h: number): string {
   const encoded = file.replace(/~/g, '%7E');
@@ -26,7 +25,7 @@ export const WIX = {
   fishPlate: '1be8b5_6167c0b307ff4a1cbfb1a3fe1263fabd~mv2.jpeg',
   primiPasta: '1be8b5_78df3423d0a44dd4a62c8facf9b1df23~mv2.jpeg',
   dolciBoard: '1be8b5_52117d1b887f45dd88bf1581a3fefc2c~mv2.jpeg',
-  /** /rockisland — esterno e location */
+  /** Exterior and location (legacy keys — food assets only) */
   exteriorMolo: '1be8b5_0f7c276755ff4c34a6a316d6f1c6ce2d~mv2.jpeg',
   pierView: '1be8b5_2f89b8f122a84f47b11d378c14f2ede9~mv2.jpeg',
   venueEvening: '1be8b5_57a12251a1664cb28f1dbfc1718697de~mv2.jpeg',

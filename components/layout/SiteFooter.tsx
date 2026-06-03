@@ -19,7 +19,7 @@ export function SiteFooter() {
     <footer className="border-t border-white/10 bg-navy py-12 text-cream/80 sm:py-16">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-10 px-4 text-center sm:px-6">
         <p className="font-serif text-xl tracking-[0.3em] text-white sm:text-2xl sm:tracking-[0.35em]">
-          RockIsland
+          Porto Sole
         </p>
         <nav className="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm uppercase tracking-[0.2em] text-mist">
           {footerLinkKeys.map(({ href, key }) => (

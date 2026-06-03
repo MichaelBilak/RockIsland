@@ -42,7 +42,7 @@ function confirmationEmailHtml(input: {
       : '';
 
   return `<p>Ciao ${escapeHtml(input.name)},</p>
-<p>abbiamo ricevuto la tua richiesta di prenotazione per <strong>RockIsland</strong> (Rimini).</p>
+<p>abbiamo ricevuto la tua richiesta di prenotazione per <strong>Porto Sole</strong> (Rimini).</p>
 <p>Ti risponderemo al più presto per confermare disponibilità e dettagli.</p>
 <table style="border-collapse:collapse;font-family:system-ui,sans-serif;font-size:14px;margin:16px 0;">
 <tr><td style="padding:8px 12px;border:1px solid #e5e7eb;font-weight:600;">Data</td><td style="padding:8px 12px;border:1px solid #e5e7eb;">${escapeHtml(
@@ -119,11 +119,11 @@ export async function POST(req: Request) {
     )
     .join('');
 
-  const html = `<p>Nuova richiesta di prenotazione da <strong>rockislandrimini.it</strong>.</p>
+  const html = `<p>Nuova richiesta di prenotazione da <strong>portosolerimini.it</strong>.</p>
 <table style="border-collapse:collapse;font-family:system-ui,sans-serif;font-size:14px;">${htmlRows}</table>`;
 
   const sentInternal = await sendHtmlEmail({
-    subject: `[RockIsland] Prenotazione — ${name}`,
+    subject: `[Porto Sole] Prenotazione — ${name}`,
     html,
     replyTo: email,
   });
@@ -149,7 +149,7 @@ export async function POST(req: Request) {
 
   const sentConfirm = await sendHtmlEmail({
     to: email,
-    subject: 'RockIsland — Richiesta di prenotazione ricevuta',
+    subject: 'Porto Sole — Richiesta di prenotazione ricevuta',
     html: confirmationEmailHtml({
       name,
       date,

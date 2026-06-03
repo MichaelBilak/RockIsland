@@ -1,47 +1,36 @@
 /**
- * Immagini RockIsland: sito ufficiale (Wix, rockislandrimini.it).
- *
- * TripAdvisor: la pagina risponde ai crawler con CAPTCHA/DataDome; per foto TA
- * copia l’URL in `TRIPADVISOR_EXTRA` e abilita l’host in `next.config.mjs`.
- *
- * @see https://www.rockislandrimini.it/
+ * Site imagery: venue and food photos from Unsplash stock.
  */
 import type { MenuCategoryId } from '@/lib/menu-data';
-import { wixFill, wixOg, WIX } from '@/lib/wix-media';
+import { stockFill, FOOD, VENUE } from '@/lib/stock-media';
+import { wixFill, WIX } from '@/lib/wix-media';
 
-/**
- * Incolla qui URL immagine da TripAdvisor (scheda o recensioni), uno per riga.
- * Esempio: `https://dynamic-media.tripadvisor.com/media/photo-o/1a/2b/3c/4d.jpg`
- */
 export const TRIPADVISOR_EXTRA: readonly string[] = [];
 
-export { wixFill, wixOg, WIX };
+export { wixFill, WIX };
 
-/** Open Graph / Telegram / Twitter: vista sul mare dal Molo (asset ufficiale Wix). */
-export const OG_IMAGE = wixOg(WIX.pierView, 1200, 630);
+/** Open Graph / social preview — generic waterfront. */
+export const OG_IMAGE = stockFill(VENUE.pierSunset, 1200, 630);
 
-/** Immagine guida per ogni sezione menu (foto dal sito). */
+/** Section guide images for menu categories (food). */
 export const MENU_CATEGORY_PHOTO: Record<MenuCategoryId, string> = {
-  antipasti: wixFill(WIX.foodTable, 1100, 900),
-  primi: wixFill(WIX.primiPasta, 1100, 900),
-  secondi: wixFill(WIX.fishPlate, 1100, 900),
-  pizza: wixFill(WIX.pizza, 1100, 900),
-  dolci: wixFill(WIX.dolciBoard, 1100, 900),
-  cocktail: wixFill(WIX.bar, 1100, 900),
+  antipasti: stockFill(FOOD.antipasti, 1100, 900),
+  primi: stockFill(FOOD.primi, 1100, 900),
+  secondi: stockFill(FOOD.pesce, 1100, 900),
+  pizza: stockFill(FOOD.pizza, 1100, 900),
+  dolci: stockFill(FOOD.dolci, 1100, 900),
+  cocktail: stockFill(FOOD.cocktail, 1100, 900),
 };
 
 export const IMG = {
-  /** Hero: stesso asset della hero Wix */
-  heroPoster: wixFill(WIX.galleryHero, 1920, 1080),
-  /** Sezione esperienza: vista dal pontile */
-  experience: wixFill(WIX.pierView, 1920, 1080),
-  /** Convention */
-  conventionHero: wixFill(WIX.conventionHero, 1920, 1080),
-  menuAntipasti: wixFill(WIX.foodTable, 900, 1100),
-  menuPesce: wixFill(WIX.locationDock, 900, 1100),
-  menuPizza: wixFill(WIX.pizza, 900, 1100),
-  menuCocktail: wixFill(WIX.bar, 900, 1100),
-  featured1: wixFill(WIX.venueEvening, 1600, 1000),
-  featured2: wixFill(WIX.interior, 1600, 1000),
-  eventi: wixFill(WIX.exteriorMolo, 1600, 1000),
+  heroPoster: stockFill(VENUE.heroWaterfront, 1920, 1080),
+  experience: stockFill(VENUE.pierSunset, 1920, 1080),
+  conventionHero: stockFill(VENUE.diningRoom, 1920, 1080),
+  menuAntipasti: stockFill(FOOD.antipasti, 900, 1100),
+  menuPesce: stockFill(FOOD.pesce, 900, 1100),
+  menuPizza: stockFill(FOOD.pizza, 900, 1100),
+  menuCocktail: stockFill(FOOD.cocktail, 900, 1100),
+  featured1: stockFill(VENUE.eveningTerrace, 1600, 1000),
+  featured2: stockFill(VENUE.interior, 1600, 1000),
+  eventi: stockFill(VENUE.waterfrontDining, 1600, 1000),
 } as const;

@@ -81,7 +81,7 @@ export const translations = {
       eyebrow: 'Business & Eventi',
       title: 'La location più esclusiva di Rimini',
       description:
-        'RockIsland ospita convention aziendali, cene di gala, presentazioni di prodotto ed eventi privati. 400 metri nel mare, vista a 360°, capienza fino a 200 ospiti. Un\'esperienza che i tuoi ospiti non dimenticheranno mai.',
+        'Porto Sole ospita convention aziendali, cene di gala, presentazioni di prodotto ed eventi privati. 400 metri nel mare, vista a 360°, capienza fino a 200 ospiti. Un\'esperienza che i tuoi ospiti non dimenticheranno mai.',
       guests: 'Fino a 200 ospiti',
       av: 'AV professionale',
       transfer: 'Transfer incluso',
@@ -90,7 +90,7 @@ export const translations = {
     booking: {
       title: 'Prenota il tuo tavolo',
       phone: '0541 149 7100',
-      email: 'info@rockislandrimini.it',
+      email: 'info@portosolerimini.it',
       address: 'Molo di Levante, Largo Boscovich, Rimini',
       hours: 'Aperto tutti i giorni · 17:30 → 1:00',
       shuttle: 'Navetta gratuita · Dalla Ruota ogni 30 min',
@@ -125,7 +125,7 @@ export const translations = {
       shuttle: 'Navetta dalla Ruota',
       contact: 'Contatti',
       bookWhatsApp: 'Prenota via WhatsApp',
-      copyright: 'RockIsland Rimini. Tutti i diritti riservati.',
+      copyright: 'Porto Sole Rimini. Tutti i diritti riservati.',
       piva: 'P.IVA',
     },
     stickyBar: {
@@ -213,7 +213,7 @@ export const translations = {
       eyebrow: 'Business & Events',
       title: "Rimini's most exclusive venue",
       description:
-        'RockIsland hosts corporate conventions, gala dinners, product launches and private events. 400 meters at sea, 360° views, capacity up to 200 guests. An experience your guests will never forget.',
+        'Porto Sole hosts corporate conventions, gala dinners, product launches and private events. 400 meters at sea, 360° views, capacity up to 200 guests. An experience your guests will never forget.',
       guests: 'Up to 200 guests',
       av: 'Professional AV',
       transfer: 'Transfer included',
@@ -222,7 +222,7 @@ export const translations = {
     booking: {
       title: 'Reserve your table',
       phone: '0541 149 7100',
-      email: 'info@rockislandrimini.it',
+      email: 'info@portosolerimini.it',
       address: 'Molo di Levante, Largo Boscovich, Rimini',
       hours: 'Open daily · 5:30pm → 1:00am',
       shuttle: 'Free shuttle · From Ferris Wheel every 30 min',
@@ -257,7 +257,7 @@ export const translations = {
       shuttle: 'Shuttle from Ferris Wheel',
       contact: 'Contact',
       bookWhatsApp: 'Book via WhatsApp',
-      copyright: 'RockIsland Rimini. All rights reserved.',
+      copyright: 'Porto Sole Rimini. All rights reserved.',
       piva: 'P.IVA',
     },
     stickyBar: {

@@ -24,7 +24,7 @@ const coreItMessages = {
   mobileBook: 'Prenota',
   heroCta: 'Prenota il tuo Tavolo',
   heroScrollAria: 'Scorri in basso',
-  heroBgAlt: 'RockIsland sul molo al tramonto',
+  heroBgAlt: 'Porto Sole sul molo al tramonto',
   heroTagline: '400 metri nel mare. / Tramonto. Musica. Cena.',
   about1Sub: 'Sul molo di Levante',
   about1Title: '400m nel mare',
@@ -37,7 +37,7 @@ const coreItMessages = {
   expP1:
     'A quattrocento metri dalla riva, il rumore della città resta lontano. Il pesce arriva fresco, il tramonto è un rituale, la musica accompagna la sera fino all’ultimo cocktail.',
   expP2:
-    'RockIsland è bar, ristorante e palcoscenico sul mare: cene eleganti, DJ set, dinner show e momenti intimi sul pontile.',
+    'Porto Sole è bar, ristorante e palcoscenico sul mare: cene eleganti, DJ set, dinner show e momenti intimi sul pontile.',
   expImgAlt: 'Vista sul mare dal molo',
   menuKicker: 'In carta',
   menuTitle: 'Sapori mediterranei, servizio discreto',
@@ -75,16 +75,16 @@ const coreItMessages = {
   aboutUsKicker: 'Chi siamo',
   aboutUsTitle: 'Storia, mare e ospitalità sul Molo di Levante',
   aboutUsP1:
-    'RockIsland nasce sul Molo di Levante a Rimini: un locale sospeso sull’Adriatico, a circa quattrocento metri dalla riva. Dal 1993 accoglie ospiti tra tramonti, musica dal vivo, DJ set e cene di pesce — un punto di riferimento tra ristorante, bar ed eventi sul mare.',
+    'Porto Sole nasce sul Molo di Levante a Rimini: un locale sospeso sull’Adriatico, a circa quattrocento metri dalla riva. Dal 1993 accoglie ospiti tra tramonti, musica dal vivo, DJ set e cene di pesce — un punto di riferimento tra ristorante, bar ed eventi sul mare.',
   aboutUsP2:
     'La cucina punta sul pesce e sulla tradizione romagnola rivisitata con eleganza. In estate la Ruota Panoramica è vicina: offriamo navetta gratuita per arrivare comodamente al pontile. Siamo aperti ogni sera, dall’aperitivo fino a notte fonda.',
   aboutUsHoursLabel: 'Orari',
   aboutUsHours: 'Tutti i giorni 17:30–01:00',
   aboutUsAddressLabel: 'Indirizzo',
   aboutUsMapTitle: 'Dove siamo',
-  aboutUsMapAria: 'Mappa: RockIsland sul Molo di Levante, Rimini',
+  aboutUsMapAria: 'Mappa: Porto Sole sul Molo di Levante, Rimini',
   aboutUsOpenMaps: 'Apri in Google Maps',
-  aboutUsImgAlt: 'RockIsland — facciata sul molo',
+  aboutUsImgAlt: 'Porto Sole — facciata sul molo',
   langLabel: 'Lingua',
   stubComing:
     'Contenuto della pagina in aggiornamento: layout editoriale e moduli completi arriveranno a breve.',
@@ -118,7 +118,7 @@ export const bundles = {
     mobileBook: 'Book',
     heroCta: 'Book your table',
     heroScrollAria: 'Scroll down',
-    heroBgAlt: 'RockIsland on the pier at sunset',
+    heroBgAlt: 'Porto Sole on the pier at sunset',
     heroTagline: '400 metres at sea. / Sunset. Music. Dinner.',
     about1Sub: 'On the Levante pier',
     about1Title: '400m into the sea',
@@ -131,7 +131,7 @@ export const bundles = {
     expP1:
       'Four hundred metres from the shore, the city noise fades away. Fish arrives fresh, sunset is a ritual, music carries the night to the last cocktail.',
     expP2:
-      'RockIsland is a bar, restaurant and stage on the sea: elegant dinners, DJ sets, dinner shows and intimate moments on the pier.',
+      'Porto Sole is a bar, restaurant and stage on the sea: elegant dinners, DJ sets, dinner shows and intimate moments on the pier.',
     expImgAlt: 'Sea view from the pier',
     menuKicker: 'On the menu',
     menuTitle: 'Mediterranean flavours, discreet service',
@@ -168,16 +168,16 @@ export const bundles = {
     aboutUsKicker: 'About us',
     aboutUsTitle: 'History, sea and hospitality on the Levante pier',
     aboutUsP1:
-      'RockIsland sits on Rimini’s Molo di Levante: a venue over the Adriatic, about four hundred metres from the shore. Since 1993 it has welcomed guests for sunsets, live music, DJ sets and seafood dinners — a landmark where restaurant, bar and events meet the sea.',
+      'Porto Sole sits on Rimini’s Molo di Levante: a venue over the Adriatic, about four hundred metres from the shore. Since 1993 it has welcomed guests for sunsets, live music, DJ sets and seafood dinners — a landmark where restaurant, bar and events meet the sea.',
     aboutUsP2:
       'Our kitchen focuses on fish and Romagna tradition with a refined touch. In summer the Ferris wheel is nearby: we offer a free shuttle to the pier. We are open every evening, from aperitivo until late.',
     aboutUsHoursLabel: 'Hours',
     aboutUsHours: 'Daily 5:30 pm–1:00 am',
     aboutUsAddressLabel: 'Address',
     aboutUsMapTitle: 'Find us',
-    aboutUsMapAria: 'Map: RockIsland on the Levante pier, Rimini',
+    aboutUsMapAria: 'Map: Porto Sole on the Levante pier, Rimini',
     aboutUsOpenMaps: 'Open in Google Maps',
-    aboutUsImgAlt: 'RockIsland — facade on the pier',
+    aboutUsImgAlt: 'Porto Sole — facade on the pier',
     langLabel: 'Language',
     stubComing:
       'This page is being updated: the full editorial layout and modules will be available shortly.',
@@ -201,7 +201,7 @@ export const bundles = {
     mobileBook: 'Reservieren',
     heroCta: 'Tisch reservieren',
     heroScrollAria: 'Nach unten scrollen',
-    heroBgAlt: 'RockIsland auf der Mole bei Sonnenuntergang',
+    heroBgAlt: 'Porto Sole auf der Mole bei Sonnenuntergang',
     heroTagline: '400 Meter im Meer. / Sonnenuntergang. Musik. Dinner.',
     about1Sub: 'Auf der Molo di Levante',
     about1Title: '400 m im Meer',
@@ -214,7 +214,7 @@ export const bundles = {
     expP1:
       'Vierhundert Meter vom Ufer entfernt bleibt das Stadtrauschen fern. Der Fisch kommt frisch, der Sonnenuntergang ist ein Ritual, Musik begleitet den Abend bis zum letzten Cocktail.',
     expP2:
-      'RockIsland ist Bar, Restaurant und Bühne am Meer: elegante Dinners, DJ-Sets, Dinner-Shows und intime Momente auf der Seebrücke.',
+      'Porto Sole ist Bar, Restaurant und Bühne am Meer: elegante Dinners, DJ-Sets, Dinner-Shows und intime Momente auf der Seebrücke.',
     expImgAlt: 'Meerblick von der Mole',
     menuKicker: 'Auf der Karte',
     menuTitle: 'Mediterrane Aromen, diskreter Service',
@@ -252,16 +252,16 @@ export const bundles = {
     aboutUsKicker: 'Über uns',
     aboutUsTitle: 'Geschichte, Meer und Gastfreundschaft auf der Molo di Levante',
     aboutUsP1:
-      'RockIsland liegt auf der Molo di Levante in Rimini: ein Ort über der Adria, etwa vierhundert Meter vom Ufer entfernt. Seit 1993 empfängt er Gäste bei Sonnenuntergang, Livemusik, DJ-Sets und Fischmenüs — ein Fixpunkt zwischen Restaurant, Bar und Events am Meer.',
+      'Porto Sole liegt auf der Molo di Levante in Rimini: ein Ort über der Adria, etwa vierhundert Meter vom Ufer entfernt. Seit 1993 empfängt er Gäste bei Sonnenuntergang, Livemusik, DJ-Sets und Fischmenüs — ein Fixpunkt zwischen Restaurant, Bar und Events am Meer.',
     aboutUsP2:
       'Unsere Küche setzt auf frischen Fisch und die Tradition Romagnas, elegant interpretiert. Im Sommer ist das Riesenrad nah: mit unserem kostenlosen Shuttle kommen Sie bequem zur Seebrücke. Jeden Abend geöffnet — vom Aperitif bis spät in die Nacht.',
     aboutUsHoursLabel: 'Öffnungszeiten',
     aboutUsHours: 'Täglich 17:30–01:00',
     aboutUsAddressLabel: 'Adresse',
     aboutUsMapTitle: 'Anfahrt',
-    aboutUsMapAria: 'Karte: RockIsland auf der Molo di Levante, Rimini',
+    aboutUsMapAria: 'Karte: Porto Sole auf der Molo di Levante, Rimini',
     aboutUsOpenMaps: 'In Google Maps öffnen',
-    aboutUsImgAlt: 'RockIsland — Fassade auf der Mole',
+    aboutUsImgAlt: 'Porto Sole — Fassade auf der Mole',
     langLabel: 'Sprache',
     stubComing:
       'Diese Seite wird überarbeitet: das vollständige Layout und die Module folgen in Kürze.',
@@ -285,7 +285,7 @@ export const bundles = {
     mobileBook: 'Réserver',
     heroCta: 'Réserver votre table',
     heroScrollAria: 'Faire défiler vers le bas',
-    heroBgAlt: 'RockIsland sur la jetée au coucher du soleil',
+    heroBgAlt: 'Porto Sole sur la jetée au coucher du soleil',
     heroTagline: '400 mètres en mer. / Coucher du soleil. Musique. Dîner.',
     about1Sub: 'Sur la jetée du Levant',
     about1Title: '400 m en mer',
@@ -298,7 +298,7 @@ export const bundles = {
     expP1:
       'À quatre cents mètres du rivage, le bruit de la ville s’éloigne. Le poisson arrive frais, le coucher du soleil est un rituel, la musique porte la soirée jusqu’au dernier cocktail.',
     expP2:
-      'RockIsland est un bar, restaurant et scène sur la mer : dîners élégants, DJ sets, dinner shows et moments intimes sur la jetée.',
+      'Porto Sole est un bar, restaurant et scène sur la mer : dîners élégants, DJ sets, dinner shows et moments intimes sur la jetée.',
     expImgAlt: 'Vue sur la mer depuis la jetée',
     menuKicker: 'À la carte',
     menuTitle: 'Saveurs méditerranéennes, service discret',
@@ -336,16 +336,16 @@ export const bundles = {
     aboutUsKicker: 'À propos',
     aboutUsTitle: 'Histoire, mer et hospitalité sur la jetée du Levant',
     aboutUsP1:
-      'RockIsland est sur la Molo di Levante à Rimini : un lieu au-dessus de l’Adriatique, à environ quatre cents mètres du rivage. Depuis 1993, il accueille coucher de soleil, musique live, DJ sets et dîners de poisson — un repère entre restaurant, bar et événements face à la mer.',
+      'Porto Sole est sur la Molo di Levante à Rimini : un lieu au-dessus de l’Adriatique, à environ quatre cents mètres du rivage. Depuis 1993, il accueille coucher de soleil, musique live, DJ sets et dîners de poisson — un repère entre restaurant, bar et événements face à la mer.',
     aboutUsP2:
       'La cuisine met le poisson et la tradition romagnole au centre, avec une touche élégante. En été, la grande roue est proche : navette gratuite jusqu’à la jetée. Ouvert chaque soir, de l’apéritif jusqu’au bout de la nuit.',
     aboutUsHoursLabel: 'Horaires',
     aboutUsHours: 'Tous les jours 17h30–01h00',
     aboutUsAddressLabel: 'Adresse',
     aboutUsMapTitle: 'Nous trouver',
-    aboutUsMapAria: 'Carte : RockIsland sur la jetée du Levant, Rimini',
+    aboutUsMapAria: 'Carte : Porto Sole sur la jetée du Levant, Rimini',
     aboutUsOpenMaps: 'Ouvrir dans Google Maps',
-    aboutUsImgAlt: 'RockIsland — façade sur la jetée',
+    aboutUsImgAlt: 'Porto Sole — façade sur la jetée',
     langLabel: 'Langue',
     stubComing:
       'Cette page est en cours de mise à jour : la mise en page complète et les modules suivront bientôt.',
@@ -369,7 +369,7 @@ export const bundles = {
     mobileBook: 'Бронь',
     heroCta: 'Забронировать стол',
     heroScrollAria: 'Прокрутить вниз',
-    heroBgAlt: 'RockIsland на пирсе на закате',
+    heroBgAlt: 'Porto Sole на пирсе на закате',
     heroTagline: '400 метров в море. / Закат. Музыка. Ужин.',
     about1Sub: 'На моле Леванте',
     about1Title: '400 м в море',
@@ -382,7 +382,7 @@ export const bundles = {
     expP1:
       'В четырёхстах метрах от берега городской шум остаётся далеко. Рыба — свежая, закат — как ритуал, музыка ведёт вечер до последнего коктейля.',
     expP2:
-      'RockIsland — бар, ресторан и сцена на море: изысканные ужины, DJ-сеты, dinner show и камерные моменты на пирсе.',
+      'Porto Sole — бар, ресторан и сцена на море: изысканные ужины, DJ-сеты, dinner show и камерные моменты на пирсе.',
     expImgAlt: 'Вид на море с пирса',
     menuKicker: 'В меню',
     menuTitle: 'Средиземноморские вкусы, сдержанный сервис',
@@ -420,16 +420,16 @@ export const bundles = {
     aboutUsKicker: 'О нас',
     aboutUsTitle: 'История, море и гостеприимство на моле Леванте',
     aboutUsP1:
-      'RockIsland стоит на моле Леванте в Римини — заведение над Адриатикой, примерно в четырёхстах метрах от берега. С 1993 года здесь встречают закаты, живую музыку, DJ-сеты и ужины из рыбы: ресторан, бар и события на воде.',
+      'Porto Sole стоит на моле Леванте в Римини — заведение над Адриатикой, примерно в четырёхстах метрах от берега. С 1993 года здесь встречают закаты, живую музыку, DJ-сеты и ужины из рыбы: ресторан, бар и события на воде.',
     aboutUsP2:
       'Кухня — рыба и традиции Романьи в аккуратной подаче. Летом рядом колесо обозрения: бесплатный шаттл до пирса. Мы открыты каждый вечер — с аперитива до поздней ночи.',
     aboutUsHoursLabel: 'Часы работы',
     aboutUsHours: 'Ежедневно 17:30–01:00',
     aboutUsAddressLabel: 'Адрес',
     aboutUsMapTitle: 'Как нас найти',
-    aboutUsMapAria: 'Карта: RockIsland на моле Леванте, Римини',
+    aboutUsMapAria: 'Карта: Porto Sole на моле Леванте, Римини',
     aboutUsOpenMaps: 'Открыть в Google Картах',
-    aboutUsImgAlt: 'RockIsland — фасад на моле',
+    aboutUsImgAlt: 'Porto Sole — фасад на моле',
     langLabel: 'Язык',
     stubComing:
       'Страница обновляется: полная вёрстка и блоки появятся в ближайшее время.',

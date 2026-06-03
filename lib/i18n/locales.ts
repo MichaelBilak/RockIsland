@@ -20,4 +20,4 @@ export function htmlLangFor(locale: Locale): string {
   return map[locale];
 }
 
-export const LOCALE_STORAGE_KEY = 'rockisland.locale';
+export const LOCALE_STORAGE_KEY = 'portosole.locale';

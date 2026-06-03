@@ -4,7 +4,7 @@ import { EventiPageView } from '@/components/eventi/EventiPageView';
 export const metadata: Metadata = {
   title: 'Eventi',
   description:
-    'Aperitivi, dinner show e DJ night sul molo a Rimini. Calendario eventi RockIsland.',
+    'Aperitivi, dinner show e DJ night sul molo a Rimini. Calendario eventi Porto Sole.',
   alternates: { canonical: '/eventi' },
 };
 

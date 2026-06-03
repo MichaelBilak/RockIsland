@@ -77,7 +77,7 @@ export function SplashScreen() {
               animate={{ opacity: 1, letterSpacing: '0.35em' }}
               transition={titleTransition}
             >
-              RockIsland
+              Porto Sole
             </motion.p>
             <motion.div
               className="mt-4 h-px w-12 bg-gold"

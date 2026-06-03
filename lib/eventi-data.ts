@@ -1,4 +1,5 @@
 import type { MessageKey } from '@/lib/i18n/messages';
+import { stockFill, VENUE } from '@/lib/stock-media';
 import { wixFill, WIX } from '@/lib/wix-media';
 
 export type EventBadge = 'aperitivo' | 'dinner' | 'dj';
@@ -19,7 +20,7 @@ export const UPCOMING_EVENTS: UpcomingEvent[] = [
     titleKey: 'evUp1Title',
     artistKey: 'evUp1Artist',
     badge: 'dj',
-    image: wixFill(WIX.venueEvening, 800, 600),
+    image: stockFill(VENUE.eveningTerrace, 800, 600),
   },
   {
     id: '2',
@@ -43,7 +44,7 @@ export const UPCOMING_EVENTS: UpcomingEvent[] = [
     titleKey: 'evUp4Title',
     artistKey: 'evUp4Artist',
     badge: 'dj',
-    image: wixFill(WIX.exteriorMolo, 800, 600),
+    image: stockFill(VENUE.waterfrontDining, 800, 600),
   },
 ];
 

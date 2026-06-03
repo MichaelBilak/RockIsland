@@ -7,6 +7,7 @@ import { Moon, Wine } from 'lucide-react';
 import { FadeUp } from '@/components/motion/FadeUp';
 import { useLocale } from '@/contexts/LocaleContext';
 import type { MessageKey } from '@/lib/i18n/messages';
+import { stockFill, VENUE } from '@/lib/stock-media';
 import { wixFill, WIX } from '@/lib/wix-media';
 import { cn } from '@/lib/utils';
 
@@ -19,7 +20,7 @@ const PHASE_DEFS = [
     labelKey: 'eveningPhase0Label',
     titleKey: 'eveningPhase0Title',
     descKey: 'eveningPhase0Desc',
-    image: wixFill(WIX.pierView, 1600, 1000),
+    image: stockFill(VENUE.pierSunset, 1600, 1000),
     color: '#E8A838',
     mood: 'rgba(232, 168, 56, 0.14)',
   },
@@ -46,7 +47,7 @@ const PHASE_DEFS = [
     labelKey: 'eveningPhase3Label',
     titleKey: 'eveningPhase3Title',
     descKey: 'eveningPhase3Desc',
-    image: wixFill(WIX.venueEvening, 1600, 1000),
+    image: stockFill(VENUE.eveningTerrace, 1600, 1000),
     color: '#F5EDD8',
     mood: 'rgba(245, 237, 216, 0.08)',
   },

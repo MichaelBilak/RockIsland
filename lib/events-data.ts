@@ -21,7 +21,7 @@ export const events = [
     date: 'Sab 21 Giu',
     dateEN: 'Sat Jun 21',
     time: '22:00 → 01:00',
-    title: 'RockIsland Summer Opening',
+    title: 'Porto Sole Summer Opening',
     genre: 'House · Tech House',
     description: {
       it: "Grande serata di apertura dell'estate con ospiti speciali",
