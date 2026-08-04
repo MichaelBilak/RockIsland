@@ -18,7 +18,11 @@ export function MobileBottomBar() {
     const visible = new Map<string, boolean>();
 
     const sync = () => {
-      setHidden([...visible.values()].some(Boolean));
+      let anyVisible = false;
+      visible.forEach((isVisible) => {
+        if (isVisible) anyVisible = true;
+      });
+      setHidden(anyVisible);
     };
 
     const observer = new IntersectionObserver(
