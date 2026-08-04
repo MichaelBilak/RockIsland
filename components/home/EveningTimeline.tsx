@@ -194,6 +194,7 @@ export function EveningTimeline() {
   const trackRef = useRef<HTMLDivElement>(null);
   const thumbWrapRef = useRef<HTMLDivElement>(null);
   const dragLockRef = useRef(false);
+  const activeIndexRef = useRef(0);
   const progress = useMotionValue(0);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -221,6 +222,11 @@ export function EveningTimeline() {
 
   const activeItem = timelineItems[activeIndex];
   const trackPad = thumbHalf;
+  const updateActiveIndex = useCallback((nextIndex: number) => {
+    if (activeIndexRef.current === nextIndex) return;
+    activeIndexRef.current = nextIndex;
+    setActiveIndex(nextIndex);
+  }, []);
   const thumbX = useTransform(progress, (value) => `${arcPosition(value).x}%`);
   const thumbY = useTransform(progress, (value) => `${arcPosition(value).y}%`);
   const thumbOffsetX = useTransform(progress, [0, 1], ['0%', '-100%']);
@@ -246,16 +252,15 @@ export function EveningTimeline() {
     const raw = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
     const next = snap ? snapProgress(raw) : raw;
     progress.set(next);
-    setActiveIndex(Math.round(next * STEPS));
+    updateActiveIndex(Math.round(next * STEPS));
     scrollToProgress(next, false);
-  }, [progress, scrollToProgress]);
+  }, [progress, scrollToProgress, updateActiveIndex]);
 
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     if (dragLockRef.current || reduceMotion) return;
     const next = Math.max(0, Math.min(1, latest));
     progress.set(next);
-    const nextIndex = Math.round(next * STEPS);
-    setActiveIndex((current) => (current === nextIndex ? current : nextIndex));
+    updateActiveIndex(Math.round(next * STEPS));
   });
 
   useEffect(() => {
@@ -274,12 +279,12 @@ export function EveningTimeline() {
     (index: number) => {
       const next = index / STEPS;
       progress.set(next);
-      setActiveIndex(index);
+      updateActiveIndex(index);
       if (!reduceMotion) {
         scrollToProgress(next, true);
       }
     },
-    [progress, reduceMotion, scrollToProgress],
+    [progress, reduceMotion, scrollToProgress, updateActiveIndex],
   );
 
   useEffect(() => {
@@ -387,7 +392,7 @@ export function EveningTimeline() {
                 setIsDragging(false);
                 const snapped = snapProgress(progress.get());
                 progress.set(snapped);
-                setActiveIndex(Math.round(snapped * STEPS));
+                updateActiveIndex(Math.round(snapped * STEPS));
                 scrollToProgress(snapped, false);
                 window.setTimeout(() => {
                   dragLockRef.current = false;

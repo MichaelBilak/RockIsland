@@ -54,7 +54,7 @@ export function FixedBackdrop({
     >
       <div
         className={cn(
-          'pointer-events-none fixed inset-0 z-0 transition-opacity duration-500',
+          'pointer-events-none fixed inset-0 z-0 transform-gpu will-change-opacity transition-opacity duration-500',
           active ? 'opacity-100' : 'opacity-0',
           className,
         )}

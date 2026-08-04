@@ -65,7 +65,7 @@ function ParallaxImageMotion({
   const y = useTransform(scrollYProgress, [0, 1], yRange ?? ['-8%', '8%']);
 
   return (
-    <motion.div className="absolute inset-0 will-change-transform" style={{ y }}>
+    <motion.div className="absolute inset-0 transform-gpu will-change-transform" style={{ y }}>
       <div className="absolute inset-x-0 top-[-5%] h-[110%]">
         <StaticImage
           src={src}
