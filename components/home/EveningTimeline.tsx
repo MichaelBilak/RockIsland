@@ -71,7 +71,8 @@ const PHASE_DEFS = [
 
 function arcPosition(t: number) {
   const x = t * 100;
-  const y = 18 - Math.sin(t * Math.PI) * 62;
+  // Matches `M 0 58 Q 200 -8 400 58` in the timeline SVG viewBox.
+  const y = 72.5 - 165 * t * (1 - t);
   return { x, y };
 }
 
@@ -219,9 +220,10 @@ export function EveningTimeline() {
   );
 
   const activeItem = timelineItems[activeIndex];
-  const trackPad = thumbHalf * 2;
+  const trackPad = thumbHalf;
   const thumbX = useTransform(progress, (value) => `${arcPosition(value).x}%`);
   const thumbY = useTransform(progress, (value) => `${arcPosition(value).y}%`);
+  const thumbOffsetX = useTransform(progress, [0, 1], ['0%', '-100%']);
   const dashOffset = useTransform(progress, (value) => 400 - value * 400);
   const progressScale = useTransform(progress, [0, 1], [0, 1]);
 
@@ -338,7 +340,7 @@ export function EveningTimeline() {
         aria-hidden
       />
 
-      <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-6xl flex-1 flex-col px-4 pb-28 pt-8 sm:px-6 md:pb-28 md:pt-12 lg:px-8">
+      <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-6xl flex-1 flex-col px-4 pb-36 pt-[calc(6rem+env(safe-area-inset-top,0px))] sm:px-6 md:pb-28 md:pt-[calc(var(--nav-height)+1rem)] lg:px-8">
         <div>
           <FadeUp className="max-w-2xl">
             <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-gold [text-shadow:0_1px_8px_rgba(10,16,20,0.9)] sm:text-xs sm:tracking-[0.35em]">
@@ -353,12 +355,12 @@ export function EveningTimeline() {
           </FadeUp>
 
           <div
-            className="relative mx-auto mt-5 max-w-4xl md:mt-8"
+            className="relative mx-auto mt-36 max-w-4xl md:mt-8"
             style={{ paddingInline: trackPad }}
           >
             <div
               ref={trackRef}
-              className="relative h-16 select-none overflow-visible touch-pan-y md:h-24"
+              className="relative h-14 select-none overflow-visible touch-pan-y md:h-16"
               onPointerDown={(e) => {
                 e.currentTarget.setPointerCapture(e.pointerId);
                 dragLockRef.current = true;
@@ -409,7 +411,7 @@ export function EveningTimeline() {
               }}
             >
               <svg
-                className="pointer-events-none absolute inset-x-0 bottom-1 h-14 w-full md:h-16"
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-14 w-full md:h-16"
                 viewBox="0 0 400 80"
                 preserveAspectRatio="none"
                 aria-hidden
@@ -446,34 +448,39 @@ export function EveningTimeline() {
 
               <motion.div
                 className={cn(
-                  'absolute z-10 -translate-x-1/2 -translate-y-1/2 cursor-grab touch-none',
+                  'absolute z-10 cursor-grab touch-none',
                   isDragging && 'cursor-grabbing',
                 )}
                 style={{
                   left: thumbX,
                   top: thumbY,
                 }}
-                animate={
-                  reduceMotion
-                    ? {}
-                    : isDragging
-                      ? { scale: 1.08 }
-                      : { scale: 1 }
-                }
-                transition={{ duration: 0.3, ease: EASE }}
               >
-                <div
-                  ref={thumbWrapRef}
-                  className="rounded-full bg-surface/95 p-1.5 shadow-neon-horizon ring-1 ring-neon-pink/40"
-                >
-                  <SunMoonThumb activeIndex={activeIndex} />
-                </div>
+                <motion.div style={{ x: thumbOffsetX, y: '-50%' }}>
+                  <motion.div
+                    animate={
+                      reduceMotion
+                        ? {}
+                        : isDragging
+                          ? { scale: 1.08 }
+                          : { scale: 1 }
+                    }
+                    transition={{ duration: 0.3, ease: EASE }}
+                  >
+                    <div
+                      ref={thumbWrapRef}
+                      className="rounded-full bg-surface/95 p-1.5 shadow-neon-horizon ring-1 ring-neon-pink/40"
+                    >
+                      <SunMoonThumb activeIndex={activeIndex} />
+                    </div>
+                  </motion.div>
+                </motion.div>
               </motion.div>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col justify-center py-3 md:py-5">
+        <div className="mt-4 flex flex-1 flex-col justify-end pb-14 md:mt-0 md:justify-end md:pb-10">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeItem.time}
@@ -505,11 +512,8 @@ export function EveningTimeline() {
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 z-10 bg-gradient-to-t from-ink via-ink/90 to-transparent">
-        <div className="relative mx-auto max-w-6xl px-4 pb-[calc(0.75rem+var(--mobile-bar-height)+env(safe-area-inset-bottom,0px))] pt-5 sm:px-6 md:pb-4 md:pt-8 lg:px-8">
-          <div
-            className="relative mx-auto flex max-w-4xl items-end justify-between gap-1 sm:gap-2"
-            style={{ paddingInline: trackPad }}
-          >
+        <div className="relative mx-auto w-full max-w-6xl px-4 pb-[calc(0.5rem+env(safe-area-inset-bottom,0px))] pt-2 sm:px-6 md:pb-4 md:pt-8 lg:px-8">
+          <div className="relative mx-auto flex w-full max-w-md items-end justify-between gap-2 sm:max-w-4xl sm:gap-2">
             {timelineItems.map((item, i) => (
               <button
                 key={item.time}
@@ -525,14 +529,14 @@ export function EveningTimeline() {
                 <span className="font-sans text-sm tabular-nums [text-shadow:0_1px_10px_rgba(10,16,20,0.95)] sm:text-base md:text-lg">
                   {item.time}
                 </span>
-                <span className="mt-0.5 hidden max-w-full truncate text-[9px] uppercase tracking-[0.18em] [text-shadow:0_1px_8px_rgba(10,16,20,0.95)] min-[400px]:block sm:text-[10px] md:tracking-[0.25em]">
+                <span className="mt-0.5 max-w-full truncate text-[9px] uppercase tracking-[0.12em] [text-shadow:0_1px_8px_rgba(10,16,20,0.95)] sm:text-[10px] md:tracking-[0.25em]">
                   {item.label}
                 </span>
               </button>
             ))}
           </div>
         </div>
-        <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8" aria-hidden>
+        <div className="relative mx-auto max-w-4xl px-2 sm:px-6 lg:px-8" aria-hidden>
           <div className="relative mx-auto max-w-4xl" style={{ paddingInline: trackPad }}>
             <div className="relative h-px overflow-hidden bg-white/20">
               <motion.div
@@ -547,11 +551,19 @@ export function EveningTimeline() {
   );
 
   if (reduceMotion) {
-    return stickyPanel;
+    return (
+      <div id="evening">
+        {stickyPanel}
+      </div>
+    );
   }
 
   return (
-    <div ref={containerRef} className="relative h-[220svh] md:h-[320vh]">
+    <div
+      id="evening"
+      ref={containerRef}
+      className="relative h-[220svh] md:h-[320vh]"
+    >
       <div className="sticky top-0 h-[100svh] min-h-[560px]">{stickyPanel}</div>
     </div>
   );

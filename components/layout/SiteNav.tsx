@@ -114,19 +114,19 @@ export function SiteNav({ variant = 'overlay' }: { variant?: 'overlay' | 'solid'
           navClass,
         )}
       >
-        <div className="mx-auto flex h-[var(--nav-height)] max-w-7xl items-center justify-between gap-2 px-4 sm:gap-3 sm:px-6 lg:px-8">
+        <div className="relative mx-auto flex h-[var(--nav-height)] max-w-7xl items-center justify-between gap-2 px-4 sm:gap-3 sm:px-6 lg:px-8">
           <Link
             href="/"
-            className="font-brand text-neon-brand text-lg sm:text-xl md:text-2xl"
+            className="font-brand text-neon-brand relative z-10 text-lg sm:text-xl md:text-2xl"
           >
             Rockisland
           </Link>
 
-          <div className="hidden items-center gap-6 md:flex md:gap-8">
-            <nav
-              className="flex items-center gap-8 lg:gap-10"
-              aria-label={t('navMainAria')}
-            >
+          <nav
+            className="pointer-events-none absolute inset-x-0 hidden items-center justify-center md:flex"
+            aria-label={t('navMainAria')}
+          >
+            <div className="pointer-events-auto flex items-center gap-8 lg:gap-10">
               {linkKeys.map(({ href, key, neon, glow }) => {
                 const active = isActivePath(pathname, href);
                 return (
@@ -160,14 +160,17 @@ export function SiteNav({ variant = 'overlay' }: { variant?: 'overlay' | 'solid'
                   </Link>
                 );
               })}
-            </nav>
+            </div>
+          </nav>
+
+          <div className="relative z-10 hidden items-center gap-4 md:flex lg:gap-5">
             <LanguageSwitcher variant={langVariant} />
             <Button asChild size="sm" className="rounded-[2px] px-5 shadow-neon-pink">
               <Link href="/prenota">{t('navBook')}</Link>
             </Button>
           </div>
 
-          <div className="flex items-center gap-2 md:hidden">
+          <div className="relative z-10 flex items-center gap-2 md:hidden">
             <LanguageSwitcher variant={langVariant} />
             <button
               type="button"

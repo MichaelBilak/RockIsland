@@ -103,7 +103,13 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
           />
 
           {/* Mobile — centered card */}
-          <div className="absolute inset-0 z-10 flex items-center justify-center px-5 py-4 md:hidden">
+          <div
+            className="absolute inset-0 z-10 flex items-center justify-center px-5 py-4 md:hidden"
+            onClick={onClose}
+            onPointerUp={(e) => {
+              if (e.target === e.currentTarget) onClose();
+            }}
+          >
             <motion.div
               role="dialog"
               aria-modal="true"
@@ -114,6 +120,7 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
               transition={cardTransition}
               className="frame-neon-strong relative max-h-[calc(100svh-2rem)] w-full max-w-[min(100%,340px)] overflow-y-auto rounded-sm"
               onClick={(e) => e.stopPropagation()}
+              onPointerUp={(e) => e.stopPropagation()}
             >
               <div className="relative aspect-[3/4] min-h-[min(380px,calc(100svh-2rem))] w-full">
                 <Image

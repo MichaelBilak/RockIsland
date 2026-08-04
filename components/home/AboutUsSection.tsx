@@ -7,6 +7,7 @@ import { FadeUp } from '@/components/motion/FadeUp';
 import { useLocale } from '@/contexts/LocaleContext';
 import { CONTACT, MAP } from '@/lib/site';
 import { IMG } from '@/lib/images';
+import { AmbientGlow } from '@/components/brand/AmbientGlow';
 
 export function AboutUsSection() {
   const { t } = useLocale();
@@ -15,9 +16,10 @@ export function AboutUsSection() {
     <section
       id="about-us"
       aria-labelledby="about-us-heading"
-      className="bg-surface py-14 md:py-28"
+      className="relative overflow-hidden bg-surface py-14 md:py-28"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <AmbientGlow />
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <FadeUp>
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold">
             {t('aboutUsKicker')}

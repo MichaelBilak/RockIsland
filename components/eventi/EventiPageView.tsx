@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button';
 import { FadeUp } from '@/components/motion/FadeUp';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { cn } from '@/lib/utils';
+import { AmbientGlow } from '@/components/brand/AmbientGlow';
 
 const EVENT_FRAMES = [
   'frame-neon-teal',
@@ -51,7 +52,9 @@ export function EventiPageView() {
   const { t } = useLocale();
 
   return (
-    <main className="mobile-main-pad">
+    <main className="relative overflow-hidden mobile-main-pad">
+      <AmbientGlow />
+      <div className="relative z-10">
       <header className="border-b border-white/10 px-4 pb-10 pt-6 md:px-8 md:pb-12 md:pt-12">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold">
@@ -159,6 +162,7 @@ export function EventiPageView() {
       </section>
 
       <SiteFooter />
+      </div>
     </main>
   );
 }

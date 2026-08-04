@@ -23,6 +23,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { MAP } from '@/lib/site';
 import { cn } from '@/lib/utils';
+import { AmbientGlow } from '@/components/brand/AmbientGlow';
 
 const dateLocales: Record<Locale, typeof it> = {
   it,
@@ -96,7 +97,9 @@ export function PrenotaPageView() {
   }
 
   return (
-    <main className="mobile-main-pad">
+    <main className="relative overflow-hidden mobile-main-pad">
+      <AmbientGlow intensity="soft" />
+      <div className="relative z-10">
       <div className="border-b border-white/10 px-4 py-8 md:px-8 md:py-14">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-xs uppercase tracking-[0.35em] text-gold">
@@ -290,7 +293,7 @@ export function PrenotaPageView() {
           </div>
           <div>
             <h2 className="mb-3 font-sans text-lg text-white">{t('prenotaMapTitle')}</h2>
-            <div className="frame-neon relative aspect-[4/3] w-full overflow-hidden">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[2px] border border-neon-pink/40 shadow-[0_0_8px_rgba(255,46,200,0.25),0_0_20px_rgba(255,46,200,0.12)]">
               <iframe
                 title="Map"
                 src={MAP.embedSrc}
@@ -304,6 +307,7 @@ export function PrenotaPageView() {
       </div>
 
       <SiteFooter />
+      </div>
     </main>
   );
 }

@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { ParallaxImage } from '@/components/motion/ParallaxImage';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { IMG } from '@/lib/images';
@@ -14,6 +13,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { FadeUp } from '@/components/motion/FadeUp';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { cn } from '@/lib/utils';
+import { AmbientGlow } from '@/components/brand/AmbientGlow';
+import { FixedBackdrop, fixedBgSectionClass } from '@/components/motion/FixedBackdrop';
 
 const PACKS: {
   title: MessageKey;
@@ -77,15 +78,16 @@ export function ConventionPageView() {
 
   return (
     <main className="mobile-main-pad">
-      <section className="relative min-h-[42svh] w-full overflow-hidden sm:min-h-[48vh] md:min-h-[56vh]">
-        <ParallaxImage
-          src={IMG.conventionHero}
-          alt=""
-          priority
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/75 to-navy/25" />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy/70 via-transparent to-navy/40" />
+      <section
+        className={cn(
+          'relative min-h-[42svh] w-full overflow-hidden sm:min-h-[48vh] md:min-h-[56vh]',
+          fixedBgSectionClass,
+        )}
+      >
+        <FixedBackdrop src={IMG.conventionHero} alt="" priority sizes="100vw">
+          <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/75 to-navy/25" />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy/70 via-transparent to-navy/40" />
+        </FixedBackdrop>
 
         <div className="relative z-10 mx-auto flex min-h-[42svh] max-w-4xl flex-col justify-end px-4 pb-10 pt-8 sm:min-h-[48vh] sm:pb-12 md:min-h-[56vh] md:pb-16 md:pt-12">
           <p className="text-[10px] font-medium uppercase tracking-[0.3em] text-neon-blue [text-shadow:0_0_4px_rgba(255,255,255,0.55),0_0_10px_rgba(107,140,255,0.9),0_0_22px_rgba(107,140,255,0.65),0_0_36px_rgba(107,140,255,0.35)] sm:text-xs sm:tracking-[0.35em]">
@@ -100,8 +102,10 @@ export function ConventionPageView() {
         </div>
       </section>
 
-      <section className="border-b border-white/10 bg-surface px-4 py-12 md:px-8 md:py-24">
-        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-3 md:gap-6">
+      <div className="relative z-10">
+      <section className="relative overflow-hidden border-b border-white/10 bg-surface px-4 py-12 md:px-8 md:py-24">
+        <AmbientGlow />
+        <div className="relative z-10 mx-auto grid max-w-6xl gap-5 md:grid-cols-3 md:gap-6">
           {PACKS.map((pack, i) => (
             <FadeUp key={pack.title} delay={i * 0.06}>
               <article
@@ -125,14 +129,25 @@ export function ConventionPageView() {
                     {t(pack.b2)}
                   </li>
                 </ul>
+                <div className="mt-auto flex justify-end pt-6">
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="sm"
+                    className="h-8 min-h-8 min-w-0 border-white/50 bg-transparent px-3 text-xs font-medium text-white shadow-none hover:border-white hover:bg-white/10 hover:text-white hover:shadow-none"
+                  >
+                    <a href="#convention-form">{t('convPackRequest')}</a>
+                  </Button>
+                </div>
               </article>
             </FadeUp>
           ))}
         </div>
       </section>
 
-      <section className="bg-ink px-4 py-16 md:px-8 md:py-20">
-        <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-2 md:gap-12">
+      <section className="relative overflow-hidden bg-ink px-4 py-16 md:px-8 md:py-20">
+        <AmbientGlow intensity="medium" />
+        <div className="relative z-10 mx-auto grid max-w-5xl gap-10 md:grid-cols-2 md:gap-12">
           {TESTIMONIALS.map((tb, i) => (
             <FadeUp key={tb.quote} delay={i * 0.08}>
               <blockquote
@@ -156,8 +171,12 @@ export function ConventionPageView() {
         </div>
       </section>
 
-      <section className="bg-navy px-4 py-16 md:py-24">
-        <div className="mx-auto max-w-xl">
+      <section
+        id="convention-form"
+        className="relative scroll-mt-24 overflow-hidden bg-navy px-4 py-16 md:py-24"
+      >
+        <AmbientGlow />
+        <div className="relative z-10 mx-auto max-w-xl">
           <FadeUp className="text-center">
             <p className="text-xs font-medium uppercase tracking-[0.35em] text-neon-blue [text-shadow:0_0_4px_rgba(255,255,255,0.55),0_0_10px_rgba(107,140,255,0.9),0_0_22px_rgba(107,140,255,0.65),0_0_36px_rgba(107,140,255,0.35)]">
               {t('convPageKicker')}
@@ -196,7 +215,7 @@ export function ConventionPageView() {
                 key="f"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="frame-neon mt-10 space-y-5 bg-surface/50 p-5 sm:p-7"
+                className="mt-10 space-y-5 rounded-[2px] border border-neon-pink/35 bg-surface/50 p-5 shadow-[0_0_12px_rgba(255,46,200,0.18),0_0_28px_rgba(255,46,200,0.08)] sm:p-7"
                 onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
                   e.preventDefault();
                   setError(null);
@@ -279,7 +298,7 @@ export function ConventionPageView() {
                   type="submit"
                   variant="outline"
                   size="lg"
-                  className="w-full min-h-[48px] border-neon-pink/60 shadow-neon-horizon"
+                  className="w-full min-h-[48px] border-neon-pink/45 shadow-[0_0_8px_rgba(255,46,200,0.2)]"
                   disabled={submitting}
                 >
                   {submitting ? t('formSubmitting') : t('convFormSubmit')}
@@ -291,6 +310,7 @@ export function ConventionPageView() {
       </section>
 
       <SiteFooter />
+      </div>
     </main>
   );
 }

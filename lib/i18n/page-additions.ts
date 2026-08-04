@@ -91,6 +91,7 @@ export const pageAdditionsIt = {
   convPack3Lead: 'Cena di gala con servizio al tavolo e wine pairing.',
   convPack3B1: 'Menu su misura',
   convPack3B2: 'Coordinamento maitre',
+  convPackRequest: 'Richiedi prenotazione',
   convTestimonial1Quote:
     'Location impareggiabile per il lancio prodotto: ospiti ancora parlano della vista.',
   convTestimonial1Author: 'Marketing Director',
@@ -229,6 +230,7 @@ export const pageAdditionsEn = {
   convPack3Lead: 'Gala service with wine pairing.',
   convPack3B1: 'Bespoke menu',
   convPack3B2: 'Maître coordination',
+  convPackRequest: 'Request reservation',
   convTestimonial1Quote:
     'Unmatched venue for our product launch — guests still talk about the view.',
   convTestimonial1Author: 'Marketing Director',
@@ -367,6 +369,7 @@ export const pageAdditionsDe = {
   convPack3Lead: 'Gala-Service mit Weinbegleitung.',
   convPack3B1: 'Menü nach Maß',
   convPack3B2: 'Maître-Koordination',
+  convPackRequest: 'Reservierung anfragen',
   convTestimonial1Quote:
     'Einzigartiger Ort für unseren Launch — Gäste sprechen noch vom Ausblick.',
   convTestimonial1Author: 'Marketing Director',
@@ -505,6 +508,7 @@ export const pageAdditionsFr = {
   convPack3Lead: 'Service gala avec accords mets-vins.',
   convPack3B1: 'Menu sur mesure',
   convPack3B2: 'Coordination maître d’hôtel',
+  convPackRequest: 'Demander une réservation',
   convTestimonial1Quote:
     'Lieu incomparable pour notre lancement — les invités parlent encore de la vue.',
   convTestimonial1Author: 'Directrice marketing',
@@ -643,6 +647,7 @@ export const pageAdditionsRu = {
   convPack3Lead: 'Сервис гала с винным сопровождением.',
   convPack3B1: 'Меню под запрос',
   convPack3B2: 'Координация мэтра',
+  convPackRequest: 'Запросить резервацию',
   convTestimonial1Quote:
     'Лучшая площадка для презентации — гости до сих пор про вид.',
   convTestimonial1Author: 'Директор по маркетингу',

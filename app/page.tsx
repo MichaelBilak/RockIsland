@@ -15,14 +15,17 @@ export default function HomePage() {
       <main className="mobile-main-pad">
         <WavePhotoFlow />
         <HomeHero />
-        <AboutStrip />
-        <ExperienceSection />
-        <MenuTeaser />
-        <EveningTimeline />
-        <EventsTicker />
-        <ConventionCta />
-        <AboutUsSection />
-        <SiteFooter />
+        {/* z-10 so opaque sections cover the mobile fixed hero backdrop */}
+        <div className="relative z-10">
+          <AboutStrip />
+          <ExperienceSection />
+          <MenuTeaser />
+          <EveningTimeline />
+          <EventsTicker />
+          <ConventionCta />
+          <AboutUsSection />
+          <SiteFooter />
+        </div>
       </main>
     </>
   );

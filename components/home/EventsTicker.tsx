@@ -6,6 +6,7 @@ import { useReducedMotion } from 'framer-motion';
 import { FadeUp } from '@/components/motion/FadeUp';
 import { useLocale } from '@/contexts/LocaleContext';
 import type { MessageKey } from '@/lib/i18n/messages';
+import { AmbientGlow } from '@/components/brand/AmbientGlow';
 
 const eventFieldGroups: { date: MessageKey; title: MessageKey; artist: MessageKey }[] =
   [
@@ -76,8 +77,12 @@ export function EventsTicker() {
   );
 
   return (
-    <section ref={sectionRef} className="border-y border-white/10 bg-navy py-12 md:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden border-y border-white/10 bg-navy py-12 md:py-16"
+    >
+      <AmbientGlow intensity="medium" />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeUp className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold">

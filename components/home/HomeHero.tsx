@@ -5,28 +5,28 @@ import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HeroStagger } from '@/components/motion/HeroStagger';
-import { ParallaxImage } from '@/components/motion/ParallaxImage';
+import { FixedBackdrop, fixedBgSectionClass } from '@/components/motion/FixedBackdrop';
 import { RockHorizon } from '@/components/brand/RockHorizon';
 import { IMG } from '@/lib/images';
 import { useLocale } from '@/contexts/LocaleContext';
+import { cn } from '@/lib/utils';
 
 export function HomeHero() {
   const { t, locale } = useLocale();
   const tagline = t('heroTagline');
 
   return (
-    <section className="relative min-h-[100svh] w-full overflow-hidden">
-      <div className="absolute inset-0">
-        <ParallaxImage
-          src={IMG.heroPoster}
-          alt={t('heroBgAlt')}
-          priority
-          sizes="100vw"
-          yRange={['-5%', '5%']}
-        />
+    <section
+      id="hero"
+      className={cn(
+        'relative min-h-[100svh] w-full overflow-hidden',
+        fixedBgSectionClass,
+      )}
+    >
+      <FixedBackdrop src={IMG.heroPoster} alt={t('heroBgAlt')} priority sizes="100vw">
         <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/75 to-navy/30 md:via-navy/70 md:to-navy/20" />
         <div className="absolute inset-0 hidden bg-gradient-to-r from-navy/80 via-transparent to-navy/40 md:block" />
-      </div>
+      </FixedBackdrop>
 
       {/* Static neon rock horizon */}
       <div className="absolute inset-x-0 bottom-0 z-[5]">

@@ -19,6 +19,7 @@ import { FadeUp } from '@/components/motion/FadeUp';
 import { WavePhotoFlow } from '@/components/motion/WavePhotoFlow';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { DishReveal, type DishRevealData } from '@/components/menu/DishReveal';
+import { AmbientGlow } from '@/components/brand/AmbientGlow';
 
 function sectionId(id: MenuCategoryId) {
   return `menu-${id}`;
@@ -171,8 +172,9 @@ export function MenuPageView() {
   return (
     <main className="mobile-main-pad">
       <WavePhotoFlow />
-      <header className="border-b border-white/10 bg-navy px-4 pb-8 pt-6 md:px-8 md:pb-10 md:pt-12">
-        <div className="mx-auto max-w-3xl text-center">
+      <header className="relative overflow-hidden border-b border-white/10 bg-navy px-4 pb-8 pt-6 md:px-8 md:pb-10 md:pt-12">
+        <AmbientGlow />
+        <div className="relative z-10 mx-auto max-w-3xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold">
             {t('menuPageKicker')}
           </p>
@@ -183,69 +185,69 @@ export function MenuPageView() {
             {t('menuPageLead')}
           </p>
         </div>
+      </header>
 
-        <nav
-          className="nav-offset-top sticky z-30 -mx-4 mt-8 border-y border-white/10 bg-navy/95 px-4 py-2.5 backdrop-blur-md md:-mx-8 md:mt-10 md:px-8 md:py-3"
-          aria-label={t('navMenu')}
-        >
-          <div className="relative mx-auto max-w-5xl">
-            <div
-              ref={tabsScrollRef}
-              className="flex gap-1 overflow-x-auto pb-0.5 pe-12 pt-0.5 [scrollbar-width:none] md:pe-0 [&::-webkit-scrollbar]:hidden"
-            >
-              {MENU_TABS.map((tab) => (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => scrollTo(tab.id)}
-                  className={cn(
-                    'shrink-0 touch-target rounded-[2px] border px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] transition-colors',
-                    active === tab.id
-                      ? 'border-gold bg-gold/15 text-gold'
-                      : 'border-transparent text-cream/80 hover:border-white/20 hover:text-cream',
-                  )}
-                >
-                  {t(tab.labelKey)}
-                </button>
-              ))}
-            </div>
-
-            <div
-              className={cn(
-                'pointer-events-none absolute inset-y-0 right-0 z-10 w-16 transition-opacity duration-300 md:hidden',
-                canScrollTabs ? 'opacity-100' : 'opacity-0',
-              )}
-              aria-hidden={!canScrollTabs}
-            >
-              <div className="absolute inset-0 bg-gradient-to-l from-navy from-30% via-navy/95 to-transparent" />
+      <nav
+        className="nav-offset-top sticky z-30 border-b border-white/10 bg-navy/95 px-4 py-2.5 backdrop-blur-md md:px-8 md:py-3"
+        aria-label={t('navMenu')}
+      >
+        <div className="relative mx-auto max-w-5xl">
+          <div
+            ref={tabsScrollRef}
+            className="flex gap-1 overflow-x-auto pb-0.5 pe-12 pt-0.5 [scrollbar-width:none] md:pe-0 [&::-webkit-scrollbar]:hidden"
+          >
+            {MENU_TABS.map((tab) => (
               <button
+                key={tab.id}
                 type="button"
-                tabIndex={canScrollTabs ? 0 : -1}
-                onClick={scrollTabsForward}
-                aria-label={t('menuTabsScrollHint')}
+                onClick={() => scrollTo(tab.id)}
                 className={cn(
-                  'pointer-events-auto absolute right-0 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full',
-                  'border border-gold/40 bg-navy/90 text-gold shadow-[0_0_16px_rgba(216,174,58,0.25)]',
-                  'transition-transform active:scale-95',
-                  canScrollTabs ? 'visible' : 'invisible',
+                  'shrink-0 touch-target rounded-[2px] border px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] transition-colors',
+                  active === tab.id
+                    ? 'border-gold bg-gold/15 text-gold'
+                    : 'border-transparent text-cream/80 hover:border-white/20 hover:text-cream',
                 )}
               >
-                <motion.span
-                  animate={reduceMotion ? undefined : { x: [0, 3, 0] }}
-                  transition={{
-                    duration: 1.6,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                  className="inline-flex"
-                >
-                  <ChevronRight className="h-4 w-4" strokeWidth={2.25} aria-hidden />
-                </motion.span>
+                {t(tab.labelKey)}
               </button>
-            </div>
+            ))}
           </div>
-        </nav>
-      </header>
+
+          <div
+            className={cn(
+              'pointer-events-none absolute inset-y-0 right-0 z-10 w-16 transition-opacity duration-300 md:hidden',
+              canScrollTabs ? 'opacity-100' : 'opacity-0',
+            )}
+            aria-hidden={!canScrollTabs}
+          >
+            <div className="absolute inset-0 bg-gradient-to-l from-navy from-30% via-navy/95 to-transparent" />
+            <button
+              type="button"
+              tabIndex={canScrollTabs ? 0 : -1}
+              onClick={scrollTabsForward}
+              aria-label={t('menuTabsScrollHint')}
+              className={cn(
+                'pointer-events-auto absolute right-0 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full',
+                'border border-gold/40 bg-navy/90 text-gold shadow-[0_0_16px_rgba(216,174,58,0.25)]',
+                'transition-transform active:scale-95',
+                canScrollTabs ? 'visible' : 'invisible',
+              )}
+            >
+              <motion.span
+                animate={reduceMotion ? undefined : { x: [0, 3, 0] }}
+                transition={{
+                  duration: 1.6,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
+                className="inline-flex"
+              >
+                <ChevronRight className="h-4 w-4" strokeWidth={2.25} aria-hidden />
+              </motion.span>
+            </button>
+          </div>
+        </div>
+      </nav>
 
       <div className="mx-auto max-w-6xl px-4 py-10 md:px-8 md:py-20">
         {MENU_TABS.map((tab, index) => {

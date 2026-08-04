@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { IMG } from '@/lib/images';
 import { useLocale } from '@/contexts/LocaleContext';
 import type { MessageKey } from '@/lib/i18n/messages';
+import { AmbientGlow } from '@/components/brand/AmbientGlow';
 
 const categoryKeys: { titleKey: MessageKey; image: string }[] = [
   { titleKey: 'menuCatAntipasti', image: IMG.menuAntipasti },
@@ -23,12 +24,15 @@ const neonClasses = [
   'menu-neon-blue',
 ] as const;
 
+const tilts = [-3.5, 2.8, 3.2, -2.6] as const;
+
 export function MenuTeaser() {
   const { t } = useLocale();
 
   return (
-    <section className="bg-surface py-14 md:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-surface py-14 md:py-28">
+      <AmbientGlow />
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeUp className="max-w-2xl">
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold">
             {t('menuKicker')}
@@ -38,13 +42,15 @@ export function MenuTeaser() {
           </h2>
         </FadeUp>
 
-        <div className="mt-8 grid grid-cols-1 gap-4 min-[480px]:grid-cols-2 sm:mt-12 sm:gap-5 lg:grid-cols-4 lg:gap-6">
+        <div className="mt-8 grid grid-cols-2 gap-5 sm:mt-12 sm:gap-6 lg:grid-cols-4 lg:gap-8">
           {categoryKeys.map((c, i) => (
-            <FadeUp key={c.titleKey} delay={i * 0.06}>
+            <FadeUp key={c.titleKey} delay={i * 0.06} className="pt-2 pb-3 sm:pt-3 sm:pb-4">
               <Link href="/menu" className="group block h-full">
                 <motion.div
-                  whileHover={{ scale: 1.02 }}
+                  initial={false}
+                  whileHover={{ scale: 1.03, rotate: 0 }}
                   transition={{ type: 'spring', stiffness: 380, damping: 28 }}
+                  style={{ rotate: tilts[i] }}
                   className={`wave-photo menu-neon-card ${neonClasses[i]} relative aspect-[3/4] overflow-hidden rounded-sm bg-navy sm:rounded-md lg:aspect-[3/4]`}
                   data-wave-photo
                 >
