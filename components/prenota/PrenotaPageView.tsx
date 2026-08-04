@@ -102,7 +102,7 @@ export function PrenotaPageView() {
           <p className="text-xs uppercase tracking-[0.35em] text-gold">
             {t('prenotaKicker')}
           </p>
-          <h1 className="mt-3 font-serif text-3xl font-light text-white sm:text-4xl md:text-5xl">
+          <h1 className="mt-3 font-sans text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
             {t('prenotaTitle')}
           </h1>
           <p className="mt-4 text-sm text-mist md:text-base">{t('prenotaLead')}</p>
@@ -127,7 +127,7 @@ export function PrenotaPageView() {
               >
                 <Check className="h-8 w-8" strokeWidth={2.5} />
               </motion.div>
-              <h2 className="mt-8 font-serif text-3xl text-white">
+              <h2 className="mt-8 font-sans text-3xl text-white">
                 {t('prenotaSuccessTitle')}
               </h2>
               <p className="mt-3 max-w-md text-sm text-mist">{t('prenotaSuccessBody')}</p>
@@ -285,12 +285,12 @@ export function PrenotaPageView() {
 
         <aside className="space-y-8 lg:pt-2">
           <div className="border border-gold/25 bg-gold/5 p-6">
-            <h2 className="font-serif text-xl text-white">{t('prenotaShuttleTitle')}</h2>
+            <h2 className="font-sans text-xl text-white">{t('prenotaShuttleTitle')}</h2>
             <p className="mt-3 text-sm leading-relaxed text-mist">{t('prenotaShuttleBody')}</p>
           </div>
           <div>
-            <h2 className="mb-3 font-serif text-lg text-white">{t('prenotaMapTitle')}</h2>
-            <div className="relative aspect-[4/3] w-full overflow-hidden border border-white/10">
+            <h2 className="mb-3 font-sans text-lg text-white">{t('prenotaMapTitle')}</h2>
+            <div className="frame-neon relative aspect-[4/3] w-full overflow-hidden">
               <iframe
                 title="Map"
                 src={MAP.embedSrc}

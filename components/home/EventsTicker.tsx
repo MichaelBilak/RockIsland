@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useReducedMotion } from 'framer-motion';
 import { FadeUp } from '@/components/motion/FadeUp';
 import { useLocale } from '@/contexts/LocaleContext';
 import type { MessageKey } from '@/lib/i18n/messages';
@@ -17,12 +18,16 @@ const eventFieldGroups: { date: MessageKey; title: MessageKey; artist: MessageKe
 
 function MarqueeRow({
   events,
+  isPlaying,
 }: {
   events: { date: string; title: string; artist: string }[];
+  isPlaying: boolean;
 }) {
   const doubled = [...events, ...events];
   return (
-    <div className="flex w-max animate-marquee gap-6 pr-6">
+    <div
+      className={`flex w-max gap-6 pr-6 ${isPlaying ? 'animate-marquee' : ''}`}
+    >
       {doubled.map((e, i) => (
         <article
           key={`${e.title}-${i}`}
@@ -34,7 +39,7 @@ function MarqueeRow({
             </span>
           </div>
           <div className="flex flex-1 flex-col justify-center px-4 py-3">
-            <p className="font-serif text-lg text-white">{e.title}</p>
+            <p className="font-sans text-lg text-white">{e.title}</p>
             <p className="text-xs text-mist">{e.artist}</p>
           </div>
         </article>
@@ -45,6 +50,20 @@ function MarqueeRow({
 
 export function EventsTicker() {
   const { t } = useLocale();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || reduceMotion) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { rootMargin: '120px 0px' },
+    );
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [reduceMotion]);
 
   const events = useMemo(
     () =>
@@ -57,14 +76,14 @@ export function EventsTicker() {
   );
 
   return (
-    <section className="border-y border-white/10 bg-navy py-12 md:py-16">
+    <section ref={sectionRef} className="border-y border-white/10 bg-navy py-12 md:py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <FadeUp className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold">
               {t('eventsKicker')}
             </p>
-            <h2 className="mt-2 font-serif text-3xl font-light text-white md:text-4xl">
+            <h2 className="mt-2 font-sans text-3xl font-semibold text-white md:text-4xl">
               {t('eventsTitle')}
             </h2>
           </div>
@@ -80,7 +99,7 @@ export function EventsTicker() {
       <div className="relative mt-10 overflow-hidden">
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-navy to-transparent" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-navy to-transparent" />
-        <MarqueeRow events={events} />
+        <MarqueeRow events={events} isPlaying={isVisible && !reduceMotion} />
       </div>
     </section>
   );

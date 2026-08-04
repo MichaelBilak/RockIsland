@@ -15,7 +15,7 @@ export function AboutUsSection() {
     <section
       id="about-us"
       aria-labelledby="about-us-heading"
-      className="border-t border-white/10 bg-[#0a1522] py-14 md:py-28"
+      className="bg-surface py-14 md:py-28"
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <FadeUp>
@@ -24,7 +24,7 @@ export function AboutUsSection() {
           </p>
           <h2
             id="about-us-heading"
-            className="mt-3 max-w-3xl font-serif text-2xl font-light text-white sm:text-3xl md:text-4xl lg:text-[2.75rem] lg:leading-tight"
+            className="mt-3 max-w-3xl font-sans text-2xl font-semibold text-white sm:text-3xl md:text-4xl lg:text-[2.75rem] lg:leading-tight"
           >
             {t('aboutUsTitle')}
           </h2>
@@ -32,7 +32,10 @@ export function AboutUsSection() {
 
         <div className="mt-8 grid gap-10 sm:mt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:items-start lg:gap-16">
           <FadeUp className="space-y-8" delay={0.05}>
-            <div className="relative aspect-[16/10] w-full overflow-hidden border border-white/10">
+            <div
+              className="wave-photo frame-neon-yellow relative aspect-[16/10] w-full overflow-hidden"
+              data-wave-photo
+            >
               <ParallaxImage
                 src={IMG.conventionHero}
                 alt={t('aboutUsImgAlt')}
@@ -85,7 +88,10 @@ export function AboutUsSection() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-gold/90">
                 {t('aboutUsMapTitle')}
               </p>
-              <div className="mt-4 overflow-hidden border border-white/10 shadow-[0_20px_50px_-20px_rgba(0,0,0,0.5)]">
+              <div
+                className="wave-photo frame-neon-blue mt-4 overflow-hidden"
+                data-wave-photo
+              >
                 <div className="relative aspect-[4/3] w-full min-h-[240px] sm:min-h-[280px] lg:min-h-[320px]">
                   <iframe
                     title={t('aboutUsMapAria')}

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
-import { Cormorant_Garamond, Inter } from 'next/font/google';
+import { Jost } from 'next/font/google';
 import './globals.css';
 import { AppShell } from '@/components/layout/AppShell';
 import { LocaleProvider } from '@/contexts/LocaleContext';
@@ -8,38 +8,33 @@ import { DocumentLang } from '@/components/layout/DocumentLang';
 import { SITE_URL } from '@/lib/site';
 import { OG_IMAGE } from '@/lib/images';
 
-const cormorant = Cormorant_Garamond({
-  weight: ['300', '400', '600'],
+/** Geometric sans (cyrillic + italic) — neon nightlife feel, no serif */
+const jost = Jost({
+  weight: ['400', '500', '600', '800'],
+  style: ['normal', 'italic'],
   subsets: ['latin', 'latin-ext', 'cyrillic'],
-  variable: '--font-cormorant',
-  display: 'swap',
-});
-
-const inter = Inter({
-  subsets: ['latin', 'latin-ext', 'cyrillic'],
-  weight: ['400', '500'],
-  variable: '--font-inter',
+  variable: '--font-sans',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'Porto Sole Rimini | Ristorante sul mare',
-    template: '%s | Porto Sole Rimini',
+    default: 'RockIsland Rimini | Ristorante sul mare',
+    template: '%s | RockIsland Rimini',
   },
   description:
     'Ristorante, bar ed eventi a 400 metri nel mare Adriatico. Tramonti, musica, pesce e cocktail sul Molo di Levante a Rimini.',
   openGraph: {
-    title: 'Porto Sole Rimini | Ristorante sul mare',
+    title: 'RockIsland Rimini | Ristorante sul mare',
     description:
-      '400 metri nel mare. Tramonti, musica, cena. Porto Sole — Molo di Levante, Rimini.',
+      '400 metri nel mare. Tramonti, musica, cena. RockIsland — Molo di Levante, Rimini.',
     images: [
       {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: 'Porto Sole Rimini — vista dal Molo di Levante',
+        alt: 'RockIsland Rimini — vista dal Molo di Levante',
       },
     ],
     locale: 'it_IT',
@@ -47,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Porto Sole Rimini',
+    title: 'RockIsland Rimini',
     description:
       'Ristorante e bar sul molo: pesce, pizza, cocktail ed eventi sul mare.',
     images: [OG_IMAGE],
@@ -60,13 +55,13 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
-  themeColor: '#0D1B2A',
+  themeColor: '#0E161C',
 };
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Restaurant',
-  name: 'Porto Sole',
+  name: 'RockIsland',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Molo di Levante, Largo Ruggero Boscovich',
@@ -92,7 +87,7 @@ export default function RootLayout({
     <html
       lang="it"
       suppressHydrationWarning
-      className={`${cormorant.variable} ${inter.variable}`}
+      className={jost.variable}
     >
       <head>
         <script
@@ -100,7 +95,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-navy font-sans">
+      <body className={`${jost.className} min-h-screen bg-navy font-sans`}>
         {gaMeasurementId ? (
           <>
             <Script

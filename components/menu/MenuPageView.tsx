@@ -16,6 +16,7 @@ import { IMG, MENU_CATEGORY_PHOTO } from '@/lib/images';
 import { useLocale } from '@/contexts/LocaleContext';
 import { cn } from '@/lib/utils';
 import { FadeUp } from '@/components/motion/FadeUp';
+import { WavePhotoFlow } from '@/components/motion/WavePhotoFlow';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { DishReveal, type DishRevealData } from '@/components/menu/DishReveal';
 
@@ -169,12 +170,13 @@ export function MenuPageView() {
 
   return (
     <main className="mobile-main-pad">
+      <WavePhotoFlow />
       <header className="border-b border-white/10 bg-navy px-4 pb-8 pt-6 md:px-8 md:pb-10 md:pt-12">
         <div className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold">
             {t('menuPageKicker')}
           </p>
-          <h1 className="mt-3 font-serif text-3xl font-light text-white sm:text-4xl md:text-5xl">
+          <h1 className="mt-3 font-sans text-3xl font-semibold text-white sm:text-4xl md:text-5xl">
             {t('menuPageTitle')}
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-mist md:text-base">
@@ -223,7 +225,7 @@ export function MenuPageView() {
                 aria-label={t('menuTabsScrollHint')}
                 className={cn(
                   'pointer-events-auto absolute right-0 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full',
-                  'border border-gold/40 bg-navy/90 text-gold shadow-[0_0_16px_rgba(232,168,56,0.25)]',
+                  'border border-gold/40 bg-navy/90 text-gold shadow-[0_0_16px_rgba(216,174,58,0.25)]',
                   'transition-transform active:scale-95',
                   canScrollTabs ? 'visible' : 'invisible',
                 )}
@@ -265,7 +267,10 @@ export function MenuPageView() {
                       !imageOnLeft && 'md:order-2',
                     )}
                   >
-                    <div className="group relative aspect-[16/11] w-full overflow-hidden border border-white/10 bg-[#0a1522] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.45)] sm:aspect-[5/6] md:aspect-[4/5] md:max-h-[min(520px,70vh)]">
+                    <div
+                      className="wave-photo group relative aspect-[16/11] w-full overflow-hidden bg-surface sm:aspect-[5/6] md:aspect-[4/5] md:max-h-[min(520px,70vh)]"
+                      data-wave-photo
+                    >
                       <ParallaxImage
                         src={src}
                         alt=""
@@ -286,7 +291,7 @@ export function MenuPageView() {
                   >
                     <h2
                       id={`menu-heading-${tab.id}`}
-                      className="inline-block border-b border-gold/35 pb-2 font-serif text-2xl font-light tracking-tight text-white sm:pb-3 sm:text-3xl md:text-4xl"
+                      className="inline-block border-b border-gold/35 pb-2 font-sans text-2xl font-semibold tracking-tight text-white sm:pb-3 sm:text-3xl md:text-4xl"
                     >
                       {t(tab.labelKey)}
                     </h2>
@@ -338,7 +343,7 @@ export function MenuPageView() {
                               <p className="mt-1 text-sm text-mist">{item.description}</p>
                             ) : null}
                           </div>
-                          <p className="shrink-0 text-right font-serif text-lg text-gold tabular-nums">
+                          <p className="shrink-0 text-right font-sans text-lg text-gold tabular-nums">
                             € {item.price}
                           </p>
                         </li>
@@ -352,10 +357,10 @@ export function MenuPageView() {
         })}
       </div>
 
-      <section className="border-t border-white/10 bg-[#0a1522] py-16 md:py-24">
+      <section className="border-t border-white/10 bg-surface py-16 md:py-24">
         <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2 md:gap-0 md:px-0">
           <FadeUp>
-            <div className="relative h-[280px] w-full overflow-hidden sm:h-[340px] md:h-[min(480px,55vh)]">
+            <div className="frame-neon-teal relative h-[280px] w-full overflow-hidden sm:h-[340px] md:h-[min(480px,55vh)]">
               <ParallaxImage
                 src={IMG.featured1}
                 alt=""
@@ -367,7 +372,7 @@ export function MenuPageView() {
             <p className="text-xs uppercase tracking-[0.35em] text-gold">
               {t('menuFeat1Overline')}
             </p>
-            <h2 className="mt-4 font-serif text-3xl font-light text-white md:text-4xl">
+            <h2 className="mt-4 font-sans text-3xl font-semibold text-white md:text-4xl">
               {t('menuFeat1Title')}
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-mist md:text-base">
@@ -383,7 +388,7 @@ export function MenuPageView() {
             <p className="text-xs uppercase tracking-[0.35em] text-gold">
               {t('menuFeat2Overline')}
             </p>
-            <h2 className="mt-4 font-serif text-3xl font-light text-white md:text-4xl">
+            <h2 className="mt-4 font-sans text-3xl font-semibold text-white md:text-4xl">
               {t('menuFeat2Title')}
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-mist md:text-base">
@@ -391,7 +396,7 @@ export function MenuPageView() {
             </p>
           </FadeUp>
           <FadeUp className="order-1 md:order-2">
-            <div className="relative h-[280px] w-full overflow-hidden sm:h-[340px] md:h-[min(480px,55vh)]">
+            <div className="frame-neon-yellow relative h-[280px] w-full overflow-hidden sm:h-[340px] md:h-[min(480px,55vh)]">
               <ParallaxImage
                 src={IMG.featured2}
                 alt=""
@@ -406,7 +411,7 @@ export function MenuPageView() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="border-t border-white/10 py-12 text-center"
+        className="py-12 text-center"
       >
         <Link
           href="/prenota"
@@ -434,7 +439,7 @@ export function MenuPageView() {
               duration: reduceMotion ? 0 : 0.14,
               ease: [0.22, 1, 0.36, 1],
             }}
-            className="pointer-events-none fixed z-[70] w-[min(280px,calc(100vw-24px))] overflow-hidden border border-white/15 bg-[#0a1522] shadow-[0_24px_48px_-12px_rgba(0,0,0,0.55)]"
+            className="frame-neon pointer-events-none fixed z-[70] w-[min(280px,calc(100vw-24px))] overflow-hidden bg-surface"
             style={{
               left: dishPreview.left,
               top: dishPreview.top,

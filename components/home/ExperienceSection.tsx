@@ -13,7 +13,8 @@ export function ExperienceSection() {
     <section className="bg-navy py-14 md:py-28">
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 md:grid-cols-2 md:gap-0 md:px-0 lg:gap-8">
         <motion.div
-          className="relative aspect-[4/5] w-full overflow-hidden md:min-h-[520px] md:rounded-none"
+          className="wave-photo frame-neon-teal relative aspect-[4/5] w-full overflow-hidden md:min-h-[520px] md:rounded-none"
+          data-wave-photo
           initial={{ opacity: 0, x: -28 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: '-80px' }}
@@ -31,7 +32,7 @@ export function ExperienceSection() {
           <p className="text-xs font-medium uppercase tracking-[0.35em] text-gold">
             {t('expKicker')}
           </p>
-          <h2 className="mt-3 font-serif text-3xl font-light text-white sm:mt-4 sm:text-4xl md:text-5xl">
+          <h2 className="mt-3 font-sans text-3xl font-semibold text-white sm:mt-4 sm:text-4xl md:text-5xl">
             {t('expTitle')}
           </h2>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-cream/85 sm:mt-6 sm:text-base">

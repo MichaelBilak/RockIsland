@@ -13,26 +13,26 @@ export function MobileBottomBar() {
       <div className="grid h-14 grid-cols-3 divide-x divide-navy/15">
         <a
           href={CONTACT.phoneHref}
-          className="inline-flex min-h-[44px] items-center justify-center gap-1.5 text-xs font-semibold tracking-wide sm:gap-2 sm:text-sm"
+          className="inline-flex min-w-0 min-h-[44px] items-center justify-center gap-1 px-1.5 text-xs font-semibold tracking-wide sm:gap-2 sm:px-2 sm:text-sm"
         >
           <Phone className="h-4 w-4 shrink-0" aria-hidden />
-          {t('mobileCall')}
+          <span className="truncate">{t('mobileCall')}</span>
         </a>
         <a
           href={WHATSAPP_HREF}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex min-h-[44px] items-center justify-center gap-1.5 text-xs font-semibold tracking-wide sm:gap-2 sm:text-sm"
+          className="inline-flex min-w-0 min-h-[44px] items-center justify-center gap-1 px-1.5 text-xs font-semibold tracking-wide sm:gap-2 sm:px-2 sm:text-sm"
         >
           <MessageCircle className="h-4 w-4 shrink-0" aria-hidden />
-          {t('mobileWhatsApp')}
+          <span className="truncate">{t('mobileWhatsApp')}</span>
         </a>
         <Link
           href="/prenota"
-          className="inline-flex min-h-[44px] items-center justify-center gap-1.5 text-xs font-semibold tracking-wide sm:gap-2 sm:text-sm"
+          className="inline-flex min-w-0 min-h-[44px] items-center justify-center gap-1 px-1.5 text-xs font-semibold tracking-wide sm:gap-2 sm:px-2 sm:text-sm"
         >
           <CalendarDays className="h-4 w-4 shrink-0" aria-hidden />
-          {t('mobileBook')}
+          <span className="truncate">{t('mobileBook')}</span>
         </Link>
       </div>
     </div>

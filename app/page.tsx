@@ -7,11 +7,13 @@ import { EventsTicker } from '@/components/home/EventsTicker';
 import { ConventionCta } from '@/components/home/ConventionCta';
 import { AboutUsSection } from '@/components/home/AboutUsSection';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { WavePhotoFlow } from '@/components/motion/WavePhotoFlow';
 
 export default function HomePage() {
   return (
     <>
       <main className="mobile-main-pad">
+        <WavePhotoFlow />
         <HomeHero />
         <AboutStrip />
         <ExperienceSection />

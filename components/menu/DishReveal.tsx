@@ -94,7 +94,7 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
           <motion.button
             type="button"
             aria-label={t('dishRevealClose')}
-            className="absolute inset-0 z-0 bg-[#050d14]/75 backdrop-blur-[3px] md:bg-[#050d14]/0 md:backdrop-blur-none"
+            className="absolute inset-0 z-0 bg-ink/75 backdrop-blur-[3px] md:bg-ink/0 md:backdrop-blur-none"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -103,7 +103,7 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
           />
 
           {/* Mobile — centered card */}
-          <div className="absolute inset-0 z-10 flex items-center justify-center px-5 py-8 md:hidden">
+          <div className="absolute inset-0 z-10 flex items-center justify-center px-5 py-4 md:hidden">
             <motion.div
               role="dialog"
               aria-modal="true"
@@ -112,10 +112,10 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: 8 }}
               transition={cardTransition}
-              className="relative w-full max-w-[min(100%,340px)] overflow-hidden rounded-sm border border-white/15 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.65)]"
+              className="frame-neon-strong relative max-h-[calc(100svh-2rem)] w-full max-w-[min(100%,340px)] overflow-y-auto rounded-sm"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative aspect-[3/4] min-h-[380px] w-full">
+              <div className="relative aspect-[3/4] min-h-[min(380px,calc(100svh-2rem))] w-full">
                 <Image
                   src={dish.image}
                   alt={dish.name}
@@ -125,20 +125,20 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
                   priority
                 />
                 <div
-                  className="pointer-events-none absolute inset-0 bg-[#050d14]/35"
+                  className="pointer-events-none absolute inset-0 bg-ink/35"
                   aria-hidden
                 />
                 <div
-                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050d14]/55 via-transparent to-[#050d14]/20"
+                  className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/55 via-transparent to-ink/20"
                   aria-hidden
                 />
                 {/* Bottom vignette — stronger read on price block */}
                 <div
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] bg-[radial-gradient(ellipse_130%_90%_at_50%_100%,rgba(5,13,20,0.98)_0%,rgba(5,13,20,0.72)_42%,transparent_100%)]"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-[62%] bg-[radial-gradient(ellipse_130%_90%_at_50%_100%,rgba(10,16,20,0.98)_0%,rgba(10,16,20,0.72)_42%,transparent_100%)]"
                   aria-hidden
                 />
                 <div
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#050d14] via-[#050d14]/92 to-transparent"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ink via-ink/92 to-transparent"
                   aria-hidden
                 />
                 <div
@@ -149,7 +149,7 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
                 <CloseButton
                   label={t('dishRevealClose')}
                   onClose={onClose}
-                  className="absolute right-2 top-2 z-20 rounded-full border border-white/10 bg-[#050d14]/50 p-2 text-cream backdrop-blur-sm hover:border-gold/30 hover:bg-[#050d14]/70 hover:text-gold"
+                  className="absolute right-2 top-2 z-20 rounded-full border border-white/10 bg-ink/50 p-2 text-cream backdrop-blur-sm hover:border-gold/30 hover:bg-ink/70 hover:text-gold"
                 />
 
                 <div className="absolute inset-x-0 bottom-0 z-[1] p-6 pt-20">
@@ -158,7 +158,7 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
                   </p>
                   <h2
                     id="dish-reveal-title-mobile"
-                    className="mt-2 font-serif text-[1.75rem] font-light leading-tight text-white"
+                    className="mt-2 font-sans text-[1.75rem] font-semibold leading-tight text-white"
                   >
                     {dish.name}
                   </h2>
@@ -171,7 +171,7 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
                     <span className="text-[10px] uppercase tracking-[0.28em] text-mist/90">
                       {t('dishRevealPrice')}
                     </span>
-                    <p className="font-serif text-2xl tabular-nums text-gold">
+                    <p className="font-sans text-2xl tabular-nums text-gold">
                       € {dish.price}
                     </p>
                   </div>
@@ -189,7 +189,7 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.97 }}
             transition={cardTransition}
-            className="absolute inset-0 z-10 hidden flex-col bg-[#050d14] md:flex md:flex-row"
+            className="absolute inset-0 z-10 hidden flex-col bg-ink md:flex md:flex-row"
             onClick={onClose}
           >
             <CloseButton
@@ -198,7 +198,7 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
               className="absolute right-6 top-6 z-[60] rounded-full p-2 text-cream hover:text-gold"
             />
 
-            <div className="relative h-full w-[55%] shrink-0">
+            <div className="relative h-full w-[55%] shrink-0 shadow-[inset_-1px_0_0_rgba(255,46,200,0.55),4px_0_28px_rgba(255,46,200,0.25)]">
               <Image
                 src={dish.image}
                 alt={dish.name}
@@ -207,23 +207,27 @@ export function DishReveal({ dish, onClose }: DishRevealProps) {
                 sizes="55vw"
                 priority
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-[#050d14]/80" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-ink/80" />
+              <div
+                className="pointer-events-none absolute inset-y-0 right-0 w-px bg-gradient-to-b from-neon-teal via-neon-pink to-neon-blue shadow-neon-horizon"
+                aria-hidden
+              />
             </div>
 
-            <div className="flex w-[45%] flex-none flex-col justify-center overflow-y-auto bg-[#050d14] px-12 lg:px-16">
+            <div className="flex w-[45%] flex-none flex-col justify-center overflow-y-auto bg-ink px-12 lg:px-16">
               <p className="text-xs uppercase tracking-[0.35em] text-gold">
                 {dish.category}
               </p>
               <h2
                 id="dish-reveal-title"
-                className="mt-4 font-serif text-5xl font-light text-white lg:text-6xl"
+                className="mt-4 font-sans text-5xl font-semibold text-white lg:text-6xl"
               >
                 {dish.name}
               </h2>
               {dish.description ? (
                 <p className="mt-4 leading-relaxed text-cream/80">{dish.description}</p>
               ) : null}
-              <p className="mt-6 font-serif text-3xl text-gold">€ {dish.price}</p>
+              <p className="mt-6 font-sans text-3xl text-gold">€ {dish.price}</p>
             </div>
           </motion.div>
         </div>

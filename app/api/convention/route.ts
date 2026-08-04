@@ -55,11 +55,11 @@ export async function POST(req: Request) {
     )
     .join('');
 
-  const html = `<p>Nuova richiesta <strong>Convention</strong> da portosolerimini.it.</p>
+  const html = `<p>Nuova richiesta <strong>Convention</strong> da rockislandrimini.it.</p>
 <table style="border-collapse:collapse;font-family:system-ui,sans-serif;font-size:14px;">${htmlRows}</table>`;
 
   const sent = await sendHtmlEmail({
-    subject: `[Porto Sole] Convention — ${company}`,
+    subject: `[RockIsland] Convention — ${company}`,
     html,
     replyTo: email,
   });

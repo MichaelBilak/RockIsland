@@ -6,37 +6,109 @@
   :root {
     --nav-height: 72px;
     --mobile-bar-height: 3.5rem;
-    --deep-navy: #0d1b2a;
-    --sunset-gold: #e8a838;
-    --warm-cream: #f5edd8;
-    --sea-mist: #8fb8c9;
-    --background: 210 40% 8%;
-    --foreground: 40 40% 95%;
-    --muted: 210 25% 18%;
-    --muted-foreground: 200 15% 65%;
-    --accent: 38 75% 56%;
-    --accent-foreground: 210 40% 10%;
-    --border: 200 20% 24%;
-    --input: 200 20% 24%;
-    --ring: 38 75% 56%;
+
+    /* Logo rocks → dark cinematic UI */
+    --deep-navy: #0e161c;
+    --ink: #070c10;
+    --surface: #162029;
+    --rock-teal: #70b0a0;
+    --rock-yellow: #e0d060;
+    --rock-coral: #e07070;
+    --rock-orange: #e09060;
+    --rock-pink: #e090a0;
+    --rock-blue: #405080;
+    --neon-teal: #5cffd0;
+    --neon-yellow: #ffe566;
+    --neon-coral: #ff6b7a;
+    --neon-orange: #ff9a4a;
+    --neon-pink: #ff2ec8;
+    --neon-blue: #6b8cff;
+    --neon-magenta: #ff2ec8;
+    --brand-pop: #fb00bc;
+    --brand-neon: #ff2ec8;
+
+    --sunset-gold: #e0d060;
+    --warm-cream: #f2f4f5;
+    --sea-mist: #70b0a0;
+
+    --background: 200 32% 7%;
+    --foreground: 200 10% 95%;
+    --muted: 200 18% 13%;
+    --muted-foreground: 180 12% 68%;
+    --accent: 312 100% 49%;
+    --accent-foreground: 0 0% 100%;
+    --border: 195 16% 20%;
+    --input: 195 16% 20%;
+    --ring: 312 100% 59%;
     --radius: 2px;
   }
 
   html {
     scroll-behavior: smooth;
     overflow-x: clip;
+    scroll-padding-top: calc(var(--nav-height) + env(safe-area-inset-top, 0px));
+    scroll-padding-bottom: calc(
+      var(--mobile-bar-height) + env(safe-area-inset-bottom, 0px)
+    );
     -webkit-text-size-adjust: 100%;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE / legacy Edge */
+  }
+
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+    width: 0;
+    height: 0;
   }
 
   body {
-    @apply bg-navy text-cream antialiased;
-    font-family: var(--font-inter), system-ui, sans-serif;
+    @apply bg-navy text-cream font-sans antialiased;
+    font-family: var(--font-sans), 'Helvetica Neue', Arial, sans-serif;
     overflow-x: clip;
     -webkit-tap-highlight-color: transparent;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  * {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  *::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  /* Force sans-serif everywhere — no ui-serif / Georgia / serif fallbacks */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  a,
+  span,
+  button,
+  input,
+  textarea,
+  select,
+  label,
+  li {
+    font-family: inherit;
   }
 
   ::selection {
-    @apply bg-gold/30 text-white;
+    background-color: color-mix(in srgb, var(--neon-magenta) 40%, transparent);
+    color: #fff;
   }
 }
 
@@ -65,6 +137,12 @@
     }
   }
 
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-bottom: 0;
+    }
+  }
+
   .nav-offset-top {
     top: calc(var(--nav-height) + env(safe-area-inset-top, 0px));
   }
@@ -77,5 +155,206 @@
     scroll-margin-top: calc(
       var(--nav-height) + env(safe-area-inset-top, 0px) + 3.5rem
     );
+  }
+
+  /** Brand wordmark — Jost ExtraBold Italic (geometric sans) */
+  .font-brand {
+    font-family: var(--font-sans), 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 800;
+    font-style: italic;
+    letter-spacing: -0.02em;
+  }
+
+  .text-neon-brand {
+    color: #fff;
+    text-shadow:
+      0 0 3px rgba(255, 255, 255, 0.7),
+      0 0 8px rgba(255, 46, 200, 0.75),
+      0 0 18px rgba(255, 46, 200, 0.55),
+      0 0 32px rgba(251, 0, 188, 0.35),
+      0 0 48px rgba(251, 0, 188, 0.18);
+  }
+
+  /** Scrolled / solid nav — soft depth, neon hairline, no content bleed-through */
+  .nav-surface {
+    background: linear-gradient(
+      180deg,
+      #152029 0%,
+      #101820 42%,
+      #0c1319 100%
+    );
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.05),
+      0 12px 40px rgba(0, 0, 0, 0.4),
+      0 0 48px rgba(255, 46, 200, 0.05);
+  }
+
+  .nav-surface::after {
+    content: '';
+    pointer-events: none;
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(92, 255, 208, 0.35) 12%,
+      rgba(255, 229, 102, 0.4) 38%,
+      rgba(255, 46, 200, 0.55) 62%,
+      rgba(107, 140, 255, 0.35) 88%,
+      transparent 100%
+    );
+  }
+
+  .glow-neon-line {
+    box-shadow:
+      0 0 8px rgba(92, 255, 208, 0.4),
+      0 0 16px rgba(255, 229, 102, 0.3),
+      0 0 28px rgba(255, 46, 200, 0.35),
+      0 0 40px rgba(107, 140, 255, 0.25);
+  }
+
+  /** Multi-color neon frame (default for photos) */
+  .frame-neon {
+    border: 1px solid rgba(255, 46, 200, 0.7);
+    box-shadow:
+      0 0 2px rgba(255, 255, 255, 0.55),
+      0 0 10px rgba(92, 255, 208, 0.55),
+      0 0 22px rgba(255, 229, 102, 0.4),
+      0 0 36px rgba(255, 46, 200, 0.65),
+      0 0 56px rgba(107, 140, 255, 0.35),
+      inset 0 0 18px rgba(255, 46, 200, 0.08);
+  }
+
+  .frame-neon-strong {
+    border: 1px solid rgba(255, 46, 200, 0.9);
+    box-shadow:
+      0 0 2px rgba(255, 255, 255, 0.75),
+      0 0 12px rgba(92, 255, 208, 0.7),
+      0 0 26px rgba(255, 229, 102, 0.55),
+      0 0 44px rgba(255, 46, 200, 0.8),
+      0 0 68px rgba(251, 0, 188, 0.45),
+      inset 0 0 22px rgba(255, 46, 200, 0.12);
+  }
+
+  .frame-neon-teal {
+    border: 1px solid rgba(92, 255, 208, 0.85);
+    box-shadow:
+      0 0 2px rgba(255, 255, 255, 0.55),
+      0 0 12px rgba(92, 255, 208, 0.75),
+      0 0 28px rgba(92, 255, 208, 0.45),
+      0 0 48px rgba(92, 255, 208, 0.25),
+      inset 0 0 16px rgba(92, 255, 208, 0.1);
+  }
+
+  .frame-neon-yellow {
+    border: 1px solid rgba(255, 229, 102, 0.85);
+    box-shadow:
+      0 0 2px rgba(255, 255, 255, 0.55),
+      0 0 12px rgba(255, 229, 102, 0.75),
+      0 0 28px rgba(255, 229, 102, 0.45),
+      0 0 48px rgba(255, 229, 102, 0.25),
+      inset 0 0 16px rgba(255, 229, 102, 0.1);
+  }
+
+  .frame-neon-blue {
+    border: 1px solid rgba(107, 140, 255, 0.85);
+    box-shadow:
+      0 0 2px rgba(255, 255, 255, 0.55),
+      0 0 12px rgba(107, 140, 255, 0.75),
+      0 0 28px rgba(107, 140, 255, 0.45),
+      0 0 48px rgba(107, 140, 255, 0.25),
+      inset 0 0 16px rgba(107, 140, 255, 0.1);
+  }
+
+  .frame-neon-pink {
+    border: 1px solid rgba(255, 46, 200, 0.85);
+    box-shadow:
+      0 0 2px rgba(255, 255, 255, 0.55),
+      0 0 12px rgba(255, 46, 200, 0.75),
+      0 0 28px rgba(251, 0, 188, 0.5),
+      0 0 48px rgba(255, 46, 200, 0.3),
+      inset 0 0 16px rgba(255, 46, 200, 0.1);
+  }
+
+  /*
+   * The static horizon continues through homepage photos. They rest quietly
+   * until they enter the viewport, then ignite in the horizon palette.
+   * Glow lives on the element itself (not a clipped ::after) so overflow:hidden
+   * on photos does not kill the neon bloom.
+   */
+  .wave-photo {
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.02);
+    transition:
+      border-color 700ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .wave-photo.is-wave-lit {
+    border-color: rgba(255, 46, 200, 0.68);
+    box-shadow:
+      0 0 6px rgba(92, 255, 208, 0.42),
+      0 0 16px rgba(255, 229, 102, 0.32),
+      0 0 28px rgba(255, 46, 200, 0.46),
+      0 0 46px rgba(107, 140, 255, 0.24),
+      inset 0 0 20px rgba(255, 46, 200, 0.1);
+  }
+
+  .menu-neon-card {
+    border: 1px solid rgba(var(--menu-neon-rgb), 0.28);
+    transition:
+      border-color 400ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 300ms ease;
+  }
+
+  .menu-neon-card.is-wave-lit {
+    border-color: rgba(var(--menu-neon-rgb), 0.72);
+    box-shadow:
+      0 0 5px rgba(var(--menu-neon-rgb), 0.48),
+      0 0 14px rgba(var(--menu-neon-rgb), 0.32),
+      0 0 30px rgba(var(--menu-neon-rgb), 0.2),
+      0 0 48px rgba(var(--menu-neon-rgb), 0.1),
+      inset 0 0 18px rgba(var(--menu-neon-rgb), 0.08);
+  }
+
+  .menu-neon-card.is-wave-lit:hover,
+  .group:hover .menu-neon-card.is-wave-lit {
+    border-color: rgba(var(--menu-neon-rgb), 0.95);
+    box-shadow:
+      0 0 4px rgba(255, 255, 255, 0.45),
+      0 0 10px rgba(var(--menu-neon-rgb), 0.75),
+      0 0 24px rgba(var(--menu-neon-rgb), 0.55),
+      0 0 48px rgba(var(--menu-neon-rgb), 0.35),
+      0 0 72px rgba(var(--menu-neon-rgb), 0.2),
+      inset 0 0 22px rgba(var(--menu-neon-rgb), 0.14);
+  }
+
+  .menu-neon-coral {
+    --menu-neon-rgb: 255, 107, 122;
+  }
+
+  .menu-neon-teal {
+    --menu-neon-rgb: 92, 255, 208;
+  }
+
+  .menu-neon-yellow {
+    --menu-neon-rgb: 255, 229, 102;
+  }
+
+  .menu-neon-blue {
+    --menu-neon-rgb: 107, 140, 255;
+  }
+
+  .menu-neon-pink {
+    --menu-neon-rgb: 255, 46, 200;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wave-photo {
+      transition: none;
+    }
   }
 }

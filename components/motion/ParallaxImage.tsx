@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useRef } from 'react';
+import { useEffect, useRef, useState, type RefObject } from 'react';
 import {
   motion,
   useReducedMotion,
@@ -25,6 +25,10 @@ type ImageCommonProps = Pick<
   ParallaxImageProps,
   'src' | 'alt' | 'sizes' | 'className' | 'priority'
 >;
+
+type ParallaxImageMotionProps = ParallaxImageProps & {
+  containerRef: RefObject<HTMLDivElement>;
+};
 
 function StaticImage({
   src,
@@ -51,10 +55,9 @@ function ParallaxImageMotion({
   sizes,
   className,
   priority,
-  wrapperClassName,
   yRange,
-}: ParallaxImageProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  containerRef,
+}: ParallaxImageMotionProps) {
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start end', 'end start'],
@@ -62,33 +65,46 @@ function ParallaxImageMotion({
   const y = useTransform(scrollYProgress, [0, 1], yRange ?? ['-8%', '8%']);
 
   return (
-    <div ref={containerRef} className={cn('overflow-hidden', wrapperClassName)}>
-      <motion.div className="absolute inset-0" style={{ y }}>
-        <div className="absolute inset-x-0 top-[-5%] h-[110%]">
-          <StaticImage
-            src={src}
-            alt={alt}
-            sizes={sizes}
-            className={className}
-            priority={priority}
-          />
-        </div>
-      </motion.div>
-    </div>
+    <motion.div className="absolute inset-0 will-change-transform" style={{ y }}>
+      <div className="absolute inset-x-0 top-[-5%] h-[110%]">
+        <StaticImage
+          src={src}
+          alt={alt}
+          sizes={sizes}
+          className={className}
+          priority={priority}
+        />
+      </div>
+    </motion.div>
   );
 }
 
 export function ParallaxImage(props: ParallaxImageProps) {
   const shouldReduce = useReducedMotion();
   const wrapperClassName = props.wrapperClassName ?? 'absolute inset-0';
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldAnimate, setShouldAnimate] = useState(false);
 
-  if (shouldReduce) {
-    return (
-      <div className={cn('overflow-hidden', wrapperClassName)}>
-        <StaticImage {...props} />
-      </div>
+  useEffect(() => {
+    if (shouldReduce || !window.matchMedia('(min-width: 768px)').matches) return;
+    const container = containerRef.current;
+    if (!container) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setShouldAnimate(entry.isIntersecting),
+      { rootMargin: '160px 0px' },
     );
-  }
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [shouldReduce]);
 
-  return <ParallaxImageMotion {...props} wrapperClassName={wrapperClassName} />;
+  return (
+    <div ref={containerRef} className={cn('overflow-hidden', wrapperClassName)}>
+      {shouldAnimate ? (
+        <ParallaxImageMotion {...props} containerRef={containerRef} />
+      ) : (
+        <StaticImage {...props} />
+      )}
+    </div>
+  );
 }
